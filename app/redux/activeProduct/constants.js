@@ -1,0 +1,3 @@
+export const SET_ACTIVE_PRODUCT = Symbol('SET_ACTIVE_PRODUCT');
+
+export const RESET_ACTIVE_PRODUCT = Symbol('RESET_ACTIVE_PRODUCT');
