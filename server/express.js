@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser'
 
 import sessionMiddleware from './middleware/sessions.js';
 import fileUploadMiddleware from './middleware/fileUpload.js';
-import apiRouter from './api/index.js';
+import apiRouter from './api/routes/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,7 +19,7 @@ app.use('/', sessionMiddleware);
 app.use('/', fileUploadMiddleware);
 app.use('/api', apiRouter);
 
-app.use(express.static(path.join('__dirname', '../public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));

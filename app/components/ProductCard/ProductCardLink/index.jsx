@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import ProductCardImage from './ProductCardImage';
-import ProductCardText from './ProductCardText';
-import * as StyledComponents from '../StyledComponents/index.jsx';
+import ProductCardImage from './ProductCardImage.jsx';
+import ProductCardInfo from './ProductCardInfo/index.jsx';
+import * as StyledComponents from '../../StyledComponents/index.jsx';
 const { StyledProductCard: { ProductCardLink } } = StyledComponents;
 
-export default (product) => (
+export default ({ product }) => (
   <ProductCardLink to={ `/products/${ product.id }`}>
-    <ProductCardImage { ...product } />
-    <ProductCardText { ...product } />
+    <ProductCardImage product={ product } />
+    <ProductCardInfo product={ product } />
   </ProductCardLink>
 );

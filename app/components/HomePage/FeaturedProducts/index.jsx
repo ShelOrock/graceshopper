@@ -1,12 +1,11 @@
 import * as React from 'react';
 
-import FeaturedProductList from './FeaturedProductList.jsx';
-import * as StyledComponents from '../../StyledComponents/index.jsx';
-const { StyledType: { Title } } = StyledComponents;
+import SectionHeader from '../../SectionHeader/index.jsx';
+import FeaturedProductsList from './FeaturedProductsList.jsx';
 
 export default () => (
   <>
-    <Title>Featured Products</Title>
-    <FeaturedProductList />
+    <SectionHeader>Featured Products</SectionHeader>
+    <FeaturedProductsList />
   </>
 )

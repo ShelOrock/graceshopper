@@ -1,14 +1,15 @@
 import styled, { css } from 'styled-components';
 
-export const List = styled.css`
+export const List = css`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   list-style-type: none;
+  padding: 0;
+  margin: 1rem;
 `;
 
 export const CardList = styled.ul`
   ${ List }
+  align-items: center;
 `;
 
 export const LineList = styled.ul`

@@ -1,10 +1,11 @@
-import User from './users.js';
-import Order from './orders.js';
-import Product from './products.js';
+import User from './user.js';
+import Order from './order.js';
+import Product from './product.js';
 import Cart from './cart.js';
 import CartItem from './cartItem.js';
 import Wishlist from './wishlist.js';
 import WishlistItem from './wishlistItem.js';
+import Tag from './tag.js';
 
 export {
   User,
@@ -14,4 +15,5 @@ export {
   CartItem,
   Wishlist,
   WishlistItem,
+  Tag
 };

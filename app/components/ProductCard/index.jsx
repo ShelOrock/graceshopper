@@ -5,9 +5,9 @@ import ProductCardLink from './ProductCardLink/index.jsx';
 import * as StyledComponents from '../StyledComponents/index.jsx';
 const { StyledProductCard: { ProductCard } } = StyledComponents;
 
-export default (product) => (
+export default ({ product }) => (
   <ProductCard>
-    <ProductCardButtons { ...product } />
-    <ProductCardLink { ...product } />
+    <ProductCardButtons product={ product } />
+    <ProductCardLink product={ product } />
   </ProductCard>
-)
+);

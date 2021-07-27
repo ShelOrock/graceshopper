@@ -5,19 +5,19 @@ import HomeNavLink from './HomeNavLink.jsx';
 import ShopNavLink from './ShopNavLink.jsx';
 import AuthenticationLinks from './AuthenticationLinks/index.jsx';
 import CartAndWishlistLinks from './CartAndWishlistLinks/index.jsx';
-import * as StyledComponents from '../../StyledComponents/index.jsx';
-const { StyledDiv: { Row } } = StyledComponents;
+import * as StyledComponents from '../StyledComponents/index.jsx';
+const { StyledNavigation: { NavigationContainer } } = StyledComponents;
 
 export default () => {
   
   const { activeUser } = useSelector(state => state);
 
   return (
-    <Row justifyContent='space-between'>
+    <NavigationContainer>
       <HomeNavLink />
       <ShopNavLink />
-      <AuthenticationLinks />
-      <CartAndWishlistLinks { ...activeUser } />
-    </Row>
+      <AuthenticationLinks activeUser={ activeUser } />
+      <CartAndWishlistLinks activeUser={ activeUser } />
+    </NavigationContainer>
   )
 }

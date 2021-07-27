@@ -9,23 +9,37 @@ import {
   CartItem,
   Wishlist,
   WishlistItem,
+  Tag
 } from './models/index.js';
 
 //MODEL ASSOCIATIONS
-User.hasOne(Cart);
+User.hasOne(Cart, {
+  onDelete: 'cascade'
+});
 Cart.belongsTo(User);
 
-User.hasOne(Wishlist);
+User.hasOne(Wishlist, {
+  onDelete: 'cascade'
+});
 Wishlist.belongsTo(User);
 
-Cart.belongsToMany(Product, { through: CartItem });
-Product.belongsToMany(Cart, { through: CartItem });
+Cart.hasMany(CartItem);
+CartItem.belongsTo(Cart);
+
+Product.hasMany(CartItem);
+CartItem.belongsTo(Product);
 
 Wishlist.belongsToMany(Product, { through: WishlistItem });
 Product.belongsToMany(Wishlist, { through: WishlistItem });
 
 User.hasMany(Order);
 Order.belongsTo(User);
+
+Order.belongsToMany(Product, { through: 'order_product' });
+Product.belongsToMany(Order, { through: 'order_product' });
+
+Product.belongsToMany(Tag, { through: 'product_tag' });
+Tag.belongsToMany(Product, { through: 'product_tag' });
 
 export {
   db,
@@ -36,4 +50,5 @@ export {
   CartItem,
   Wishlist,
   WishlistItem,
+  Tag
 };

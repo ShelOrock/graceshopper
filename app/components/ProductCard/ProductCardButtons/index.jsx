@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import AddToCartButton from './AddToCartButton.jsx';
-import AddToWishlistButton from './AddToWishlistButton.jsx';
+import QuickAddToCartButton from './QuickAddToCartButton.jsx';
+import QuickAddToWishlistButton from './QuickAddToWishlistButton.jsx';
 import * as StyledComponents from '../../StyledComponents/index.jsx';
-const { StyledDiv: { Row } } = StyledComponents;
+const { StyledProductCard: { ProductCardButtonsContainer } } = StyledComponents;
 
-export default (product) => (
-  <Row>
-    <AddToCartButton { ...product }/>
-    <AddToWishlistButton { ...product }/>
-  </Row>
+export default ({ product }) => (
+  <ProductCardButtonsContainer>
+    <QuickAddToCartButton product={ product }/>
+    <QuickAddToWishlistButton product={ product }/>
+  </ProductCardButtonsContainer>
 )

@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const ProductCard = styled.div`
-  width: calc(100% / 3) - 1rem;
+  width: calc(100% / 4 - 2rem);
   margin: 1rem;
-  background-color: white;
-  boxShadow: 0px 8px 15px #D5D5D5;
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0px 8px 15px rgba(100, 100, 100, 0.1);
   border: none;
   border-radius: 10px;
 `;
 
 export const ProductCardLink = styled(Link)`
-  textDecoration: none;
+  text-decoration: none;
   color: black;
 `;
 
@@ -21,4 +21,16 @@ export const ProductCardImage = styled.img`
 
 export const ProductThumbnail = styled.img`
   width: 150px;
+  height: 100%;
+`;
+
+export const ProductCardButtonsContainer = styled.div`
+  display: flex;
+  margin: 1rem;
+`;
+
+export const ProductCardInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
 `;

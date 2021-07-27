@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const RowsAndColumns = styled.css`
+export const RowsAndColumns = css`
   display: flex;
   align-items: ${ ({ alignItems }) => alignItems };
   justify-content: ${ ({ justifyContent }) => justifyContent };
