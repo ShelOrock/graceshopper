@@ -78,12 +78,10 @@ export const userLogout = async (req, res, next) => {
 
   try {
     const userOrNull = await userServices.getUserByPrimaryKey(req.body.userId);
-
     if(!userOrNull) {
       res.sendStatus(404);
 
     } else {
-
       await userServices.logUserOut(userOrNull);
 
       const guestsToDestroy = await userServices.getAllGuestsBySession(req.session.id);
@@ -114,10 +112,13 @@ export const attemptUserSignup = async (req, res, next) => {
       sessionId: req.session.id,
       email: req.body.email,
       password: hashedPassword,
-      userType: 'Standard'
+      userType: 'Standard',
+      isLoggedIn: true
     });
     const createdCart = await cartServices.createCart(createdUser.id);
 
+    const guest = await userServices.getGuestBySession(req.session.id);
+    const guestCart = await cartServices.getCart(guest.id);
     const cartItemsToMerge = await cartItemServices.getAllCartItems(guestCart.id);
     cartItemsToMerge.forEach(async cartItem => {
       await cartItemServices.updateCartItem(cartItem, { cartId: createdCart.id });

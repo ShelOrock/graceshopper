@@ -3,7 +3,6 @@ import Sequelize from 'sequelize';
 import { CartItem } from '../../db/index.js';
 
 export const getCartItemByPrimaryKey = async cartItemId => {
-  
   try {
     const cartItem = await CartItem.findByPk(cartItemId);
     return cartItem;
@@ -14,7 +13,6 @@ export const getCartItemByPrimaryKey = async cartItemId => {
 }
 
 export const getCartItemByCartAndProduct = async (cartId, productId) => {
-
     try {
     const cartItem = await CartItem.findOne({
       where: Sequelize.and(
@@ -22,7 +20,6 @@ export const getCartItemByCartAndProduct = async (cartId, productId) => {
         { productId }
       )
     });
-
     return cartItem;
 
   } catch(e) {
@@ -31,12 +28,10 @@ export const getCartItemByCartAndProduct = async (cartId, productId) => {
 };
 
 export const getAllCartItems = async cartId => {
-
   try {
     const cartItems = await CartItem.findAll({
       where: { cartId }
     })
-
     return cartItems;
     
   } catch(e) {
@@ -45,10 +40,8 @@ export const getAllCartItems = async cartId => {
 }
 
 export const createCartItem = async payload => {
-
   try {
     const cartItem = await CartItem.create(payload);
-
     return cartItem;
 
   } catch(e) {
@@ -57,7 +50,6 @@ export const createCartItem = async payload => {
 };
 
 export const increaseCartItemQuantity = async (cartItemId, payload) => {
-
   try {
     const cartItemToUpdate = await getCartItemByPrimaryKey(cartItemId);
     const updatedCartItem = await cartItemToUpdate.update(payload);
@@ -69,7 +61,6 @@ export const increaseCartItemQuantity = async (cartItemId, payload) => {
 };
 
 export const updateCartItem = async (cartItem, payload) => {
-
   try {
     const updatedCartItem = await cartItem.update(payload);
     return updatedCartItem;
@@ -79,9 +70,7 @@ export const updateCartItem = async (cartItem, payload) => {
   };
 };
 
-
 export const removeCartItemFromCart = async (cart, cartItem) => {
-
   try {
     await cart.removeCartItem(cartItem);
   

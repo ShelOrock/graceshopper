@@ -1,39 +1,39 @@
 const orders = [
   {
-    shippingAddress: '100 Main Street',
-    shippingCity: 'New York',
-    shippingState: 'NY',
-    shippingZip: '10016'
+    address: '100 Main Street',
+    city: 'New York',
+    state: 'NY',
+    zip: '10016'
   },
   {
-    shippingAddress: '3200 Center Street',
-    shippingCity: 'Los Angeles',
-    shippingState: 'CA',
-    shippingZip: '90210'
+    address: '3200 Center Street',
+    city: 'Los Angeles',
+    state: 'CA',
+    zip: '90210'
   },
   {
-    shippingAddress: '430 Greene Road',
-    shippingCity: 'Pittsburgh',
-    shippingState: 'PA',
-    shippingZip: '16148'
+    address: '430 Greene Road',
+    city: 'Pittsburgh',
+    state: 'PA',
+    zip: '16148'
   },
   {
-    shippingAddress: '90 Bent Lane',
-    shippingCity: 'Foxboro',
-    shippingState: 'MA',
-    shippingZip: '10001'
+    address: '90 Bent Lane',
+    city: 'Foxboro',
+    state: 'MA',
+    zip: '10001'
   },
   {
-    shippingAddress: '9292 Rainbow Road',
-    shippingCity: 'Brooklyn',
-    shippingState: 'NY',
-    shippingZip: '11225'
+    address: '9292 Rainbow Road',
+    city: 'Brooklyn',
+    state: 'NY',
+    zip: '11225'
   },
   {
-    shippingAddress: '10 Kuwa Street',
-    shippingCity: 'Los Angeles',
-    shippingState: 'CA',
-    shippingZip: '90211'
+    address: '10 Kuwa Street',
+    city: 'Los Angeles',
+    state: 'CA',
+    zip: '90211'
   },
 ];
 

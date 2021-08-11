@@ -1,30 +1,9 @@
 import express from 'express';
-import stripe from 'stripe'
+
+import { stripeControllers } from '../controllers/index.js';
 
 const router = express.Router();
 
-const activatedStripe = stripe(process.env.STRIPE_SECRET_KEY);
-
-router.post('/create-payment-intent', (req, res, next) => {
-
-//   activatedStripe.paymentIntents
-//     .create({
-//       amount: Number(amount * 100 || 100).toFixed(0),
-//       currency: 'usd',
-//       shipping: {
-//         name,
-//         address
-//       }
-//     })
-//     .then(paymentIntent => {
-//       res.status(200).send(paymentIntent);
-//     })
-//     .catch(e => {
-//       console.log(e);
-//       res.status(500);
-//       next(e);
-//     });
-// });
-});
+router.post('/create-payment-intent', stripeControllers.attemptPayment);
 
 export default router;

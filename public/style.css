@@ -5,6 +5,6 @@
 
 body {
   margin: 0;
-  background: rgb(252,217,217);
-  background: linear-gradient(45deg, rgba(252,217,217,1) 17%, rgba(224,252,208,1) 100%) no-repeat fixed;
+  background: rgb(255,233,248);
+  background: linear-gradient(45deg, rgba(255,233,248,1) 19%, rgba(208,254,255,1) 93%) no-repeat fixed;
 }

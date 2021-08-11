@@ -13,7 +13,7 @@ export const getProductByPrimaryKey = async productId => {
     return product
 
   } catch(e) {
-    throw Error('Error getting product by primary key');
+    throw Error(e.message, 'Error getting product by primary key');
   };
 };
 
@@ -28,7 +28,7 @@ export const getFeaturedProducts = async () => {
     return products;
 
   } catch(e) {
-    throw Error('Error getting featured products');
+    throw Error(e.message, 'Error getting featured products');
   };
 };
 
@@ -46,6 +46,6 @@ export const getLimitedProducts = async productIdArray => {
     return products
 
   } catch(e) {
-    throw Error('Error getting limited products');
+    throw Error(e.message, 'Error getting limited products');
   };
 };

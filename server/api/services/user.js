@@ -3,10 +3,8 @@ import Sequelize from 'sequelize';
 import { User } from '../../db/index.js';
 
 export const getUserByPrimaryKey = async userId => {
-
   try {
     const user = await User.findByPk(userId);
-
     return user;
 
   } catch(e) {
@@ -15,27 +13,24 @@ export const getUserByPrimaryKey = async userId => {
 };
 
 export const getUserBySession = async sessionId => {
-  
   try {
     const user = await User.findOne({
       where: { sessionId },
-      attributes: { exlude: [ 'password'] }
+      attributes: { exclude: ['password'] }
     });
-
     return user;
+
   } catch(e) {
     throw Error('Error getting user by session');
   };
 };
 
 export const getUserByCredentials = async email => {
-
   try {
     const user = User.findOne({
       where: { email },
-      attributes: { exlude: ['password'] }
+      attributes: { exclude: ['password'] }
     });
-
     return user;
 
   } catch(e) {
@@ -44,12 +39,10 @@ export const getUserByCredentials = async email => {
 };
 
 export const getUserWithPasswordByCredentials = async email => {
-  
   try {
     const user = User.scope('withPassword').findOne({
       where: { email }
     });
-
     return user;
 
     } catch(e) {
@@ -58,18 +51,16 @@ export const getUserWithPasswordByCredentials = async email => {
 };
 
 export const createStandardUser = async payload => {
-  
   try {
     const user = await User.create(payload);
     return user;
 
   } catch(e) {
-    throw Error('Error creating user');
+    throw Error(e, 'Error creating user');
   };
 };
 
 export const getGuestBySession = async sessionId => {
-  
   try {
     const user = await User.findOne({
       where: Sequelize.and(
@@ -77,7 +68,6 @@ export const getGuestBySession = async sessionId => {
         { userType: 'Guest' }
       )
     });
-
     return user;
 
   } catch(e) {
@@ -86,7 +76,6 @@ export const getGuestBySession = async sessionId => {
 };
 
 export const getAllGuestsBySession = async sessionId => {
-  
   try {
     const users = await User.findAll({
       where: Sequelize.and(
@@ -94,7 +83,6 @@ export const getAllGuestsBySession = async sessionId => {
         { userType: 'Guest' }
       )
     });
-
     return users;
 
   } catch(e) {
@@ -103,13 +91,11 @@ export const getAllGuestsBySession = async sessionId => {
 };
 
 export const createGuest = async sessionId => {
-
   try {
     const user = await User.create({
       userType: 'Guest',
       sessionId
     });
-
     return user;
 
   } catch(e) {
@@ -118,13 +104,11 @@ export const createGuest = async sessionId => {
 };
 
 export const logUserIn = async (user, sessionId) => {
-
   try {
     const updatedUser = await user.update({
       isLoggedIn: true,
       sessionId
     });
-
     return updatedUser;
 
   } catch(e) {
@@ -133,7 +117,6 @@ export const logUserIn = async (user, sessionId) => {
 };
 
 export const logUserOut = async user => {
-  
   try {
     user.update({
       isLoggedIn: false,
@@ -146,7 +129,6 @@ export const logUserOut = async user => {
 };
 
 export const destroyGuest = async user => {
-
   try {
     await user.destroy();
 

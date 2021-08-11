@@ -5,7 +5,6 @@ import {
 } from '../../db/index.js'
 
 export const getCart = async userId => {
-
   try {
     const cart = await Cart.findOne({
       where: { userId },
@@ -14,9 +13,7 @@ export const getCart = async userId => {
         include: [{ model: Product }]
       }],
       order: [[ CartItem, 'createdAt', 'ASC' ]]
-
     });
-
     return cart;
 
   } catch(e) {
@@ -24,24 +21,22 @@ export const getCart = async userId => {
   };
 };
 
-export const createCart = async userId => {
-
+export const createCart = async payload => {
   try {
-    const cart = await Cart.create({ userId });
+    const cart = await Cart.create(payload);
     return cart;
 
   } catch(e) {
-    throw Error('Error creating cart');
+    throw Error(e.message, 'Error creating cart');
   };
 };
 
 export const destroyCart = async userId => {
-
   try {
-    Cart.destroy({ where: userId });
+    Cart.destroy({ where: { userId } });
 
   } catch(e) {
-    throw Error('Error deleting cart');
+    throw Error(e.message, 'Error deleting cart');
   };
 };
 

@@ -38,7 +38,8 @@ const User = db.define('user', {
   },
 
   username: {
-    type: STRING
+    type: STRING,
+    allowNull: true
   },
 
   password: {

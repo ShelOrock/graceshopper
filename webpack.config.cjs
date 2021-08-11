@@ -1,7 +1,7 @@
 const { resolve } = require('path');
 
 module.exports = {
-  entry: ['@babel/polyfill', './app/main.jsx'],
+  entry: ['@babel/polyfill', './app/main.js'],
   output: {
     path: resolve(__dirname, 'public'),
     filename: 'bundle.js'
@@ -16,6 +16,9 @@ module.exports = {
         test: /\.jsx?$/,
         include: resolve(__dirname, './app'),
         exclude: /node_modules/,
+        resolve: {
+          fullySpecified: false
+        },
         loader: 'babel-loader'
       },
       {

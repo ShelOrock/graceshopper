@@ -1,6 +1,6 @@
 import { userServices } from '../services/index.js';
 
-export const getSingleUser = async (req, res, next) => {
+export const getUser = async (req, res, next) => {
 
   try {
     const userOrNull = await userServices.getUserBySession(req.params.userId)
@@ -16,6 +16,6 @@ export const getSingleUser = async (req, res, next) => {
 
   } catch(e) {
     conssole.log(e.message);
-    res.sendStatus(500) && next(e);;
+    res.sendStatus(500) && next(e);
   };
 };

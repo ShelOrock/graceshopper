@@ -13,7 +13,7 @@ export const getPaginatedProducts = async (_req, res, next) => {
   };
 };
 
-export const getSingleProduct = async (req, res, next) => {
+export const getProduct = async (req, res, next) => {
 
   try {
     const productOrNull = await productServices.getProductByPrimaryKey(req.params.productId);

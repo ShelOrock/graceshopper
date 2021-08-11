@@ -4,7 +4,10 @@ const {
   UUIDV4,
   STRING,
   DECIMAL,
+  INTEGER,
+  DATE
 } = Sequelize;
+import moment from 'moment';
 
 import db from '../database.js';
 
@@ -16,25 +19,41 @@ const Order = db.define('orders', {
     defaultValue: UUIDV4
   },
 
-  orderTotal: {
+  confirmationNumber: {
+    type: INTEGER,
+    autoIncrement: true,
+  },
+
+  total: {
     type: DECIMAL(10, 2),
     defaultValue: 0.00
   },
 
-  shippingAddress: {
+  name: {
+    type: STRING,
+  },
+
+  address: {
     type: STRING
   },
 
-  shippingCity: {
+  city: {
     type: STRING
   },
 
-  shippingState: {
+  state: {
     type: STRING
   },
 
-  shippingZip: {
+  zip: {
     type: STRING
+  },
+
+  createdAt: {
+    type: DATE,
+    get() {
+      return moment(this.getDataValue('createdAt')).format('MM/DD/YYYY h:mm:ss');
+    }
   }
 });
 

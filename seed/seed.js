@@ -8,6 +8,7 @@ import {
 import { 
   User,
   Product,
+  CartItem,
   Order,
   Tag
 } from '../server/db/index.js';
@@ -22,6 +23,24 @@ const seed = async () => {
       return Order.create({
         ...order,
         userId: allUsers[Math.floor(Math.random() * allUsers.length)].id
+      });
+    }));
+
+    let sampleArray = new Array(24);
+    let idsToMap = [];
+    for(let i = 0; i < sampleArray.length; i++) {
+      let productId = allProducts[Math.floor(Math.random() * allProducts.length)].id;
+      let containsIds = idsToMap.some(ids => ids === productId);
+      if(!containsIds) {
+        idsToMap.push(productId);
+      };
+    };
+
+    const allCartItems = await Promise.all(idsToMap.map(item => {
+      let quantity = Math.ceil(Math.random() * 10);
+      return CartItem.create({
+        quantity,
+        productId: item
       });
     }));
 
@@ -40,14 +59,9 @@ const seed = async () => {
     };
 
     for(let i = 0; i < allOrders.length; i++) {
-      let orderProducts = {};
-      for(let i = 0; i < Math.floor(Math.random() * allProducts.length); i++) {
-        let randomProduct = allProducts[Math.floor(Math.random() * allProducts.length)];
-        let randomProductName = randomProduct.productName
-        if(!orderProducts[randomProductName]) {
-          orderProducts.randomProductName = 1;
-          await allOrders[i].addProduct(randomProduct)
-        };
+      for(let j = 0; j < allCartItems.length; j++) {
+        let randomCartItem = allCartItems[Math.floor(Math.random() * allCartItems.length)];
+        await allOrders[i].addCartItem(randomCartItem)
       };
     };
   }
