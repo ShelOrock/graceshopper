@@ -2,11 +2,11 @@ import * as React from 'react';
 const { useEffect } = React;
 import { useSelector } from 'react-redux';
 
-import OrderTemplate from '../Components/Templates/Order';
-import Order from '../Components/Molecules/Order';
-import BreadCrumbNavigation from '../Components/Molecules/BreadCrumbNavigation';
+import OrderTemplate from '../Templates/Order';
+import Order from '../Molecules/Order';
+import BreadCrumbNavigation from '../Molecules/BreadCrumbNavigation';
 
-import * as reduxThunks from '../redux/thunks';
+import * as reduxThunks from '../../redux/thunks';
 const { activeOrderThunks: { getActiveOrder } } = reduxThunks;
 
 export default () => {

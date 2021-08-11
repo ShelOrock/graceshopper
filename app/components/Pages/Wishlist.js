@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import WishlistTemplate from '../Components/Templates/Wishlist';
-import Wishlist from '../Components/Organisms/Wishlist';
+import WishlistTemplate from '../Templates/Wishlist';
+import Wishlist from '../Organisms/Wishlist';
 
 export default () => {
 

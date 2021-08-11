@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 
-import OrderHistoryTemplate from '../Components/Templates/OrderHistory';
-import OrderList from '../Components/Organisms/OrderHistory';
+import OrderHistoryTemplate from '../Templates/OrderHistory';
+import OrderList from '../Organisms/OrderHistory';
 
 export default () => {
   

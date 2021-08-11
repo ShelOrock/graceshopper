@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import EmptyTemplate from '../Components/Templates/Empty';
-import Confirmation from '../Components/Molecules/Confirmation';
+import EmptyTemplate from '../Templates/Empty';
+import Confirmation from '../Molecules/Confirmation';
 
-import * as reduxActions from '../redux/actions';
+import * as reduxActions from '../../redux/actions';
 const {
   checkoutSuccessActions: { setCheckoutSuccess },
   userInformationActions: { resetUserInformation },

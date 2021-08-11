@@ -3,12 +3,12 @@ const { useState, useEffect } = React;
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ProductTemplate from '../Components/Templates/Product';
-import BreadCrumbNavigation from '../Components/Molecules/BreadCrumbNavigation';
-import Product from '../Components/Molecules/Product';
-import ProductList from '../Components/Organisms/ProductList';
+import ProductTemplate from '../Templates/Product';
+import BreadCrumbNavigation from '../Molecules/BreadCrumbNavigation';
+import Product from '../Molecules/Product';
+import ProductList from '../Organisms/ProductList';
 
-import * as reduxThunks from '../redux/thunks';
+import * as reduxThunks from '../../redux/thunks';
 const {
   activeProductThunks: { getActiveProduct },
   similarProductsThunks: { getSimilarProducts }

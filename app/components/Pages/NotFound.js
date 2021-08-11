@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import EmptyTemplate from '../Components/Templates/Empty';
-import EmptyMessage from '../Components/Molecules/EmptyMessage';
+import EmptyTemplate from '../Templates/Empty';
+import EmptyMessage from '../Molecules/EmptyMessage';
 
 export default () => (
   <EmptyTemplate

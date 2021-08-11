@@ -3,11 +3,11 @@ const { useState, useEffect } = React;
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 
-import CheckoutTemplate from '../Components/Templates/Checkout';
-import UserInformationForm from '../Components/Organisms/UserInformationForm';
-import ShippingForm from '../Components/Organisms/ShippingForm';
-import PaymentForm from '../Components/Organisms/PaymentForm';
-import BreadCrumbNavigation from '../Components/Molecules/BreadCrumbNavigation';
+import CheckoutTemplate from '../Templates/Checkout';
+import UserInformationForm from '../Organisms/UserInformationForm';
+import ShippingForm from '../Organisms/ShippingForm';
+import PaymentForm from '../Organisms/PaymentForm';
+import BreadCrumbNavigation from '../Molecules/BreadCrumbNavigation';
 
 export default () => {
 

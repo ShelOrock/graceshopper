@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 
-import HomeTemplate from '../Components/Templates/Home';
-import ProductList from '../Components/Organisms/ProductList';
+import HomeTemplate from '../Templates/Home';
+import ProductList from '../Organisms/ProductList';
 
 export default () => {
 

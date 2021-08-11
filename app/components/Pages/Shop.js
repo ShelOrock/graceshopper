@@ -2,11 +2,11 @@ import * as React from 'react';
 const { useState, useEffect } = React;
 import { useDispatch, useSelector } from 'react-redux';
 
-import ShopTemplate from '../Components/Templates/Shop';
-import Pagination from '../Components/Molecules/Pagination';
-import ProductList from '../Components/Organisms/ProductList';
+import ShopTemplate from '../Templates/Shop';
+import Pagination from '../Molecules/Pagination';
+import ProductList from '../Organisms/ProductList';
 
-import * as reduxThunks from '../redux/thunks';
+import * as reduxThunks from '../../redux/thunks';
 const { allProductsThunks: { getAllProducts } } = reduxThunks;
 
 export default () => {
