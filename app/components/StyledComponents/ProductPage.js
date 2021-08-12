@@ -38,6 +38,10 @@ export const StyledInformation = styled.div`
   flex-direction: column;
 `;
 
+export const StyledDescription = styled.div`
+  margin: 1rem 0 0 1.5rem;
+`;
+
 export const StyledButtons = styled.div`
   margin: 1rem;
 `;
