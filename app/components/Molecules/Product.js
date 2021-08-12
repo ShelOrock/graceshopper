@@ -10,7 +10,7 @@ import ContentContainer from '../Containers/Product/Content';
 import HeaderContainer from '../Containers/Product/Header';
 import BodyContainer from '../Containers/Product/Body';
 import InformationContainer from '../Containers/Product/Information';
-import DescriptionContainer from '../Containers/PRoduct/Description';
+import DescriptionContainer from '../Containers/Product/Description';
 import ButtonsContainer from '../Containers/Product/Buttons';
 import QuantityContainer from '../Containers/Product/Quantity';
 import IconTextContainer from '../Containers/IconText';
