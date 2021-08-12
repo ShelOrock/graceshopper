@@ -8,8 +8,8 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import * as Pages from './Components/Pages/index.js';
-import Navigation from './Components/Organisms/Navigation.js';
+import * as Pages from './components/Pages';
+import Navigation from './components/Organisms/Navigation';
 
 import * as reduxThunks from './redux/thunks';
 const {
