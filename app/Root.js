@@ -35,6 +35,7 @@ export default () => {
 
   useEffect(() => {
     dispatch(getActiveUser(document.cookie.replace(/sessionId=/, '')));
+    console.log(document.cookie);
     dispatch(getAllProducts());
     dispatch(getFeaturedProducts());
     dispatch(getPopularProducts());
