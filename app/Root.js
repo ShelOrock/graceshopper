@@ -34,11 +34,10 @@ export default () => {
   } = useSelector(state => state);
 
   useEffect(() => {
-    console.log(document.cookie);
     const sessionId = document.cookie
       .split(';')
       .find(str => /sessionId=/.test(str))
-      .replace(/sessionId=/, (''));
+      .replace(/ sessionId=/, (''));
     dispatch(getActiveUser(sessionId));
     dispatch(getAllProducts());
     dispatch(getFeaturedProducts());
