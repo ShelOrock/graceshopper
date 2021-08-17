@@ -34,8 +34,12 @@ export default () => {
   } = useSelector(state => state);
 
   useEffect(() => {
-    dispatch(getActiveUser(document.cookie.replace(/sessionId=/, '')));
     console.log(document.cookie);
+    const sessionId = document.cookie
+      .split(';')
+      .find(str => /sessionId=/.test(str))
+      .replace(/sessionId=/, (''));
+    dispatch(getActiveUser(sessionId));
     dispatch(getAllProducts());
     dispatch(getFeaturedProducts());
     dispatch(getPopularProducts());
