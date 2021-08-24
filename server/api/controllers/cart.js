@@ -2,10 +2,10 @@ import { cartServices, cartItemServices } from '../services/index.js';
 
 export const getCart = async (req, res, next) => {
   try {
-    const cartOrNull = await cartServices.getCart(req.params.userId)
+    const cartOrNull = await cartServices.getCart(req.user.id);
     if(!cartOrNull) {
-      await cartServices.createCart({ userId: req.params.userId });
-      const createdCart = await cartServices.getCart(req.params.userId);
+      await cartServices.createCart({ userId: req.user.id });
+      const createdCart = await cartServices.getCart(req.user.id);
       res
         .status(201)
         .send(createdCart);
@@ -24,7 +24,7 @@ export const getCart = async (req, res, next) => {
 
 export const createCart = async (req, res, next) => {
   try {
-  const createdCart = await cartServices.createCart({ userId: req.params.userId });
+  const createdCart = await cartServices.createCart({ userId: req.user.id });
   res
     .status(201)
     .send(createdCart);
@@ -37,7 +37,7 @@ export const createCart = async (req, res, next) => {
 
 export const deleteCart = async (req, res, next) => {
   try {
-    await cartServices.destroyCart(req.params.userId);
+    await cartServices.destroyCart(req.user.id);
     res
       .status(204)
       .send();
@@ -50,16 +50,16 @@ export const deleteCart = async (req, res, next) => {
 
 export const addProductToCart = async (req, res, next) => {
   try {
-    const cartOrNull = await cartServices.getCart(req.params.userId);
+    const cartOrNull = await cartServices.getCart(req.user.id);
     if(!cartOrNull) {
-      const createdCart = await cartServices.createCart({ userId: req.params.userId });
+      const createdCart = await cartServices.createCart({ userId: req.user.id });
       await cartItemServices.createCartItem({
         cartId: createdCart.id,
         productId: req.body.productId,
         quantity: req.body.quantity
       });
 
-      const createdCartWithProducts = await cartServices.getCart(req.params.userId);
+      const createdCartWithProducts = await cartServices.getCart(req.user.id);
       res
         .status(201)
         .send(createdCartWithProducts);
@@ -72,7 +72,7 @@ export const addProductToCart = async (req, res, next) => {
           productId: req.body.productId,
           quantity: req.body.quantity
         });
-        const cartWithProducts = await cartServices.getCart(req.params.userId);
+        const cartWithProducts = await cartServices.getCart(req.user.id);
         res
           .status(201)
           .send(cartWithProducts);
@@ -80,7 +80,7 @@ export const addProductToCart = async (req, res, next) => {
       } else {
         const updatedQuantity = cartItemOrNull.quantity + req.body.quantity;
         await cartItemServices.increaseCartItemQuantity(cartItemOrNull.id, { quantity: updatedQuantity });
-        const cartWithProducts = await cartServices.getCart(req.params.userId);
+        const cartWithProducts = await cartServices.getCart(req.user.id);
         res
           .status(201)
           .send(cartWithProducts);
@@ -95,7 +95,7 @@ export const addProductToCart = async (req, res, next) => {
 
 export const removeProductFromCart = async (req, res, next) => {
   try {
-  const cartOrNull = await cartServices.getCart(req.params.userId);
+  const cartOrNull = await cartServices.getCart(req.user.id);
   if(!cartOrNull) {
     res.sendStatus(404);
 
@@ -115,7 +115,7 @@ export const removeProductFromCart = async (req, res, next) => {
 
 export const updateCartItem = async (req, res, next) => {
   try {
-    const cartOrNull = await cartServices.getCart(req.params.userId);
+    const cartOrNull = await cartServices.getCart(req.user.id);
     if(!cartOrNull) {
       res.sendStatus(404);
 

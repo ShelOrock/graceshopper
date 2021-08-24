@@ -4,13 +4,10 @@ import { middlewareServices } from './services/index.js';
 
 const paginate = model => {
   return async (req, res, next) => {
-
     try {
       const limit = Number(req.params.limit) || 10;
       const offset = Number(req.params.page) * limit || 0;
-
       const foundModelsOrNull = await middlewareServices.getAndCountAllModels(model, offset, limit);
-
       if(!foundModelsOrNull) {
         res.sendStatus(404);
         

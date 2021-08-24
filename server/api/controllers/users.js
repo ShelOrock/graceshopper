@@ -1,10 +1,8 @@
 import { userServices } from '../services/index.js';
 
 export const getUser = async (req, res, next) => {
-
   try {
-    const userOrNull = await userServices.getUserBySession(req.params.userId)
-
+    const userOrNull = await userServices.getUserByPrimaryKey(req.user.id);
     if(!userOrNull) {
       res.sendStatus(404);
 

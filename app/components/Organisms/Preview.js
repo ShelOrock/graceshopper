@@ -12,7 +12,7 @@ import DummyButton from '../Atoms/DummyButton';
 export default ({
   cartItems = [],
   user = {},
-}) => (
+}) => {
   <PreviewContainer>
     <Heading>Cart Preview</Heading>
     <ListContainer>
@@ -36,4 +36,4 @@ export default ({
       </Link>
     </ButtonsContainer>
   </PreviewContainer>
-);
+};

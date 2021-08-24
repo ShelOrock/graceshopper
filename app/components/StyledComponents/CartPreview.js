@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledPreview = styled.div`
   position: absolute;
-  top: 100px;
+  top: 150px;
   right: 0;
   margin: 1rem 4rem;
   padding: 1rem;

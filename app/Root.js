@@ -37,7 +37,8 @@ export default () => {
     const sessionId = document.cookie
       .split(';')
       .find(str => /sessionId=/.test(str))
-      .replace(/ sessionId=/, (''));
+      .replace(/sessionId=/, (''))
+      .replace(' ', '');
     dispatch(getActiveUser(sessionId));
     dispatch(getAllProducts());
     dispatch(getFeaturedProducts());

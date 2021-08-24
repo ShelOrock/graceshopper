@@ -2,10 +2,10 @@ import { wishlistServices, wishlistItemServices } from '../services/index.js';
 
 export const getWishlist = async (req, res, next) => {
   try {
-    const wishlistOrNull = await wishlistServices.getWishlist(req.params.userId);
+    const wishlistOrNull = await wishlistServices.getWishlist(req.user.id);
     if(!wishlistOrNull) {
-      await wishlistServices.createWishlist({ userId: req.params.userId });
-      const createdWishlist = await wishlistServices.getWishlist(req.params.userId);
+      await wishlistServices.createWishlist({ userId: req.user.id });
+      const createdWishlist = await wishlistServices.getWishlist(req.user.id);
       res
         .status(202)
         .send(createdWishlist);
@@ -24,14 +24,14 @@ export const getWishlist = async (req, res, next) => {
 
 export const addProductToWishlist = async (req, res, next) => {
   try {
-    const wishlistOrNull = await wishlistServices.getWishlist(req.params.userId);
+    const wishlistOrNull = await wishlistServices.getWishlist(req.user.id);
     if(!wishlistOrNull) {
-      const createdWishlist = await wishlistServices.createWishlist({ userId: req.params.userId })
+      const createdWishlist = await wishlistServices.createWishlist({ userId: req.user.id })
       await wishlistItemServices.createWishlistItem({
         wishlistId: createdWishlist.id,
         productId: req.body.productId
       });
-      const createdWishlistWithProducts = await wishlistServices.getWishlist(req.params.userId);
+      const createdWishlistWithProducts = await wishlistServices.getWishlist(req.user.id);
       res
         .status(201)
         .send(createdWishlistWithProducts);
@@ -43,14 +43,14 @@ export const addProductToWishlist = async (req, res, next) => {
           wishlistId: wishlistOrNull.id,
           productId: req.body.productId
         });
-        const wishlistWithProducts = await wishlistServices.getWishlist(req.params.userId);
+        const wishlistWithProducts = await wishlistServices.getWishlist(req.user.id);
         res
           .status(201)
           .send(wishlistWithProducts);
 
       } else {
         await wishlistItemServices.destroyWishlistItem(wishlistItemOrNull.id);
-        const wishlist = await wishlistServices.getWishlist(req.params.userId);
+        const wishlist = await wishlistServices.getWishlist(req.user.id);
         res
           .status(201)
           .send(wishlist);
@@ -65,9 +65,9 @@ export const addProductToWishlist = async (req, res, next) => {
 
 export const removeProductFromWishlist = async (req, res, next) => {
   try {
-    const wishlistOrNull = await wishlistServices.getWishlist(req.params.userId);
+    const wishlistOrNull = await wishlistServices.getWishlist(req.user.id);
     if(!wishlistOrNull) {
-      const createdWishlist = await wishlistServices.createWishlist({ userId: req.params.userId });
+      const createdWishlist = await wishlistServices.createWishlist({ userId: req.user.id });
       res
         .status(204)
         .send(createdWishlist);
@@ -81,7 +81,7 @@ export const removeProductFromWishlist = async (req, res, next) => {
 
       } else {
         await wishlistItemServices.destroyWishlistItem(wishlistItemOrNull.id);
-        const wishlist = await wishlistServices.getWishlist(req.params.userId);
+        const wishlist = await wishlistServices.getWishlist(req.user.id);
         res
           .status(204)
           .send(wishlist);

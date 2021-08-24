@@ -60,18 +60,18 @@ export const createStandardUser = async payload => {
   };
 };
 
-export const getGuestBySession = async sessionId => {
+export const getGuestByPrimaryKey = async userId => {
   try {
     const user = await User.findOne({
       where: Sequelize.and(
-        { sessionId },
+        { id: userId },
         { userType: 'Guest' }
       )
     });
     return user;
 
   } catch(e) {
-    throw Error('Error getting guest by session');
+    throw Error('Error getting guest by primary key');
   };
 };
 
@@ -103,11 +103,11 @@ export const createGuest = async sessionId => {
   };
 };
 
-export const logUserIn = async (user, sessionId) => {
+export const logUserIn = async (user, payload) => {
   try {
     const updatedUser = await user.update({
       isLoggedIn: true,
-      sessionId
+      ...payload
     });
     return updatedUser;
 
