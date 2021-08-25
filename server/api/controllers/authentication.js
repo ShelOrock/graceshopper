@@ -82,31 +82,31 @@ export const userLogout = async (req, res, next) => {
 };
 
 export const attemptUserSignup = async (req, res, next) => {
-  
   try {
     const hashedPassword = bcrypt.hashSync(req.body.password, SALT_ROUNDS);
-
     const createdUser = await userServices.createStandardUser({
-      sessionId: req.session.id,
+      sessionId: req.user.id,
       email: req.body.email,
       password: hashedPassword,
       userType: 'Standard',
       isLoggedIn: true
     });
     const createdCart = await cartServices.createCart(createdUser.id);
-
-    const guest = await userServices.getGuestBySession(req.session.id);
-    const guestCart = await cartServices.getCart(guest.id);
+    const guestCart = await cartServices.getCart(req.user.id);
     const cartItemsToMerge = await cartItemServices.getAllCartItems(guestCart.id);
     cartItemsToMerge.forEach(async cartItem => {
       await cartItemServices.updateCartItem(cartItem, { cartId: createdCart.id });
     });
 
-    const userToDestroy = await userServices.getGuestBySession(req.session.id);
+    const userToDestroy = await userServices.getGuestByPrimaryKey(req.user.id);
     await userServices.destroyGuest(userToDestroy, req.session.id);
 
     const signedInUser = await userServices.getUserByCredentials(req.body.email);
     res
+      .cookie('sessionId', signedInUser.sessionId, {
+        path: '/',
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24)
+      })
       .status(201)
       .send(signedInUser);
 
