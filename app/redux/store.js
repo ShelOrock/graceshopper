@@ -9,9 +9,9 @@ import appReducer from '.';
 let middleware = [
   thunkMiddleware.withExtraArgument({ axios }),
 ];
-if(process.env.NODE_ENV !== 'production') {
+// if(process.env.NODE_ENV !== 'production') {
   middleware = [ ...middleware, createLogger({ collapsed: true }) ];
-};
+// };
 
 export default createStore(
   appReducer,
