@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledForm = styled.div`
+export const Main = styled.div`
   width: 50%;
   margin: 2rem auto;
   padding: 2rem 4rem;
@@ -12,66 +12,16 @@ export const StyledForm = styled.div`
   border-radius: 10px;
 `;
 
-export const StyledHeader = styled.div`
+export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-right: 1.5rem;
 `;
 
-export const FormTitle = styled.h1`
-  font-size: 2rem;
-  margin: 1rem;
-`;
+export const Body = styled.div``;
 
-export const StyledBody = styled.div`
-`;
-
-export const StyledModules = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-`;
-
-export const StyledGroup = styled.div`
-  display: flex;
-  width: 100%;
-`
-
-export const StyledInputModule = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 1rem;
-`;
-
-export const StyledInformation = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 0 1rem;
-`;
-
-export const StyledInput = styled.input`
-  border: 1px solid gray;
-  border-radius: 4px;
-  padding: 0.8rem 0.75rem;
-  margin: 0 1rem;
-  background-color: transparent;
-`;
-
-export const StyledLabel = styled.p`
-  color: black;
-  font-size: 0.9rem;
-  text-transform: capitalize;
-  margin: 0.25rem 0;
-`;
-
-export const StyledFeedback = styled.p`
-  color: #E93935;
-  font-size: 0.9rem;
-  margin: 0.25rem 0;
-`;
-
-export const StyledButtons = styled.div`
+export const Actions = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;

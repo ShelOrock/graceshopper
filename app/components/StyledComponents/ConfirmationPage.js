@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledConfirmation = styled.div`
+export const Main = styled.div`
   width: 35%;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@ export const StyledConfirmation = styled.div`
   padding: 2rem;
 `;
 
-export const StyledButtons = styled.div`
+export const Actions = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

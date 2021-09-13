@@ -13,10 +13,6 @@ export const StyledProduct = styled.div`
   border-radius: 10px;
 `;
 
-export const StyledImage = styled.img`
-  width: 50%;
-`;
-
 export const StyledContent = styled.div`
   width: 50%;
   margin: 3rem 1rem;
