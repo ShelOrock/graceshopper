@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import * as StyledComponents from '../../StyledComponents';
-const { StyledCartPage: { StyledEmptyCart } } = StyledComponents;
+import { StyledCartPage } from '../../StyledComponents';
 
-export default ({ children }) => <StyledEmptyCart>{ children }</StyledEmptyCart>;
+const EmptyCart = ({ children }) => <StyledCartPage.EmptyCart>{ children }</StyledCartPage.EmptyCart>;
+
+export default EmptyCart;

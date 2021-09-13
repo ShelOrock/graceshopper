@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import * as StyledComponents from '../../StyledComponents';
-const { StyledNavigation: { StyledNavigationLinks } } = StyledComponents;
+import { StyledNavBar } from '../../StyledComponents';
 
-export default ({ children }) => <StyledNavigationLinks>{ children }</StyledNavigationLinks>;
+const Links = ({ children }) => <StyledNavBar.Links>{ children }</StyledNavBar.Links>;
+
+export default Links;

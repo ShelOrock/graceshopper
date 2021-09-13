@@ -9,15 +9,6 @@ export const StyledProductCard = styled.div`
   border-radius: 10px;
 `;
 
-export const StyledCardImage = styled.img`
-  width: 100%;
-`;
-
-export const StyledThumbnail = styled.img`
-  width: 150px;
-  height: 100%;
-`;
-
 export const StyledButtons = styled.div`
   display: flex;
   margin: 1rem;
