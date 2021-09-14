@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledOrder = styled.div`
+export const Main = styled.div`
   margin: 2rem 15rem;
   display: flex;
   flex-direction: column;
@@ -9,32 +9,32 @@ export const StyledOrder = styled.div`
   border-radius: 10px;
 `;
 
-export const StyledHeader = styled.div`
+export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 1rem;
 `;
 
-export const StyledInformation = styled.div`
+export const Content = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1rem;
 `;
 
-export const StyledTotal = styled.div`
+export const Total = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1rem;
 `;
 
-export const StyledBody = styled.div`
+export const Body = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 1rem;
 `;
 
-export const StyledShipping = styled.div`
+export const Shipping = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 1rem;

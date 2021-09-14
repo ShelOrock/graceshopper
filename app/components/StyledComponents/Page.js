@@ -1,21 +1,34 @@
 import styled from 'styled-components';
 
-export const StyledPage = styled.div`
+export const Main = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export const StyledHeader = styled.div`
+export const Title = styled.div`
   margin: 0 2rem;
 `;
 
-export const StyledSection = styled.div`
+export const Section = styled.div`
   margin: 1.5rem;
 `;
 
-export const StyledSectionHeader = styled.div`
+export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 2rem;
+`;
+
+export const Empty = styled.div`
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0px 8px 15px rgba(100, 100, 100, 0.1);
+  border-radius: 10px;
+  margin: 5rem auto;
+  padding: 2rem;
 `;

@@ -11,18 +11,19 @@ import * as StyledInputModule from './InputModule';
 
 import * as StyledProductCard from './ProductCard';
 import * as StyledPageSelect from './PageSelect';
-import * as StyledCartPreview from './CartPreview';
+import * as StyledPreview from './Preview';
+import * as StyledPreviewCard from './PreviewCard'
 
 import * as StyledPage from './Page';
 import * as StyledAuthenticationPages from './AuthenticationPages';
 import * as StyledShopPage from './ShopPage';
-import * as StyledProductPage from './ProductPage';
+import * as StyledProductPage from './Product';
 import * as StyledCartPage from './CartPage';
 import * as StyledOrderHistoryPage from './OrderHistoryPage';
 import * as StyledOrderPage from './OrderPage';
 import * as StyledOrderCard from './OrderCard';
 import * as StyledNotFoundPage from './NotFound';
-import * as StyledWishlistPage from './WishlistPage';
+import * as StyledWishlistCard from './WishlistCard';
 import * as StyledCartCard from './CartCard';
 
 import * as StyledCheckoutPage from './CheckoutPage';
@@ -41,7 +42,8 @@ export {
   StyledNavigation,
   StyledProductCard,
   StyledPageSelect,
-  StyledCartPreview,
+  StyledPreview,
+  StyledPreviewCard,
   StyledPage,
   StyledAuthenticationPages,
   StyledShopPage,
@@ -52,8 +54,8 @@ export {
   StyledOrderCard,
   StyledCartCard,
   StyledNotFoundPage,
-  StyledWishlistPage,
   StyledCheckoutPage,
   StyledConfirmationPage,
   StyledStripe,
+  StyledWishlistCard
 };
