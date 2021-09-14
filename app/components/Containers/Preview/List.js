@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import * as StyledComponents from '../../StyledComponents';
-const { StyledCartPreview: { StyledList } } = StyledComponents;
+import { StyledPreview } from '../../StyledComponents';
 
-export default ({ children }) => <StyledList>{ children }</StyledList>;
+const List = ({ children }) => <StyledPreview.List>{ children }</StyledPreview.List>;
+
+export default List;

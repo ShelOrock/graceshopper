@@ -10,7 +10,7 @@ export const Hero = styled.img`
   width: 100%;
 `;
 
-export const CardImage = styled.img`
+export const Image = styled.img`
   width: 100%;
 `;
 

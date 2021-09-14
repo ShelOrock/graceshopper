@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledProductCard = styled.div`
+export const Main = styled.div`
   width: calc(100% / 4 - 2rem);
   margin: 1rem;
   background-color: rgba(255, 255, 255, 0.4);
@@ -9,12 +9,16 @@ export const StyledProductCard = styled.div`
   border-radius: 10px;
 `;
 
-export const StyledButtons = styled.div`
+export const Actions = styled.div`
   display: flex;
   margin: 1rem;
 `;
 
-export const StyledInformation = styled.div`
+export const Media = styled.div`
+  width: 100%;
+`;
+
+export const Information = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1rem;

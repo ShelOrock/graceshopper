@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledListItem = styled.div`
+export const Main = styled.div`
   display: flex;
   margin: 1rem;
   border-radius: 10px;
@@ -8,20 +8,20 @@ export const StyledListItem = styled.div`
   box-shadow: 0px 8px 15px rgba(100, 100, 100, 0.1);
 `;
 
-export const StyledContent = styled.div`
+export const Content = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   margin: 0 2rem;
 `;
 
-export const StyledHeader = styled.div`
+export const Header = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 `;
 
-export const StyledInformation = styled.div`
+export const Information = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -29,13 +29,13 @@ export const StyledInformation = styled.div`
   margin: 1rem;
 `;
 
-export const StyledBody = styled.div`
+export const Body = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-export const StyledQuantity = styled.div`
+export const Quantity = styled.div`
   display: flex;
   align-items: center;
   margin: 1rem;
