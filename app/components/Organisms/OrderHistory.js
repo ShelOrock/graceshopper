@@ -1,20 +1,22 @@
-import * as React from 'react';
+import React from 'react';
 
-import LineList from '../Atoms/Layout/List';
-import OrderHistoryListItem from '../Molecules/OrderHistoryListItem';
+import { LayoutAtoms } from '../Atoms';
+import OrderHistoryCard from '../Molecules/OrderHistoryCard';
 
-export default ({
+const OrderHistory = ({
   orders = [],
   user = {}
 }) => (
-  <LineList>
+  <LayoutAtoms.List>
     { !!orders.length && orders.map(order => (
-      <OrderHistoryListItem
+      <OrderHistoryCard
         key={ order.id }
         order={ order }
         cartItems={ order.cartItems }
         user={ user }
       />
     )) }
-  </LineList>
+  </LayoutAtoms.List>
 );
+
+export default OrderHistory;

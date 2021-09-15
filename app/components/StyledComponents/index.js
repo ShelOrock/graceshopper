@@ -5,30 +5,28 @@ import * as StyledInput from './Input';
 import * as StyledButton from './Button';
 import * as StyledMedia from './Media';
 import * as StyledNavigation from './Navigation';
+import * as StyledStripe from './Stripe';
 
 import * as StyledForm from './Form';
 import * as StyledInputModule from './InputModule';
 
-import * as StyledProductCard from './ProductCard';
 import * as StyledPageSelect from './PageSelect';
 import * as StyledPreview from './Preview';
-import * as StyledPreviewCard from './PreviewCard'
 
 import * as StyledPage from './Page';
-import * as StyledAuthenticationPages from './AuthenticationPages';
-import * as StyledShopPage from './ShopPage';
-import * as StyledProductPage from './Product';
-import * as StyledCartPage from './CartPage';
-import * as StyledOrderHistoryPage from './OrderHistoryPage';
-import * as StyledOrderPage from './OrderPage';
-import * as StyledOrderCard from './OrderCard';
-import * as StyledNotFoundPage from './NotFound';
-import * as StyledWishlistCard from './WishlistCard';
-import * as StyledCartCard from './CartCard';
+import * as StyledAuthentication from './Authentication';
+import * as StyledShop from './Shop';
+import * as StyledProduct from './Product';
+import * as StyledCheckout from './Checkout';
+import * as StyledConfirmation from './Confirmation';
+import * as StyledOrder from './Order';
 
-import * as StyledCheckoutPage from './CheckoutPage';
-import * as StyledConfirmationPage from './ConfirmationPage';
-import * as StyledStripe from './Stripe';
+import * as StyledProductCard from './ProductCard';
+import * as StyledCartCard from './CartCard';
+import * as StyledOrderHistoryCard from './OrderHistoryCard';
+import * as StyledOrderCard from './OrderCard';
+import * as StyledWishlistCard from './WishlistCard';
+import * as StyledPreviewCard from './PreviewCard'
 
 export {
   StyledType,
@@ -45,17 +43,16 @@ export {
   StyledPreview,
   StyledPreviewCard,
   StyledPage,
-  StyledAuthenticationPages,
-  StyledShopPage,
-  StyledProductPage,
-  StyledCartPage,
-  StyledOrderHistoryPage,
-  StyledOrderPage,
+  StyledAuthentication,
+  StyledShop,
+  StyledProduct,
+  StyledCart,
+  StyledOrderHistoryCard,
+  StyledOrder,
   StyledOrderCard,
   StyledCartCard,
-  StyledNotFoundPage,
-  StyledCheckoutPage,
-  StyledConfirmationPage,
+  StyledCheckout,
+  StyledConfirmation,
   StyledStripe,
   StyledWishlistCard
 };

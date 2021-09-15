@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledListItem = styled.div`
+export const Main = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -12,13 +12,13 @@ export const StyledListItem = styled.div`
   padding: 1rem;
 `;
 
-export const StyledHeader = styled.div`
+export const Header = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 `;
 
-export const StyledInformation = styled.div`
+export const Information = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -29,4 +29,9 @@ export const StyledOrder = styled.div`
   background-color: rgba(255, 255, 255, 0.4);
   box-shadow: 0px 8px 15px rgba(100, 100, 100, 0.1);
   border-radius: 10px;
+`;
+
+export const Media = styled.div`
+  width: 150px;
+  height: 100%;
 `;

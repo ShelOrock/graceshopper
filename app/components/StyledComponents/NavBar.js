@@ -16,7 +16,7 @@ export const Links = styled.div`
   margin: 0 1rem;
 `;
 
-export const BreadCrumbs = styled.div`
+export const Crumb = styled.div`
   display: flex;
   align-items: center;
   margin: 1rem;

@@ -1,14 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 import { convertDate } from '../../utils';
 
-import OrderContainer from '../Containers/Order/Order';
-import HeaderContainer from '../Containers/Order/Header';
-import InformationContainer from '../Containers/Order/Information';
-import TotalContainer from '../Containers/Order/Total';
-import BodyContainer from '../Containers/Order/Body';
-import ShippingContainer from '../Containers/Order/Shipping';
-import LineList from '../Atoms/LineList';
-import OrderItem from './OrderItem';
+import OrderContainer from '../Containers/OrderPage/Main';
+import HeaderContainer from '../Containers/OrderPage/Header';
+import InformationContainer from '../Containers/OrderPage/Content';
+import TotalContainer from '../Containers/OrderPage/Total';
+import BodyContainer from '../Containers/OrderPage/Body';
+import ShippingContainer from '../Containers/OrderPage/Shipping';
+import LineList from '../Atoms/Layout/List';
+import OrderItem from './OrderCard';
 import Heading from '../Atoms/Heading';
 import Body from '../Atoms/Body';
 
