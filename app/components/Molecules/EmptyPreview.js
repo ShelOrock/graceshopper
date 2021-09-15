@@ -1,7 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
-import PreviewContainer from '../Containers/Preview/Preview';
-import EmptyPreviewContainer from '../Containers/Preview/EmptyPreview';
+
+import PreviewContainer from '../Containers/Preview/Main';
+import EmptyPreviewContainer from '../Containers/Preview/Empty';
 import Heading from '../Atoms/Heading';
 import Body from '../Atoms/Body';
 import Link from '../Atoms/Link';

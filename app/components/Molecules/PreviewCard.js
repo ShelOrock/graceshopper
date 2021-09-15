@@ -1,32 +1,29 @@
 import React from 'react';
 
-import PreviewListItemContainer from '../Containers/Preview/ListItem';
-import InformationContainer from '../Containers/Preview/Information';
-import Heading from '../Atoms/Heading';
-import SubHeading from '../Atoms/SubHeading';
-import Body from '../Atoms/Body';
-import DispatchButton from '../Atoms/DispatchButton';
+import { PreviewCardContainers } from '../Containers';
+import { TypeAtoms, ButtonAtoms } from '../Atoms';
 
-import * as reduxThunks from '../../redux/thunks';
-const { cartThunks: { removeProductFromCart } } = reduxThunks;
+import { cartThunks } from '../../redux/thunks';
 
-export default ({
+const PreviewCard = ({
   cartItem = {},
   product = {},
   user = {}
 }) => (
-  <PreviewListItemContainer>
-    <InformationContainer>
-      <Heading>{ product.productName }</Heading>
-      <SubHeading>{ product.unitPrice }</SubHeading>
-      <Body>Quantity: { cartItem.quantity }</Body>
-    </InformationContainer>
-    <DispatchButton
-      onClick={ () => removeProductFromCart(
+  <PreviewCardContainers.Main>
+    <PreviewCardContainers.Information>
+      <TypeAtoms.Heading>{ product.productName }</TypeAtoms.Heading>
+      <TypeAtoms.SubHeading>{ product.unitPrice }</TypeAtoms.SubHeading>
+      <TypeAtoms.Body>Quantity: { cartItem.quantity }</TypeAtoms.Body>
+    </PreviewCardContainers.Information>
+    <ButtonAtoms.DispatchButton
+      onClick={ () => cartThunks.removeProductFromCart(
         user.id,
         { cartItemId: cartItem.id }
       ) }
       variant='secondary'
-    >X</DispatchButton>
-  </PreviewListItemContainer>
+    >X</ButtonAtoms.DispatchButton>
+  </PreviewCardContainers.Main>
 );
+
+export default PreviewCard;

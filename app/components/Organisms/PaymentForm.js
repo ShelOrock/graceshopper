@@ -1,24 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
+
 import EditIcon from '/public/img/edit.png'
+import { FormContainers, InputModuleContainers } from '../Containers';
+import {
+  TypeAtoms,
+  MediaAtoms,
+  ButtonAtoms
+} from '../Atoms';
+import CardNumberModule from '../Molecules/CardNumber';
+import ExpirationModule from '../Molecules/Expiration';
+import SecurityCodeModule from '../Molecules/SecurityCode';
 
-import FormContainer from '../Containers/Form/Form';
-import ButtonsContainer from '../Containers/Form/Buttons';
-import HeaderContainer from '../Containers/Form/Header';
-import BodyContainer from '../Containers/Form/Body';
-import Modules from '../Containers/Form/Modules';
-import InputGroup from '../Containers/Form/InputGroup';
-import CardNumberModule from '../Molecules/CardNumberModule';
-import ExpirationModule from '../Molecules/ExpirationModule';
-import SecurityCodeModule from '../Molecules/SecurityCodeModule';
-import Title from '../Atoms/Title';
-import DispatchButton from '../Atoms/DispatchButton';
-import Button from '../Atoms/Button';
-import Icon from '../Atoms/Icon';
-
-import * as reduxThunks from '../../redux/thunks';
-const { stripeThunks: { attemptCardPayment } } = reduxThunks;
+import { stripeThunks } from '../../redux/thunks';
 
 export default ({
   user = {},
@@ -61,28 +56,26 @@ export default ({
   }, 0)).toFixed(2) || 0;
 
   return (
-    <FormContainer>
-      <HeaderContainer>
-        <Title>Payment</Title>
-        <Button
+    <FormContainers.Main>
+      <FormContainers.Header>
+        <TypeAtoms.Title>Payment</TypeAtoms.Title>
+        <ButtonAtoms.Button
           onClick={ () => setActiveForm('payment') }
           variant='secondary'
         >
-          <Icon src={ EditIcon } />
-        </Button>
-      </HeaderContainer>
+          <MediaAtoms.Icon src={ EditIcon } />
+        </ButtonAtoms.Button>
+      </FormContainers.Header>
       { activeForm == 'payment' && (
-        <BodyContainer>
-          <Modules>
-            <CardNumberModule />
-              <InputGroup>
-                <ExpirationModule />
-                <SecurityCodeModule />
-              </InputGroup>
-          </Modules>
-          <ButtonsContainer>
-            <DispatchButton
-              onClick={ () => attemptCardPayment(
+        <FormContainers.Body>
+          <CardNumberModule />
+          <InputModuleContainers.Group>
+            <ExpirationModule />
+            <SecurityCodeModule />
+          </InputModuleContainers.Group>
+          <FormContainers.Actions>
+            <ButtonAtoms.DispatchButton
+              onClick={ () => stripeThunks.attemptCardPayment(
                 stripe,
                 { card: elements.getElement('cardNumber') },
                 user.id,
@@ -101,10 +94,10 @@ export default ({
                 !cartTotal
               }
               variant='secondary'
-            >Pay ${ cartTotal }</DispatchButton>
-          </ButtonsContainer>
-        </BodyContainer>
+            >Pay ${ cartTotal }</ButtonAtoms.DispatchButton>
+          </FormContainers.Actions>
+        </FormContainers.Body>
       ) }
-    </FormContainer>
+    </FormContainers.Main>
   );
 };

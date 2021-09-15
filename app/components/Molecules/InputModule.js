@@ -1,13 +1,9 @@
-import * as React from 'react';
-const { useEffect } = React;
+import React, { useEffect } from 'react';
 
-import InputModuleContainer from '../Containers/Form/InputModule'
-import InformationContainer from '../Containers/Form/Information'
-import Label from '../Atoms/Label';
-import Feedback from '../Atoms/Feedback';
-import InputField from '../Atoms/InputField';
+import { InputModuleContainers } from '../Containers';
+import { InputAtoms } from '../Atoms';
 
-export default ({
+const InputModule = ({
   type,
   name,
   value,
@@ -21,17 +17,19 @@ export default ({
   }, [value]);
 
   return (
-    <InputModuleContainer>
-      <InformationContainer>
-        <Label>{ name }</Label>
-        <Feedback>{ error }</Feedback>
-      </InformationContainer>
-      <InputField
+    <InputModuleContainers.Module>
+      <InputModuleContainers.Information>
+        <InputAtoms.Label>{ name }</InputAtoms.Label>
+        <InputAtoms.Feedback>{ error }</InputAtoms.Feedback>
+      </InputModuleContainers.Information>
+      <InputAtoms.InputField
         type={ type }
         name={ name }
         value={ value }
         onChange={ onChange }
       />
-    </InputModuleContainer>
+    </InputModuleContainers.Module>
   );
-}
+};
+
+export default InputModule;

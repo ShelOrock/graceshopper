@@ -1,18 +1,15 @@
-import * as React from 'react';
-const { useState } = React;
+import React, { useState } from 'react';
 
-import FormContainer from '../Containers/Form/Form';
+import { FormContainers } from '../Containers';
+import {
+  TypeAtoms,
+  NavigationAtoms,
+  ButtonAtoms } from '../Atoms';
 import InputModule from '../Molecules/InputModule';
-import ButtonsContainer from '../Containers/Form/Buttons';
-import Title from '../Atoms/Title';
-import DispatchButton from '../Atoms/DispatchButton';
-import LinkContainer from '../Containers/Link';
-import TextLink from '../Atoms/TextLink';
 
-import * as reduxThunks from '../../redux/thunks';
-const { authenticationThunks: { attemptUserLogin } } = reduxThunks;
+import { authenticationThunks } from '../../redux/thunks';
 
-export default () => {
+const LoginForm = () => {
 
   const initialState = {
     email: '',
@@ -29,8 +26,8 @@ export default () => {
   };
 
   return (
-    <FormContainer>
-      <Title>Login</Title>
+    <FormContainers.Main>
+      <TypeAtoms.Title>Login</TypeAtoms.Title>
       <InputModule
         type={ 'text' }
         name={ 'email' }
@@ -43,13 +40,15 @@ export default () => {
         value={ form.password }
         onChange={ handleOnChange }
       />
-      <ButtonsContainer>
-        <DispatchButton
-          onClick={ () => attemptUserLogin(form) }
+      <FormContainers.Actions>
+        <ButtonAtoms.DispatchButton
+          onClick={ () => authenticationThunks.attemptUserLogin(form) }
           variant='secondary'
-        >Login</DispatchButton>
-        <LinkContainer>Don't have an account? <TextLink linkLocation={ '/signup' }>Signup</TextLink></LinkContainer>
-      </ButtonsContainer>
-    </FormContainer>
+        >Login</ButtonAtoms.DispatchButton>
+        <TypeAtoms.Body>Don't have an account? <NavigationAtoms.TextLink linkLocation={ '/signup' }>Signup</NavigationAtoms.TextLink></TypeAtoms.Body>
+      </FormContainers.Actions>
+    </FormContainers.Main>
   );
 };
+
+export default LoginForm;

@@ -13,7 +13,7 @@ import {
 
 import { cartThunks, wishlistThunks } from '../../redux/thunks';
 
-export default ({
+const ProductCard = ({
   product = {},
   wishlist = [],
   user = {}
@@ -55,3 +55,5 @@ export default ({
     </NavigationAtoms.ButtonLink>
   </ProductCardContainers.Main>
 );
+
+export default ProductCard;

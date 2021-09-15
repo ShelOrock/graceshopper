@@ -1,12 +1,12 @@
 import React from 'react';
 
-import PreviewContainer from '../Containers/Preview/Preview';
+import PreviewContainer from '../Containers/Preview/Main';
 import ListContainer from '../Containers/Preview/List';
 import Heading from '../Atoms/Heading';
 import Link from '../Atoms/Link';
-import LineList from '../Atoms/LineList';
-import PreviewItem from '../Molecules/PreviewItem';
-import ButtonsContainer from '../Containers/Preview/Buttons';
+import LineList from '../Atoms/Layout/List';
+import PreviewItem from '../Molecules/PreviewCard';
+import ButtonsContainer from '../Containers/Preview/Actions';
 import DummyButton from '../Atoms/DummyButton';
 
 export default ({

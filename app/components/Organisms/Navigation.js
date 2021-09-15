@@ -1,30 +1,28 @@
-import * as React from 'react';
-const { useEffect } = React;
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+
 import NavLogo from '/public/img/logo.png'
 import Cart from '/public/img/cart.png'
-
-import NavigationContainer from '../Containers/Navigation/Navigation';
-import LinksContainer from '../Containers/Navigation/Links';
+import { NavigationContainers } from '../Containers';
 import IconTextContainer from '../Containers/IconText';
 import Preview from './Preview';
 import EmptyPreview from '../Molecules/EmptyPreview';
-import Link from '../Atoms/Link';
-import NavigationButton from '../Atoms/NavigationButton';
-import Logo from '../Atoms/Logo';
-import DispatchButton from '../Atoms/DispatchButton';
-import Icon from '../Atoms/Icon';
-import SmallBody from '../Atoms/SmallBody';
+import {
+  TypeAtoms,
+  MediaAtoms,
+  ButtonAtoms,
+  NavigationAtoms,
+} from '../Atoms';
 
-import * as reduxActions from '../../redux/actions';
-import { attemptUserLogout } from '../../redux/authentication/thunks';
-const { cartPreviewActions: { setCartPreview, resetCartPreview } } = reduxActions; 
+import { authenticationThunks } from '../../redux/thunks';
+import { cartPreviewActions } from '../../redux/actions';
 
-export default () => {
+const Navigation = ({
+  dispatch
+}) => {
 
   const location = useLocation();
-  const dispatch = useDispatch();
 
   const {
     activeUser,
@@ -33,7 +31,7 @@ export default () => {
   } = useSelector(state => state);
 
   useEffect(() => {
-    dispatch(resetCartPreview());
+    dispatch(cartPreviewActions.resetCartPreview());
   }, [location]);
 
   const sumCartItems = () => {
@@ -43,32 +41,30 @@ export default () => {
   };
 
   return (
-    <NavigationContainer>
-      <Link to={ '/' }>
-        <Logo src={ NavLogo }/>
-      </Link>
-      <LinksContainer>
-        <Link to={ '/shop' }>Shop</Link>
-        { activeUser.isLoggedIn && <Link to={ '/order-history' }>Orders</Link> }
-        { !activeUser.isLoggedIn
-        ? <Link to={ '/login' }>Login</Link>
-        : (
-          <NavigationButton
-            onClick={ () => attemptUserLogout(activeUser.id) }
+    <NavigationContainers.Main>
+      <NavigationAtoms.NavLink to={ '/' }>
+        <MediaAtoms.Logo src={ NavLogo }/>
+      </NavigationAtoms.NavLink>
+      <NavigationContainers.Links>
+        <NavigationAtoms.NavLink to={ '/shop' }>Shop</NavigationAtoms.NavLink>
+        { activeUser.isLoggedIn && <NavigationAtoms.NavLink to={ '/order-history' }>Orders</NavigationAtoms.NavLink> }
+        { !activeUser.isLoggedIn && <NavigationAtoms.NavLink to={ '/login' }>Login</NavigationAtoms.NavLink> }
+        { activeUser.isLoggedIn && <NavigationAtoms.ButtonLink
+            onClick={ () => authenticationThunks.attemptUserLogout(activeUser.id) }
             variant='secondary'
-          >Logout</NavigationButton>
-        ) }
-        { !activeUser.isLoggedIn && <Link to={ '/signup' }>Signup</Link> }
-        { !!activeUser.isLoggedIn && <Link to={ '/wishlist'}>Wishlist</Link>}
-        <DispatchButton
-          onClick={ () => setCartPreview(!cartPreview) }
+          >Logout</NavigationAtoms.ButtonLink>
+        }
+        { !activeUser.isLoggedIn && <NavigationAtoms.NavLink to={ '/signup' }>Signup</NavigationAtoms.NavLink> }
+        { !!activeUser.isLoggedIn && <NavigationAtoms.NavLink to={ '/wishlist'}>Wishlist</NavigationAtoms.NavLink>}
+        <ButtonAtoms.DispatchButton
+          onClick={ () => cartPreviewActions.setCartPreview(!cartPreview) }
           variant='secondary'
         >
           <IconTextContainer>
-            <Icon src={ Cart }/>
-            <SmallBody>{ sumCartItems() }</SmallBody>
+            <MediaAtom.Icon src={ Cart }/>
+            <TypeAtoms.SmallBody>{ sumCartItems() }</TypeAtoms.SmallBody>
           </IconTextContainer>
-        </DispatchButton>
+        </ButtonAtoms.DispatchButton>
         { cartPreview && (
           !!cartItems.length
           ? <Preview 
@@ -77,7 +73,9 @@ export default () => {
             />
           : <EmptyPreview />
         ) }
-      </LinksContainer>
-    </NavigationContainer>
+      </NavigationContainers.Links>
+    </NavigationContainers.Main>
   );
 };
+
+export default Navigation;

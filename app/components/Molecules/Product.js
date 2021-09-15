@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Plus from '/public/img/plus.png';
 import Minus from '/public/img/minus.png'
@@ -15,7 +15,7 @@ import {
 
 import { cartThunks, wishlistThunks } from '../../redux/thunks';
 
-export default ({
+const Product = ({
   product = {},
   user = {},
   quantityToAdd = 1,
@@ -85,4 +85,6 @@ export default ({
       </ProductContainers.Body>
     </ProductContainers.Content>
   </ProductContainers.Main>
-)
+);
+
+export default Product;
