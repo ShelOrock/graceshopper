@@ -27,26 +27,30 @@ const LoginForm = () => {
 
   return (
     <FormContainers.Main>
-      <TypeAtoms.Title>Login</TypeAtoms.Title>
-      <InputModule
-        type={ 'text' }
-        name={ 'email' }
-        value={ form.email }
-        onChange={ handleOnChange }
-      />
-      <InputModule
-        type={ 'password' }
-        name={ 'password' }
-        value={ form.password }
-        onChange={ handleOnChange }
-      />
-      <FormContainers.Actions>
-        <ButtonAtoms.DispatchButton
-          onClick={ () => authenticationThunks.attemptUserLogin(form) }
-          variant='secondary'
-        >Login</ButtonAtoms.DispatchButton>
-        <TypeAtoms.Body>Don't have an account? <NavigationAtoms.TextLink linkLocation={ '/signup' }>Signup</NavigationAtoms.TextLink></TypeAtoms.Body>
-      </FormContainers.Actions>
+      <FormContainers.Header>
+        <TypeAtoms.Title>Login</TypeAtoms.Title>
+      </FormContainers.Header>
+      <FormContainers.Body>
+        <InputModule
+          type={ 'text' }
+          name={ 'email' }
+          value={ form.email }
+          onChange={ handleOnChange }
+        />
+        <InputModule
+          type={ 'password' }
+          name={ 'password' }
+          value={ form.password }
+          onChange={ handleOnChange }
+        />
+        <FormContainers.Actions>
+          <ButtonAtoms.DispatchButton
+            onClick={ () => authenticationThunks.attemptUserLogin(form) }
+            variant='secondary'
+          >Login</ButtonAtoms.DispatchButton>
+          <TypeAtoms.Body>Don't have an account? <NavigationAtoms.TextLink linkLocation={ '/signup' }>Signup</NavigationAtoms.TextLink></TypeAtoms.Body>
+        </FormContainers.Actions>
+      </FormContainers.Body>
     </FormContainers.Main>
   );
 };

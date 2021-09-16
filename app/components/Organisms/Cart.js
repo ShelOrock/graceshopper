@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { LayoutAtoms } from '../Atoms';
 import CartCard from '../Molecules/CartCard';
+import { LayoutAtoms } from '../Atoms';
 
 const Cart = ({
   cartItems = [],

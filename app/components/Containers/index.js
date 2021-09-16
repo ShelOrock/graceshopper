@@ -6,7 +6,7 @@ import * as NavigationContainers from './Navigation';
 import * as ProductContainers from './Product';
 import * as OrderContainers from './Order';
 import * as PreviewContainers from './Preview';
-import * as ConfirmationContainer from './Confirmation';
+import * as ConfirmationContainers from './Confirmation';
 
 import * as ProductCardContainers from './ProductCard';
 import * as CartCardContainers from './CartCard';
@@ -22,7 +22,7 @@ export {
   NavigationContainers,
   ProductContainers,
   PreviewContainers,
-  ConfirmationContainer,
+  ConfirmationContainers,
   ProductCardContainers,
   CartCardContainers,
   OrderCardContainers,

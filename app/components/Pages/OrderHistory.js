@@ -2,9 +2,9 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 
 import OrderHistoryTemplate from '../Templates/OrderHistory';
-import OrderList from '../Organisms/OrderHistory';
+import OrderHistory from '../Organisms/OrderHistory';
 
-export default () => {
+const OrderHistoryPage = () => {
   
   const { allOrders, activeUser } = useSelector(state => state);
 
@@ -12,7 +12,7 @@ export default () => {
     <OrderHistoryTemplate
       title={ 'Order History' }
       orderHistory={ 
-        <OrderList
+        <OrderHistory
           orders={ allOrders }
           user={ activeUser }
         />
@@ -20,3 +20,5 @@ export default () => {
     />
   );
 };
+
+export default OrderHistoryPage;

@@ -1,5 +1,4 @@
-import React from 'react';
-const { useEffect } = React;
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -11,18 +10,17 @@ import {
 import * as Pages from './components/Pages';
 import Navigation from './components/Organisms/Navigation';
 
-import * as reduxThunks from './redux/thunks';
-const {
-  activeUserThunks: { getActiveUser },  
-  allProductsThunks: { getAllProducts },
-  featuredProductsThunks: { getFeaturedProducts },
-  popularProductsThunks: { getPopularProducts },
-  cartThunks: { getCart },
-  wishlistThunks: { getWishlist },
-  allOrdersThunks: { getAllOrders }
-} = reduxThunks; 
+import {
+  activeUserThunks,
+  allProductsThunks,
+  featuredProductsThunks,
+  popularProductsThunks,
+  cartThunks,
+  wishlistThunks,
+  allOrdersThunks
+} from './redux/thunks';
 
-export default () => {
+const Root = () => {
 
   const dispatch = useDispatch();
 
@@ -39,16 +37,16 @@ export default () => {
       .find(str => /sessionId=/.test(str))
       .replace(/sessionId=/, (''))
       .replace(' ', '');
-    dispatch(getActiveUser(sessionId));
-    dispatch(getAllProducts());
-    dispatch(getFeaturedProducts());
-    dispatch(getPopularProducts());
+    dispatch(activeUserThunks.getActiveUser(sessionId));
+    dispatch(allProductsThunks.getAllProducts());
+    dispatch(featuredProductsThunks.getFeaturedProducts());
+    dispatch(popularProductsThunks.getPopularProducts());
   }, []);
   useEffect(() => {
     if(activeUser.id) {
-      dispatch(getCart(activeUser.id));
-      dispatch(getWishlist(activeUser.id));
-      dispatch(getAllOrders(activeUser.id));
+      dispatch(cartThunks.getCart(activeUser.id));
+      dispatch(wishlistThunks.getWishlist(activeUser.id));
+      dispatch(allOrdersThunks.getAllOrders(activeUser.id));
     };
   }, [activeUser]);
 
@@ -107,8 +105,9 @@ export default () => {
         <Route exact path='/confirmation' component={ Pages.Confirmation } />
         <Route component={ Pages.NotFound } />
         {/* <Route exact path="/products/add" component={AddProductForm} /> */}
-        {/* <Route exact path="/wishlist" component={Wishlist} /> */}
       </Switch>
     </Router>
   );
 };
+
+export default Root;

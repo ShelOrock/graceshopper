@@ -1,26 +1,22 @@
-import * as React from 'react';
-const { useState, useEffect } = React;
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import EditIcon from '/public/img/edit.png'
-
-import FormContainer from '../Containers/Form/Form';
-import ButtonsContainer from '../Containers/Form/Buttons';
-import HeaderContainer from '../Containers/Form/Header';
-import BodyContainer from '../Containers/Form/Body';
-import Title from '../Atoms/Title';
+import { FormContainers } from '../Containers';
+import {
+  TypeAtoms,
+  MediaAtoms,
+  ButtonAtoms,
+} from '../Atoms';
 import InputModule from '../Molecules/InputModule';
-import Button from '../Atoms/Button';
-import Icon from '../Atoms/Icon';
 
-import * as reduxActions from '../../redux/actions';
-const { userInformationActions: { setUserInformation } } = reduxActions;
+import { userInformationActions } from '../../redux/actions';
 
 export default ({
   activeForm,
-  setActiveForm
+  setActiveForm,
+  dispatch
 }) => {
-
-  const dispatch = useDispatch();
 
   const { userInformation } = useSelector(state => state);
 
@@ -66,25 +62,25 @@ export default ({
   }
 
   const handleOnChange = e => {
-    dispatch(setUserInformation({
+    dispatch(userInformationActions.setUserInformation({
       ...userInformation,
       [e.target.name]: e.target.value
     }));
   };
 
   return (
-    <FormContainer>
-      <HeaderContainer>
-        <Title>User Information</Title>
-        <Button
+    <FormContainers.Main>
+      <FormContainers.Header>
+        <TypeAtoms.Title>User Information</TypeAtoms.Title>
+        <ButtonAtoms.Button
           onClick={ () => setActiveForm('user information') }
           variant='secondary'
         >
-          <Icon src={ EditIcon } />
-        </Button>
-      </HeaderContainer>
+          <MediaAtoms.Icon src={ EditIcon } />
+        </ButtonAtoms.Button>
+      </FormContainers.Header>
       { activeForm == 'user information' && (
-        <BodyContainer>
+        <FormContainers.Body>
           {
             Object.keys(userInformation).map(field => (
               <InputModule
@@ -98,16 +94,15 @@ export default ({
               />
             ))
           }
-          <ButtonsContainer>
-            <Button
+          <FormContainers.Actions>
+            <ButtonAtoms.Button
               onClick={ () => setActiveForm('shipping') }
               disabled={ checkErrors() }
               variant='secondary'
-            >Next</Button>
-
-          </ButtonsContainer>
-        </BodyContainer>
+            >Next</ButtonAtoms.Button>
+          </FormContainers.Actions>
+        </FormContainers.Body>
       ) }
-    </FormContainer>
+    </FormContainers.Main>
   );
 };

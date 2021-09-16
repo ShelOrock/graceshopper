@@ -1,16 +1,14 @@
-import * as React from 'react';
-const { useState } = React;
+import React, { useState } from 'react';
 
-import FormContainer from '../Containers/Form/Form';
+import { FormContainers } from '../Containers';
+import {
+  TypeAtoms,
+  ButtonAtoms,
+  NavigationAtoms
+} from '../Atoms';
 import InputModule from '../Molecules/InputModule';
-import ButtonsContainer from '../Containers/Form/Buttons';
-import Title from '../Atoms/Title';
-import DispatchButton from '../Atoms/DispatchButton';
-import LinkContainer from '../Containers/Link';
-import TextLink from '../Atoms/TextLink';
 
-import * as reduxThunks from '../../redux/thunks';
-const { authenticationThunks: { attemptUserSignup } } = reduxThunks;
+import { authenticationThunks } from '../../redux/thunks';
 
 export default () => {
 
@@ -135,40 +133,44 @@ export default () => {
   };
 
   return (
-    <FormContainer>
-      <Title>Signup</Title>
-      <InputModule
-        type={ 'text' }
-        name={ 'email' }
-        value={ form.email }
-        onChange={ handleOnChange }
-        validateField={ validateField }
-        error={ form.errors.email }
-      />
-      <InputModule
-        type={ 'password' }
-        name={ 'password' }
-        value={ form.password }
-        onChange={ handleOnChange }
-        validateField={ validateField }
-        error={ form.errors.password }
-      />
-      <InputModule
-        type={ 'password' }
-        name={ 'confirmPassword' }
-        value={ form.confirmPassword }
-        onChange={ handleOnChange }
-        validateField={ validateField }
-        error={ form.errors.confirmPassword }
-      />
-      <ButtonsContainer>
-        <DispatchButton
-          onClick={ () => attemptUserSignup(form) }
-          disabled={ checkErrors() }
-          variant='secondary'
-        >Signup</DispatchButton>
-        <LinkContainer>Already have an account? <TextLink linkLocation={ '/login' }>Login</TextLink></LinkContainer>
-      </ButtonsContainer>
-    </FormContainer>
+    <FormContainers.Main>
+      <FormContainers.Header>
+        <TypeAtoms.Title>Signup</TypeAtoms.Title>
+      </FormContainers.Header>
+      <FormContainers.Body>
+        <InputModule
+          type={ 'text' }
+          name={ 'email' }
+          value={ form.email }
+          onChange={ handleOnChange }
+          validateField={ validateField }
+          error={ form.errors.email }
+        />
+        <InputModule
+          type={ 'password' }
+          name={ 'password' }
+          value={ form.password }
+          onChange={ handleOnChange }
+          validateField={ validateField }
+          error={ form.errors.password }
+        />
+        <InputModule
+          type={ 'password' }
+          name={ 'confirmPassword' }
+          value={ form.confirmPassword }
+          onChange={ handleOnChange }
+          validateField={ validateField }
+          error={ form.errors.confirmPassword }
+        />
+        <FormContainers.Actions>
+          <ButtonAtoms.DispatchButton
+            onClick={ () => authenticationThunks.attemptUserSignup(form) }
+            disabled={ checkErrors() }
+            variant='secondary'
+          >Signup</ButtonAtoms.DispatchButton>
+          <TypeAtoms.Body>Already have an account? <NavigationAtoms.TextLink linkLocation={ '/login' }>Login</NavigationAtoms.TextLink></TypeAtoms.Body>
+        </FormContainers.Actions>
+      </FormContainers.Body>
+    </FormContainers.Main>
   );
 };

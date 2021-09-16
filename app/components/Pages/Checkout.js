@@ -1,17 +1,20 @@
-import * as React from 'react';
-const { useState, useEffect } = React;
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useStripe, useElements } from '@stripe/react-stripe-js';
 
 import CheckoutTemplate from '../Templates/Checkout';
 import UserInformationForm from '../Organisms/UserInformationForm';
 import ShippingForm from '../Organisms/ShippingForm';
 import PaymentForm from '../Organisms/PaymentForm';
-import BreadCrumbNavigation from '../Molecules/BreadCrumbNavigation';
+import BreadCrumbNavigation from '../Molecules/BreadCrumbs';
 
 export default () => {
 
   const history = useHistory();
+  const dispatch = useDispatch();
+  const stripe = useStripe();
+  const elements = useElements();
 
   const {
     activeUser,
@@ -50,12 +53,14 @@ export default () => {
           user={ activeUser }
           activeForm={ activeForm }
           setActiveForm={ setActiveForm }
+          dispatch={ dispatch }
         />
       }
       shipping={
         <ShippingForm
           activeForm={ activeForm }
           setActiveForm={ setActiveForm }
+          dispatch={ dispatch }
         />
       }
       payment={
@@ -64,6 +69,9 @@ export default () => {
           cartItems={ cartItems}
           activeForm={ activeForm }
           setActiveForm={ setActiveForm }
+          dispatch={ dispatch }
+          stripe={ stripe }
+          elements={ elements }
         />
       }
     />

@@ -1,5 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import PageContainer from '../Containers/Page/Page';
+import { PageContainers } from '../Containers';
 
-export default ({ signup }) => <PageContainer>{ signup }</PageContainer>;
+const SignupTemplate = ({ signup }) => <PageContainers.Main>{ signup }</PageContainers.Main>;
+
+export default SignupTemplate;

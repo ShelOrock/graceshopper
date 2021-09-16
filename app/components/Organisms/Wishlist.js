@@ -1,19 +1,21 @@
-import * as React from 'react';
+import React from 'react';
 
-import WishlistItem from '../Molecules/WishlistItem';
-import LineList from '../Atoms/Layout/List';
+import WishlistCard from '../Molecules/WishlistCard';
+import { LayoutAtoms } from '../Atoms';
 
-export default ({
+const Wishlist = ({
   wishlist = [],
   user = {}
 }) => (
-  <LineList>
+  <LayoutAtoms.List>
     { wishlist.map(wishlistItem => (
-      <WishlistItem
+      <WishlistCard
         key={ wishlistItem.id }
         wishlistItem={ wishlistItem }
         user={ user }
       />
     )) }
-  </LineList>
+  </LayoutAtoms.List>
 );
+
+export default Wishlist;

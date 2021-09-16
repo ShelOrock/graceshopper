@@ -1,26 +1,22 @@
-import * as React from 'react';
-const { useState } = React;
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import EditIcon from '/public/img/edit.png'
-
-import FormContainer from '../Containers/Form/Form';
-import ButtonsContainer from '../Containers/Form/Buttons';
-import HeaderContainer from '../Containers/Form/Header';
-import BodyContainer from '../Containers/Form/Body';
-import Title from '../Atoms/Title';
+import { FormContainers } from '../Containers';
+import {
+  TypeAtoms,
+  MediaAtoms,
+  ButtonAtoms,
+} from '../Atoms';
 import InputModule from '../Molecules/InputModule';
-import Button from '../Atoms/Button';
-import Icon from '../Atoms/Icon';
 
-import * as reduxActions from '../../redux/actions';
-const { shippingActions: { setShipping } } = reduxActions;
+import { shippingActions } from '../../redux/actions';
 
-export default ({
+const ShippingForm = ({
   activeForm,
-  setActiveForm
+  setActiveForm,
+  dispatch
 }) => {
-
-  const dispatch = useDispatch();
 
   const { shipping } = useSelector(state => state);
 
@@ -69,25 +65,25 @@ export default ({
   }
 
   const handleOnChange = e => {
-    dispatch(setShipping({
+    dispatch(shippingActions.setShipping({
       ...shipping,
       [e.target.name]: e.target.value
     }));
   };
 
   return (
-    <FormContainer>
-      <HeaderContainer>
-        <Title>Shipping Information</Title>
-        <Button
+    <FormContainers.Main>
+      <FormContainers.Header>
+        <TypeAtoms.Title>Shipping Information</TypeAtoms.Title>
+        <ButtonAtoms.Button
           onClick={ () => setActiveForm('shipping') }
           variant='secondary'
         >
-          <Icon src={ EditIcon } />
-        </Button>
-      </HeaderContainer>
+          <MediaAtoms.Icon src={ EditIcon } />
+        </ButtonAtoms.Button>
+      </FormContainers.Header>
       { activeForm == 'shipping' && (
-        <BodyContainer>
+        <FromContainers.Body>
           {
             Object.keys(shipping).map(field => (
               <InputModule
@@ -101,15 +97,17 @@ export default ({
               />
             ))
           }
-          <ButtonsContainer>
-            <Button
+          <FromContainers.Actions>
+            <ButtonAtoms.Button
               onClick={ () => setActiveForm('payment') }
               disabled={ checkErrors() }
               variant='secondary'
-            >Next</Button>
-          </ButtonsContainer>
-        </BodyContainer>
+            >Next</ButtonAtoms.Button>
+          </FromContainers.Actions>
+        </FromContainers.Body>
       ) }
-    </FormContainer>
+    </FormContainers.Main>
   );
 };
+
+export default ShippingForm;

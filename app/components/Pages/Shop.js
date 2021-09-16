@@ -1,15 +1,13 @@
-import * as React from 'react';
-const { useState, useEffect } = React;
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ShopTemplate from '../Templates/Shop';
 import Pagination from '../Molecules/Pagination';
 import ProductList from '../Organisms/ProductList';
 
-import * as reduxThunks from '../../redux/thunks';
-const { allProductsThunks: { getAllProducts } } = reduxThunks;
+import { allProductsThunks } from '../../redux/thunks';
 
-export default () => {
+const ShopPage = () => {
 
   const dispatch = useDispatch();
 
@@ -22,7 +20,7 @@ export default () => {
   const [ page, setPage ] = useState(0);
 
   useEffect(() => {
-    dispatch(getAllProducts(4, page));
+    dispatch(allProductsThunks.getAllProducts(4, page));
   }, [page]);
 
   return (
@@ -46,3 +44,5 @@ export default () => {
     />
   );
 };
+
+export default ShopPage;
