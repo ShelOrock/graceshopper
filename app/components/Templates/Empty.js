@@ -1,18 +1,18 @@
 import React from 'react';
 
-import PageContainer from '../Containers/Page/Page'
-import Header from '../Containers/Page/Header';
-import Section from '../Containers/Page/Section';
-import Title from '../Atoms/Title';
+import { PageContainers } from '../Containers';
+import { TypeAtoms } from '../Atoms';
 
-export default ({
+const EmptyTemplate = ({
   title,
   component
 }) => (
-  <PageContainer>
-    <Header>
-      <Title>{ title }</Title>
-    </Header>
-    <Section>{ component }</Section>
-  </PageContainer>
+  <PageContainers.Main>
+    <PageContainers.Header>
+      <TypeAtoms.Title>{ title }</TypeAtoms.Title>
+    </PageContainers.Header>
+    <PageContainers.Section>{ component }</PageContainers.Section>
+  </PageContainers.Main>
 );
+
+export default EmptyTemplate;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useStripe, useElements } from '@stripe/react-stripe-js';
 
 import EditIcon from '/public/img/edit.png'
 import { FormContainers, InputModuleContainers } from '../Containers';
@@ -19,11 +18,10 @@ export default ({
   user = {},
   cartItems = [],
   activeForm,
-  setActiveForm
+  setActiveForm,
+  stripe,
+  elements
 }) => {
-
-  const stripe = useStripe();
-  const elements = useElements();
 
   const { userInformation, shipping } = useSelector(state => state);
 

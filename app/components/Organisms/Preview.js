@@ -1,39 +1,39 @@
 import React from 'react';
 
-import PreviewContainer from '../Containers/Preview/Main';
-import ListContainer from '../Containers/Preview/List';
-import Heading from '../Atoms/Heading';
-import Link from '../Atoms/Link';
-import LineList from '../Atoms/Layout/List';
+import { PreviewContainers } from '../Containers';
+import {
+  TypeAtoms,
+  LayoutAtoms,
+  ButtonAtoms,
+  NavigationAtoms,
+} from '../Atoms';
 import PreviewItem from '../Molecules/PreviewCard';
-import ButtonsContainer from '../Containers/Preview/Actions';
-import DummyButton from '../Atoms/DummyButton';
 
-export default ({
+const Preview = ({
   cartItems = [],
   user = {},
 }) => {
-  <PreviewContainer>
-    <Heading>Cart Preview</Heading>
-    <ListContainer>
-      <LineList>
-        { !!cartItems.length && cartItems.map(cartItem => (
-          <PreviewItem
-            key={ cartItem.id }
-            cartItem={ cartItem }
-            product={ cartItem.product }
-            user={ user }
-          />
-        )) }
-      </LineList>
-    </ListContainer>
-    <ButtonsContainer>
-      <Link to={ '/cart' }>
-        <DummyButton variant='secondary'>Cart</DummyButton>
-      </Link>
-      <Link to={ '/checkout' }>
-        <DummyButton variant='secondary'>Checkout</DummyButton>
-      </Link>
-    </ButtonsContainer>
-  </PreviewContainer>
+  <PreviewContainers.Main>
+    <TypeAtoms.Heading>Cart Preview</TypeAtoms.Heading>
+    <LayoutAtoms.List>
+      { !!cartItems.length && cartItems.map(cartItem => (
+        <PreviewItem
+          key={ cartItem.id }
+          cartItem={ cartItem }
+          product={ cartItem.product }
+          user={ user }
+        />
+      )) }
+    </LayoutAtoms.List>
+    <PreviewContainers.Actions>
+      <NavigationAtoms.NavLink to={ '/cart' }>
+        <ButtonAtoms.Button variant='secondary'>Cart</ButtonAtoms.Button>
+      </NavigationAtoms.NavLink>
+      <NavigationAtoms.NavLink to={ '/checkout' }>
+        <ButtonAtoms.Button variant='secondary'>Checkout</ButtonAtoms.Button>
+      </NavigationAtoms.NavLink>
+    </PreviewContainers.Actions>
+  </PreviewContainers.Main>
 };
+
+export default Preview;

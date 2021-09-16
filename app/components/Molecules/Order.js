@@ -1,42 +1,35 @@
 import React from 'react';
 import { convertDate } from '../../utils';
 
-import OrderContainer from '../Containers/OrderPage/Main';
-import HeaderContainer from '../Containers/OrderPage/Header';
-import InformationContainer from '../Containers/OrderPage/Content';
-import TotalContainer from '../Containers/OrderPage/Total';
-import BodyContainer from '../Containers/OrderPage/Body';
-import ShippingContainer from '../Containers/OrderPage/Shipping';
-import LineList from '../Atoms/Layout/List';
+import { OrderContainers } from '../Containers';
+import { TypeAtoms, LayoutAtoms } from '../Atoms';
 import OrderItem from './OrderCard';
-import Heading from '../Atoms/Heading';
-import Body from '../Atoms/Body';
 
-export default ({
+const Order = ({
   order = {},
   cartItems = [],
 }) => (
-  <OrderContainer>
-    <HeaderContainer>
-      <InformationContainer>
-        <Heading>Order No.{ order.confirmationNumber }</Heading>
-        <Body>{ order.createdAt && convertDate(order.createdAt) }</Body>
-      </InformationContainer>
-      <TotalContainer>
-        <Heading>Total: ${ order.total }</Heading>
-      </TotalContainer>
-    </HeaderContainer>
-    <BodyContainer>
-      <ShippingContainer>
-        <Heading>Shipping Details</Heading>
-        <Body>
+  <OrderContainers.Main>
+    <OrderContainers.Header>
+      <OrderContainers.Information>
+        <TypeAtoms.Heading>Order No.{ order.confirmationNumber }</TypeAtoms.Heading>
+        <TypeAtoms.Body>{ order.createdAt && convertDate(order.createdAt) }</TypeAtoms.Body>
+      </OrderContainers.Information>
+      <OrderContainers.Total>
+        <TypeAtoms.Heading>Total: ${ order.total }</TypeAtoms.Heading>
+      </OrderContainers.Total>
+    </OrderContainers.Header>
+    <OrderContainers.Body>
+      <OrderContainers.Shipping>
+        <TypeAtoms.Heading>Shipping Details</TypeAtoms.Heading>
+        <TypeAtoms.Body>
           { order.name }<br />
           { order.address }<br />
           { order.city }, { order.state } { order.zip }
-        </Body>
-      </ShippingContainer>
-    </BodyContainer>
-    <LineList>
+        </TypeAtoms.Body>
+      </OrderContainers.Shipping>
+    </OrderContainers.Body>
+    <LayoutAtoms.List>
       {
         !!cartItems.length && cartItems.map(cartItem => (
           <OrderItem
@@ -46,6 +39,8 @@ export default ({
           />
         ))
       }
-    </LineList>
-  </OrderContainer>
+    </LayoutAtoms.List>
+  </OrderContainers.Main>
 );
+
+export default Order;

@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 import CartTemplate from '../Templates/Cart';
-import CartList from '../Organisms/CartList';
+import Cart from '../Organisms/Cart';
 
-export default () => {
+const CartPage = () => {
 
   const {
     activeUser,
@@ -23,3 +23,5 @@ export default () => {
     />
   );
 };
+
+export default CartPage;

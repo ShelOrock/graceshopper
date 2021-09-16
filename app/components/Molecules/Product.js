@@ -21,6 +21,7 @@ const Product = ({
   quantityToAdd = 1,
   setQuantityToAdd,
   wishlist= [],
+  dispatch
 }) => (
   <ProductContainers.Main>
     <ProductContainers.Media>

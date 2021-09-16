@@ -1,28 +1,26 @@
-import * as React from 'react';
+import React from 'react';
 
-import PageContainer from '../Containers/Page/Page';
-import Header from '../Containers/Page/Header';
-import Section from '../Containers/Page/Section';
-import SectionHeader from '../Containers/Page/SectionHeader';
-import Title from '../Atoms/Title';
-import Heading from '../Atoms/Heading';
+import { PageContainers } from '../Containers';
+import { TypeAtoms } from '../Atoms';
 
-export default ({
+const ShopTemplate = ({
   title,
   productsHeading,
   pagination,
   products
 }) => (
-  <PageContainer>
-    <Header>
-      <Title>{ title }</Title>
-    </Header>
-    <Section>
-      <SectionHeader>
-        <Heading>{ productsHeading }</Heading>
+  <PageContainers.Main>
+    <PageContainers.Header>
+      <TypeAtoms.Title>{ title }</TypeAtoms.Title>
+    </PageContainers.Header>
+    <PageContainers.Section>
+      <PageContainers.Title>
+        <TypeAtoms.Heading>{ productsHeading }</TypeAtoms.Heading>
         { pagination }
-      </SectionHeader>
+      </PageContainers.Title>
       { products }
-    </Section>
-  </PageContainer>
+    </PageContainers.Section>
+  </PageContainers.Main>
 );
+
+export default ShopTemplate;

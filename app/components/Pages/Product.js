@@ -1,23 +1,17 @@
-import * as React from 'react';
-const { useState, useEffect } = React;
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ProductTemplate from '../Templates/Product';
-import BreadCrumbNavigation from '../Molecules/BreadCrumbNavigation';
+import BreadCrumbs from '../Molecules/BreadCrumbs';
 import Product from '../Molecules/Product';
 import ProductList from '../Organisms/ProductList';
 
-import * as reduxThunks from '../../redux/thunks';
-const {
-  activeProductThunks: { getActiveProduct },
-  similarProductsThunks: { getSimilarProducts }
-} = reduxThunks;
+import { activeProductThunks, similarProductsThunks } from '../../redux/thunks';
 
-export default () => {
+const ProductPage = () => {
 
   const dispatch = useDispatch();
-
   const { productId } = useParams();
 
   const {
@@ -30,12 +24,12 @@ export default () => {
   const [ quantityToAdd, setQuantityToAdd ] = useState(1);
 
   useEffect(() => {
-    dispatch(getActiveProduct(productId));
+    dispatch(activeProductThunks.getActiveProduct(productId));
     setQuantityToAdd(1);
   }, [productId]);
   useEffect(() => {
     if(activeProduct.id) {
-      dispatch(getSimilarProducts(activeProduct.tags, activeProduct.id))
+      dispatch(similarProductThunks.getSimilarProducts(activeProduct.tags, activeProduct.id))
     }
   }, [activeProduct]);
 
@@ -43,19 +37,12 @@ export default () => {
     <ProductTemplate
       title={ activeProduct.productName }
       breadcrumbs={
-        <BreadCrumbNavigation
-          firstCrumb={ {
-            to: '/',
-            name: 'Home'
-          } }
-          secondCrumb={ {
-            to: '/shop',
-            name: 'Shop'
-          } }
-          thirdCrumb={ {
-            to: `/products/${ activeProduct.id }`,
-            name: activeProduct.productName
-          } }
+        <BreadCrumbs
+          crumbs={ [
+            { to: '/', name: 'Home' },
+            { to: '/shop', name: 'Shop' },
+            { to: `/products/${ activeProduct.id }`, name: activeProduct.productName }
+          ] }
         />
       }
       product={
@@ -65,6 +52,7 @@ export default () => {
           quantityToAdd={ quantityToAdd }
           setQuantityToAdd={ setQuantityToAdd }
           wishlist={ wishlist.products }
+          dispatch={ dispatch }
         />
       }
       similarHeading={ !!similarProducts.length && 'Similar Products' }
@@ -80,3 +68,5 @@ export default () => {
     />
   );
 };
+
+export default ProductPage;

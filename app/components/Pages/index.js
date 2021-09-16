@@ -3,7 +3,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Shop from './Shop';
 import Product from './Product';
-import Cart from './Cart';
+import CartPage from './Cart';
 import Wishlist from './Wishlist';
 import Checkout from './Checkout';
 import OrderHistory from './OrderHistory';
@@ -21,7 +21,7 @@ export {
   Signup,
   Shop,
   Product,
-  Cart,
+  CartPage,
   Wishlist,
   Checkout,
   OrderHistory,

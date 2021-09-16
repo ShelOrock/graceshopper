@@ -52,10 +52,10 @@ const CartCard = ({
         ) }
           <ButtonAtoms.DispatchButton
             onClick={ () => cartThunks.removeProductFromCart(
-            user.id, 
-            { cartItemId: cartItem.id }
-          ) }
-          variant='secondary'
+              user.id, 
+              { cartItemId: cartItem.id }
+            ) }
+            variant='secondary'
           >
             Remove from Cart
           </ButtonAtoms.DispatchButton>
@@ -66,7 +66,10 @@ const CartCard = ({
           <ButtonAtoms.DispatchButton
             onClick={ () => cartThunks.updateProductInCart(
               user.id,
-              { productId: product.id, quantity: cartItem.quantity - 1 }
+              {
+                productId: product.id,
+                quantity: cartItem.quantity - 1
+              }
             ) }
             disabled={ cartItem.quantity - 1 <= 0 }
             variant='secondary'
