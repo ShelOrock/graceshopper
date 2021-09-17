@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import * as StyledComponents from '../../StyledComponents';
-const { StyledCartPage: { StyledQuantity } } = StyledComponents;
+import { StyledCartCard } from '../../StyledComponents';
 
-export default ({ children }) => <StyledQuantity>{ children }</StyledQuantity>;
+const QuantityActions = ({ children }) => <StyledCartCard.QuantityActions>{ children }</StyledCartCard.QuantityActions>;
+
+export default QuantityActions;

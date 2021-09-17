@@ -26,5 +26,5 @@ export const Actions = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
-  margin: 2rem 1.5rem;
+  margin: 2rem 0.5rem;
 `;

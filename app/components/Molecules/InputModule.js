@@ -22,7 +22,7 @@ const InputModule = ({
         <InputAtoms.Label>{ name }</InputAtoms.Label>
         <InputAtoms.Feedback>{ error }</InputAtoms.Feedback>
       </InputModuleContainers.Information>
-      <InputAtoms.InputField
+      <InputAtoms.Field
         type={ type }
         name={ name }
         value={ value }

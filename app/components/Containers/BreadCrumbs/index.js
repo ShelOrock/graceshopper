@@ -1,7 +1,7 @@
 import Main from './Main';
-import Links from './Links';
+import Crumb from './Crumb';
 
 export {
   Main,
-  Links,
+  Crumb
 };

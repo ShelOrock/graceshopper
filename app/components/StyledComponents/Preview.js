@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Main = styled.div`
   position: absolute;
-  top: 150px;
-  right: 0;
+  top: 130px;
+  right: 135px;
   margin: 1rem 4rem;
   padding: 1rem;
   background-color: rgba(255, 255, 255, 0.4);
@@ -21,9 +21,8 @@ export const List = styled.div`
 
 export const Actions = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  margin: 1rem 0;
+  margin: 0 1rem;
 `;
 
 export const Empty = styled.div`

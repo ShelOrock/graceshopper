@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 
 import HomeTemplate from '../Templates/Home';
-import ProductList from '../Organisms/ProductList';
+import Grid from '../Organisms/Grid';
+import ProductCard from '../Molecules/ProductCard';
 
 export default () => {
 
@@ -17,23 +18,31 @@ export default () => {
     <HomeTemplate 
       featuredHeading={ !!featuredProducts.length && 'Featured Products' }
       featured={
-        !!featuredProducts.length && (
-          <ProductList
-            products={ featuredProducts }
-            wishlist={ wishlist.products }
-            user={ activeUser }
-          />
-        )
+        <Grid
+          listData={ featuredProducts }
+          renderData={ product => (
+            <ProductCard 
+              key={ product.id }
+              product={ product }
+              wishlist={ wishlist }
+              user={ activeUser }
+            />
+          ) }
+        />
       }
       popularHeading={ !!popularProducts.length && 'Popular Products' }
       popular={
-        !!popularProducts.length && (
-          <ProductList
-            products={ popularProducts }
-            wishlist={ wishlist.products }
-            user={ activeUser }
-          />
-        )
+        <Grid
+          listData={ popularProducts }
+          renderData={ product => (
+            <ProductCard
+              key={ product.id }
+              product={ product }
+              wishlist={ wishlist }
+              user={ activeUser }
+            />
+          ) }
+        />
       }
     />
   );

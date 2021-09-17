@@ -1,32 +1,38 @@
-import * as React from 'react';
+import React from 'react';
+
 import Left from '/public/img/left.png';
 import Right from '/public/img/right.png';
+import { PaginationContainers } from '../Containers';
+import {
+  TypeAtoms,
+  MediaAtoms,
+  ButtonAtoms
+} from '../Atoms';
 
-import PageSelectContainer from '../Containers/PageSelect';
-import Button from '../Atoms/Button';
-import Icon from '../Atoms/Icon';
-import SmallBody from '../Atoms/SmallBody';
-
-export default ({
+const Pagination = ({
   page,
   setPage,
   allProducts
 }) => (
-  <PageSelectContainer>
-    <Button
+  <PaginationContainers.Main>
+    <ButtonAtoms.Button
       onClick={ () => setPage(page - 1) }
       disabled={ page <= 0 }
       variant='secondary'
     >
-      <Icon src={ Left } />
-    </Button>
-    <SmallBody>{ page + 1 } of { Math.ceil(allProducts.count / 4) }</SmallBody>
-    <Button
+      <MediaAtoms.Icon src={ Left } />
+    </ButtonAtoms.Button>
+    <PaginationContainers.Body>
+      <TypeAtoms.Body>{ page + 1 } of { Math.ceil(allProducts.count / 4) }</TypeAtoms.Body>
+    </PaginationContainers.Body>
+    <ButtonAtoms.Button
       onClick={ () => setPage(page + 1) }
       disabled={ allProducts.count <= (page + 1) * 4 }
       variant='secondary'
     >
-      <Icon src={ Right } />
-    </Button>
-  </PageSelectContainer>
+      <MediaAtoms.Icon src={ Right } />
+    </ButtonAtoms.Button>
+  </PaginationContainers.Main>
 );
+
+export default Pagination;

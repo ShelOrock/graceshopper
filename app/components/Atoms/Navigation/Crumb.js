@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { StyledNavigation } from '../../StyledComponents';
+import { StyledBreadCrumbs } from '../../StyledComponents';
 
-const Crumb = ({ to, children }) => <StyledNavigation.Crumb to={ to }>{ children }</StyledNavigation.Crumb>;
+const Crumb = ({ to, children }) => <StyledBreadCrumbs.Crumb to={ to }>{ children }</StyledBreadCrumbs.Crumb>;
 
 export default Crumb;

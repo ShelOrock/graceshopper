@@ -8,7 +8,7 @@ export const Group = styled.div`
 export const Module = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem;
+  margin: 1rem 0;
 `;
 
 export const Information = styled.div`

@@ -7,17 +7,17 @@ import {
   ButtonAtoms,
   NavigationAtoms,
 } from '../Atoms';
-import PreviewItem from '../Molecules/PreviewCard';
+import PreviewCard from '../Molecules/PreviewCard';
 
 const Preview = ({
   cartItems = [],
   user = {},
-}) => {
+}) => (
   <PreviewContainers.Main>
     <TypeAtoms.Heading>Cart Preview</TypeAtoms.Heading>
     <LayoutAtoms.List>
       { !!cartItems.length && cartItems.map(cartItem => (
-        <PreviewItem
+        <PreviewCard
           key={ cartItem.id }
           cartItem={ cartItem }
           product={ cartItem.product }
@@ -26,14 +26,14 @@ const Preview = ({
       )) }
     </LayoutAtoms.List>
     <PreviewContainers.Actions>
-      <NavigationAtoms.NavLink to={ '/cart' }>
+      <NavigationAtoms.TextLink to={ '/cart' }>
         <ButtonAtoms.Button variant='secondary'>Cart</ButtonAtoms.Button>
-      </NavigationAtoms.NavLink>
-      <NavigationAtoms.NavLink to={ '/checkout' }>
+      </NavigationAtoms.TextLink>
+      <NavigationAtoms.TextLink to={ '/checkout' }>
         <ButtonAtoms.Button variant='secondary'>Checkout</ButtonAtoms.Button>
-      </NavigationAtoms.NavLink>
+      </NavigationAtoms.TextLink>
     </PreviewContainers.Actions>
   </PreviewContainers.Main>
-};
+);
 
 export default Preview;

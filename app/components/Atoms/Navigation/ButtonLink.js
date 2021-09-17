@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { StyledNavigation } from '../StyledComponents';
+import { StyledNavigation } from '../../StyledComponents';
 
 const ButtonLink = ({
   onClick,

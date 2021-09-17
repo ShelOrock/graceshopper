@@ -52,7 +52,9 @@ const Root = () => {
 
   return (
     <Router>
-      <Navigation />
+      <Navigation
+        dispatch={ dispatch }
+      />
       {/* <ToastComponent status={status} message={text} /> */}
       <Switch>
         <Route exact path='/' component={ Pages.Home } />
@@ -72,7 +74,7 @@ const Root = () => {
         <Route exact path='/products/:productId' component={ Pages.Product } />
         <Route exact path='/cart'>
           { cartItems.length
-          ? <Pages.Cart />
+          ? <Pages.CartPage />
           : <Pages.EmptyCart />
           }
         </Route>

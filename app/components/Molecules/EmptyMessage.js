@@ -1,9 +1,11 @@
 import React from 'react';
 
 import { PageContainers } from '../Containers';
-import { TypeAtoms, NavigationAtoms } from '../Atoms';
-import Link from '../Atoms/Link';
-import DummyButton from '../Atoms/DummyButton';
+import {
+  TypeAtoms,
+  ButtonAtoms,
+  NavigationAtoms
+} from '../Atoms';
 
 const EmptyMessage = ({
   heading,
@@ -14,9 +16,9 @@ const EmptyMessage = ({
   <PageContainers.Empty>
     <TypeAtoms.Heading>{ heading }</TypeAtoms.Heading>
     <TypeAtoms.Body>{ message }</TypeAtoms.Body>
-    <Link to={ to }>
-      <DummyButton variant='secondary'>{ name }</DummyButton>
-    </Link>
+    <NavigationAtoms.TextLink to={ to }>
+      <ButtonAtoms.Button variant='secondary'>{ name }</ButtonAtoms.Button>
+    </NavigationAtoms.TextLink>
   </PageContainers.Empty>
 );
 

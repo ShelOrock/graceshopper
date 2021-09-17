@@ -8,6 +8,10 @@ export const Main = styled.div`
   box-shadow: 0px 8px 15px rgba(100, 100, 100, 0.1);
 `;
 
+export const Media = styled.div`
+  width: 100%;
+`;
+
 export const Content = styled.div`
   width: 100%;
   display: flex;

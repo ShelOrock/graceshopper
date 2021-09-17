@@ -168,7 +168,7 @@ export default () => {
             disabled={ checkErrors() }
             variant='secondary'
           >Signup</ButtonAtoms.DispatchButton>
-          <TypeAtoms.Body>Already have an account? <NavigationAtoms.TextLink linkLocation={ '/login' }>Login</NavigationAtoms.TextLink></TypeAtoms.Body>
+          <TypeAtoms.Body>Already have an account? <NavigationAtoms.TextLink to={ '/login' }>Login</NavigationAtoms.TextLink></TypeAtoms.Body>
         </FormContainers.Actions>
       </FormContainers.Body>
     </FormContainers.Main>
