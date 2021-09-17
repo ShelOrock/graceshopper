@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import OrderTemplate from '../Templates/Order';
 import Order from '../Molecules/Order';
+import OrderCard from '../Molecules/OrderCard';
 import BreadCrumbs from '../Molecules/BreadCrumbs';
+import List from '../Organisms/List';
 
 import { activeOrderThunks } from '../../redux/thunks';
 
 export default () => {
+
+  const dispatch = useDispatch();
+  const { orderId } = useParams();
 
   const { activeOrder } = useSelector(state => state);
 
@@ -30,7 +36,18 @@ export default () => {
       order={ 
         <Order
           order={ activeOrder }
-          cartItems={ activeOrder.cartItems }
+          orderItemList={ 
+            <List
+              listData={ activeOrder.cartItems }
+              renderData={ cartItem => (
+                <OrderCard
+                  key={ cartItem.id }
+                  cartItem={ cartItem }
+                  product={ cartItem.product }
+                />
+              ) }
+            />
+          }
         />
       }
     />

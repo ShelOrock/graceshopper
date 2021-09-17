@@ -14,7 +14,7 @@ export const Media = styled.div`
 
 export const Content = styled.div`
   width: 50%;
-  margin: 3rem 1rem;
+  margin: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -34,7 +34,7 @@ export const Information = styled.div`
 `;
 
 export const Description = styled.div`
-  margin: 1rem 0 0 1.5rem;
+  margin: 1rem 0 0 1rem;
 `;
 
 export const Actions = styled.div`
@@ -52,5 +52,5 @@ export const Body = styled.div`
 export const QuantityActions = styled.div`
   display: flex;
   align-items: center;
-  margin: 2rem 2rem;
+  margin: 1.5rem;
 `;

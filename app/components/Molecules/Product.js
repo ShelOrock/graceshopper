@@ -5,8 +5,7 @@ import Minus from '/public/img/minus.png'
 import Cart from '/public/img/cart.png';
 import Heart from '/public/img/heart.png';
 import BlackHeart from '/public/img/heart-black.png'
-import IconTextContainer from '../Containers/IconText';
-import { ProductContainers } from '../Containers';
+import { ProductContainers, MediaContainers } from '../Containers';
 import {
   TypeAtoms,
   ButtonAtoms,
@@ -78,10 +77,10 @@ const Product = ({
           )}
           variant='secondary'
         >
-          <IconTextContainer>
-            <Icon src={ Cart } />
-            <ButtonType>Add to cart</ButtonType>
-          </IconTextContainer>
+          <MediaContainers.Main>
+            <MediaAtoms.Icon src={ Cart } />
+            <TypeAtoms.ButtonType>Add to cart</TypeAtoms.ButtonType>
+          </MediaContainers.Main>
         </ButtonAtoms.DispatchButton>
       </ProductContainers.Body>
     </ProductContainers.Content>

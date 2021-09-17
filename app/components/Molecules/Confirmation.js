@@ -15,13 +15,13 @@ const Confirmation = ({
     <TypeAtoms.Heading>Order confirmed!</TypeAtoms.Heading>
     <TypeAtoms.Body>Your Order No. is { order.confirmationNumber }</TypeAtoms.Body>
     <ConfirmationContainers.Actions>
-      <NavigationAtoms.NavLink to={ '/' }>
-        <ButtonAtoms.DummyButton variant='secondary'>Take me home</ButtonAtoms.DummyButton>
-      </NavigationAtoms.NavLink>
+      <NavigationAtoms.TextLink to={ '/' }>
+        <ButtonAtoms.Button variant='secondary'>Take me home</ButtonAtoms.Button>
+      </NavigationAtoms.TextLink>
       { user.isLoggedIn && (
-        <NavigationAtoms.NavLink to={ `/order-history/${ order.id }` }>
-          <ButtonAtoms.DummyButton variant='secondary'>Review my order</ButtonAtoms.DummyButton>
-        </NavigationAtoms.NavLink>
+        <NavigationAtoms.TextLink to={ `/order-history/${ order.id }` }>
+          <ButtonAtoms.Button variant='secondary'>Review my order</ButtonAtoms.Button>
+        </NavigationAtoms.TextLink>
       ) }
     </ConfirmationContainers.Actions>
   </ConfirmationContainers.Main>

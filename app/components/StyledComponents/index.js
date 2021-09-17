@@ -10,12 +10,13 @@ import * as StyledStripe from './Stripe';
 import * as StyledForm from './Form';
 import * as StyledInputModule from './InputModule';
 
-import * as StyledPageSelect from './PageSelect';
+import * as StyledBreadCrumbs from './BreadCrumbs';
+import * as StyledNavBar from './NavBar';
+import * as StyledPagination from './Pagination';
 import * as StyledPreview from './Preview';
 
 import * as StyledPage from './Page';
 import * as StyledAuthentication from './Authentication';
-import * as StyledShop from './Shop';
 import * as StyledProduct from './Product';
 import * as StyledCheckout from './Checkout';
 import * as StyledConfirmation from './Confirmation';
@@ -39,14 +40,14 @@ export {
   StyledMedia,
   StyledNavigation,
   StyledProductCard,
-  StyledPageSelect,
+  StyledPagination,
   StyledPreview,
   StyledPreviewCard,
   StyledPage,
+  StyledBreadCrumbs,
+  StyledNavBar,
   StyledAuthentication,
-  StyledShop,
   StyledProduct,
-  StyledCart,
   StyledOrderHistoryCard,
   StyledOrder,
   StyledOrderCard,

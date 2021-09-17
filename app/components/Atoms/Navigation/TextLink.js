@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import * as StyledComponents from '../StyledComponents';
-const { StyledNavigation: { TextLink } } = StyledComponents;
+import { StyledNavigation } from '../../StyledComponents';
 
-export default ({ linkLocation, children }) => <TextLink to={ linkLocation }>{ children }</TextLink>;
+const TextLink = ({ to, children }) => <StyledNavigation.TextLink to={ to }>{ children }</StyledNavigation.TextLink>;
+
+export default TextLink;

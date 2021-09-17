@@ -2,19 +2,18 @@ import React from 'react';
 import { convertDate } from '../../utils';
 
 import { OrderContainers } from '../Containers';
-import { TypeAtoms, LayoutAtoms } from '../Atoms';
-import OrderItem from './OrderCard';
+import { TypeAtoms } from '../Atoms';
 
 const Order = ({
   order = {},
-  cartItems = [],
+  orderItemList = null,
 }) => (
   <OrderContainers.Main>
     <OrderContainers.Header>
-      <OrderContainers.Information>
+      <OrderContainers.Content>
         <TypeAtoms.Heading>Order No.{ order.confirmationNumber }</TypeAtoms.Heading>
         <TypeAtoms.Body>{ order.createdAt && convertDate(order.createdAt) }</TypeAtoms.Body>
-      </OrderContainers.Information>
+      </OrderContainers.Content>
       <OrderContainers.Total>
         <TypeAtoms.Heading>Total: ${ order.total }</TypeAtoms.Heading>
       </OrderContainers.Total>
@@ -29,17 +28,7 @@ const Order = ({
         </TypeAtoms.Body>
       </OrderContainers.Shipping>
     </OrderContainers.Body>
-    <LayoutAtoms.List>
-      {
-        !!cartItems.length && cartItems.map(cartItem => (
-          <OrderItem
-            key={ cartItem.id }
-            cartItem={ cartItem }
-            product={ cartItem.product }
-          />
-        ))
-      }
-    </LayoutAtoms.List>
+    { orderItemList }
   </OrderContainers.Main>
 );
 

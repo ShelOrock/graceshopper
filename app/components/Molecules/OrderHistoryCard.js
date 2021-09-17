@@ -13,7 +13,7 @@ const OrderHistoryCard = ({
   order = {},
   cartItems = [],
 }) => (
-  <NavigationAtoms.NavLink to={ `/order-history/${ order.id }` }>
+  <NavigationAtoms.TextLink to={ `/order-history/${ order.id }` }>
     <OrderHistoryCardContainers.Main>
       <OrderHistoryCardContainers.Header>
         <OrderHistoryCardContainers.Information>
@@ -30,7 +30,7 @@ const OrderHistoryCard = ({
         )) }
       </LayoutAtoms.Grid>
     </OrderHistoryCardContainers.Main>
-  </NavigationAtoms.NavLink >
+  </NavigationAtoms.TextLink >
 );
 
 export default OrderHistoryCard;

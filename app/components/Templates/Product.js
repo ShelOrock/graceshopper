@@ -11,8 +11,10 @@ const ProductTemplate = ({
   similar
 }) => (
   <PageContainers.Main>
-    <TypeAtoms.Title>{ title }</TypeAtoms.Title>
-    { breadcrumbs }
+    <PageContainers.Header>
+      <TypeAtoms.Title>{ title }</TypeAtoms.Title>
+      { breadcrumbs }
+    </PageContainers.Header>
     <PageContainers.Section>{ product }</PageContainers.Section>
     <PageContainers.Section>
       <PageContainers.Title>

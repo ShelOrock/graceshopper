@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { StyledConfirmationPage } from '../../StyledComponents';
+import { StyledConfirmation } from '../../StyledComponents';
 
-const Actions = ({ children }) => <StyledConfirmationPage.Actions>{ children }</StyledConfirmationPage.Actions>;
+const Actions = ({ children }) => <StyledConfirmation.Actions>{ children }</StyledConfirmation.Actions>;
 
 export default Actions;

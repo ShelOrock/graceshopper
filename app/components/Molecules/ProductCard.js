@@ -44,7 +44,7 @@ const ProductCard = ({
       </ButtonAtoms.DispatchButton>
       ) }
     </ProductCardContainers.Actions>
-    <NavigationAtoms.ButtonLink to={ `/products/${ product.id }` }>
+    <NavigationAtoms.TextLink to={ `/products/${ product.id }` }>
       <ProductCardContainers.Media>
         <MediaAtoms.Image src={ product.productImage } />
       </ProductCardContainers.Media>
@@ -52,7 +52,7 @@ const ProductCard = ({
         <TypeAtoms.Heading>{ product.productName }</TypeAtoms.Heading>
         <TypeAtoms.SubHeading>{ product.unitPrice }</TypeAtoms.SubHeading>
       </ProductCardContainers.Information>
-    </NavigationAtoms.ButtonLink>
+    </NavigationAtoms.TextLink>
   </ProductCardContainers.Main>
 );
 

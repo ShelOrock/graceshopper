@@ -1,8 +1,11 @@
+import * as MediaContainers from './Media';
 import * as FormContainers from './Form';
 import * as InputModuleContainers from './InputModule';
+import * as PaginationContainers from './Pagination';
 
 import * as PageContainers from './Page';
 import * as NavigationContainers from './Navigation';
+import * as BreadCrumbsContainers from './BreadCrumbs';
 import * as ProductContainers from './Product';
 import * as OrderContainers from './Order';
 import * as PreviewContainers from './Preview';
@@ -16,10 +19,13 @@ import * as WishlistCardContainers from './WishlistCard';
 import * as PreviewCardContainers from './PreviewCard';
 
 export {
+  MediaContainers,
   FormContainers,
   InputModuleContainers,
+  PaginationContainers,
   PageContainers,
   NavigationContainers,
+  BreadCrumbsContainers,
   ProductContainers,
   PreviewContainers,
   ConfirmationContainers,

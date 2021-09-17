@@ -8,9 +8,9 @@ import { CartCardContainers } from '../Containers';
 import {
   TypeAtoms,
   MediaAtoms,
-  ButtonAtoms
+  ButtonAtoms,
+  NavigationAtoms
 } from '../Atoms';
-import Link from '../Atoms/Link';
 
 import { cartThunks, wishlistThunks } from '../../redux/thunks';
 
@@ -27,9 +27,9 @@ const CartCard = ({
     <CartCardContainers.Content>
       <CartCardContainers.Header>
         <CartCardContainers.Information>
-          <Link to={ `/products/${ product.id }` }>
+          <NavigationAtoms.TextLink to={ `/products/${ product.id }` }>
             <TypeAtoms.Heading>{ product.productName }</TypeAtoms.Heading>
-          </Link>
+          </NavigationAtoms.TextLink>
           <TypeAtoms.SubHeading>${ product.unitPrice }</TypeAtoms.SubHeading>
         </CartCardContainers.Information>
         <CartCardContainers.Actions>

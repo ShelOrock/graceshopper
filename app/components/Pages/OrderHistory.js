@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 import OrderHistoryTemplate from '../Templates/OrderHistory';
-import OrderHistory from '../Organisms/OrderHistory';
+import List from '../Organisms/List';
+import OrderHistoryCard from '../Molecules/OrderHistoryCard';
 
 const OrderHistoryPage = () => {
   
@@ -12,7 +13,16 @@ const OrderHistoryPage = () => {
     <OrderHistoryTemplate
       title={ 'Order History' }
       orderHistory={ 
-        <OrderHistory
+        <List
+          listData={ allOrders }
+          renderData={ orderItem => (
+            <OrderHistoryCard
+              key={ orderItem.id }
+              order={ orderItem }
+              cartItems={ orderItem.cartItems }
+              user={ activeUser }
+            />
+          ) }
           orders={ allOrders }
           user={ activeUser }
         />

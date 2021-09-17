@@ -48,7 +48,7 @@ const LoginForm = () => {
             onClick={ () => authenticationThunks.attemptUserLogin(form) }
             variant='secondary'
           >Login</ButtonAtoms.DispatchButton>
-          <TypeAtoms.Body>Don't have an account? <NavigationAtoms.TextLink linkLocation={ '/signup' }>Signup</NavigationAtoms.TextLink></TypeAtoms.Body>
+          <TypeAtoms.Body>Don't have an account? <NavigationAtoms.TextLink to={ '/signup' }>Signup</NavigationAtoms.TextLink></TypeAtoms.Body>
         </FormContainers.Actions>
       </FormContainers.Body>
     </FormContainers.Main>

@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProductTemplate from '../Templates/Product';
 import BreadCrumbs from '../Molecules/BreadCrumbs';
 import Product from '../Molecules/Product';
-import ProductList from '../Organisms/ProductList';
+import Grid from '../Organisms/Grid';
+import ProductCard from '../Molecules/ProductCard';
 
 import { activeProductThunks, similarProductsThunks } from '../../redux/thunks';
 
@@ -29,7 +30,7 @@ const ProductPage = () => {
   }, [productId]);
   useEffect(() => {
     if(activeProduct.id) {
-      dispatch(similarProductThunks.getSimilarProducts(activeProduct.tags, activeProduct.id))
+      dispatch(similarProductsThunks.getSimilarProducts(activeProduct.tags, activeProduct.id))
     }
   }, [activeProduct]);
 
@@ -57,13 +58,17 @@ const ProductPage = () => {
       }
       similarHeading={ !!similarProducts.length && 'Similar Products' }
       similar={
-        !!similarProducts.length && (
-          <ProductList
-            products={ similarProducts }
-            wishlist={ wishlist.products }
-            user={ activeUser }
-          />
-        )
+        <Grid
+          listData={ similarProducts }
+          renderData={ product => (
+            <ProductCard
+              key={ product.id }
+              product={ product }
+              wishlist={ wishlist }
+              user={ activeUser }
+            />
+          ) }
+        />
       }
     />
   );

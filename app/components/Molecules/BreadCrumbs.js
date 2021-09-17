@@ -1,17 +1,17 @@
 import React from 'react';
 
-import { NavigationContainers } from '../Containers';
+import { BreadCrumbsContainers } from '../Containers';
 import { TypeAtoms, NavigationAtoms } from '../Atoms';
 
 const BreadCrumbs = ({ crumbs }) => (
-  <NavigationContainers.Main>
+  <BreadCrumbsContainers.Main>
     { crumbs.length && crumbs.map((crumb, idx) => (
-      <NavigationContainers.Crumb>
-        <NavigationAtoms.Crumb to={ crumb.to }>{ crumb.name }</NavigationAtoms.Crumb>
-        <TypeAtoms.Body>{ idx === crumbs.length - 1 && '>' }</TypeAtoms.Body>
-      </NavigationContainers.Crumb>
+      <BreadCrumbsContainers.Crumb key={ idx }>
+        <NavigationAtoms.TextLink to={ crumb.to }>{ crumb.name }</NavigationAtoms.TextLink>
+        <TypeAtoms.Body>{ idx !== crumbs.length - 1 && '>' }</TypeAtoms.Body>
+      </BreadCrumbsContainers.Crumb>
     )) }
-  </NavigationContainers.Main>
+  </BreadCrumbsContainers.Main>
 );
 
 export default BreadCrumbs;

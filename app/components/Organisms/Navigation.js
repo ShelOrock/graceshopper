@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux';
 
 import NavLogo from '/public/img/logo.png'
 import Cart from '/public/img/cart.png'
-import { NavigationContainers } from '../Containers';
-import IconTextContainer from '../Containers/IconText';
+import { MediaContainers, NavigationContainers } from '../Containers';
 import Preview from './Preview';
 import EmptyPreview from '../Molecules/EmptyPreview';
 import {
@@ -42,28 +41,28 @@ const Navigation = ({
 
   return (
     <NavigationContainers.Main>
-      <NavigationAtoms.NavLink to={ '/' }>
+      <NavigationAtoms.TextLink to={ '/' }>
         <MediaAtoms.Logo src={ NavLogo }/>
-      </NavigationAtoms.NavLink>
+      </NavigationAtoms.TextLink>
       <NavigationContainers.Links>
-        <NavigationAtoms.NavLink to={ '/shop' }>Shop</NavigationAtoms.NavLink>
-        { activeUser.isLoggedIn && <NavigationAtoms.NavLink to={ '/order-history' }>Orders</NavigationAtoms.NavLink> }
-        { !activeUser.isLoggedIn && <NavigationAtoms.NavLink to={ '/login' }>Login</NavigationAtoms.NavLink> }
+        <NavigationAtoms.TextLink to={ '/shop' }>Shop</NavigationAtoms.TextLink>
+        { activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/order-history' }>Orders</NavigationAtoms.TextLink> }
+        { !activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/login' }>Login</NavigationAtoms.TextLink> }
         { activeUser.isLoggedIn && <NavigationAtoms.ButtonLink
             onClick={ () => authenticationThunks.attemptUserLogout(activeUser.id) }
             variant='secondary'
           >Logout</NavigationAtoms.ButtonLink>
         }
-        { !activeUser.isLoggedIn && <NavigationAtoms.NavLink to={ '/signup' }>Signup</NavigationAtoms.NavLink> }
-        { !!activeUser.isLoggedIn && <NavigationAtoms.NavLink to={ '/wishlist'}>Wishlist</NavigationAtoms.NavLink>}
+        { !activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/signup' }>Signup</NavigationAtoms.TextLink> }
+        { !!activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/wishlist'}>Wishlist</NavigationAtoms.TextLink>}
         <ButtonAtoms.DispatchButton
           onClick={ () => cartPreviewActions.setCartPreview(!cartPreview) }
           variant='secondary'
         >
-          <IconTextContainer>
-            <MediaAtom.Icon src={ Cart }/>
+          <MediaContainers.Main>
+            <MediaAtoms.Icon src={ Cart }/>
             <TypeAtoms.SmallBody>{ sumCartItems() }</TypeAtoms.SmallBody>
-          </IconTextContainer>
+          </MediaContainers.Main>
         </ButtonAtoms.DispatchButton>
         { cartPreview && (
           !!cartItems.length

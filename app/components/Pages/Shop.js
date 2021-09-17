@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import ShopTemplate from '../Templates/Shop';
 import Pagination from '../Molecules/Pagination';
-import ProductList from '../Organisms/ProductList';
 
 import { allProductsThunks } from '../../redux/thunks';
+import ProductCard from '../Molecules/ProductCard';
+import Grid from '../Organisms/Grid';
 
 const ShopPage = () => {
 
@@ -35,10 +36,16 @@ const ShopPage = () => {
       }
       productsHeading={ 'Products' }
       products={
-        <ProductList
-          products={ allProducts.rows }
-          wishlist={ wishlist.products }
-          user={ activeUser }
+        <Grid
+          listData={ allProducts.rows }
+          renderData={ product => (
+            <ProductCard
+              key={ product.id }
+              product={ product }
+              wishlist={ wishlist }
+              user={ activeUser }
+            />
+          )}
         />
       }
     />

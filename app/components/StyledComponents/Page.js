@@ -6,7 +6,10 @@ export const Main = styled.div`
 `;
 
 export const Title = styled.div`
-  margin: 0 2rem;
+  margin: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const Section = styled.div`
@@ -15,8 +18,8 @@ export const Section = styled.div`
 
 export const Header = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   margin: 0 2rem;
 `;
 

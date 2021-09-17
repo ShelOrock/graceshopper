@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import * as StyledComponents from '../../StyledComponents';
-const { StyledForm: { StyledButtons } } = StyledComponents;
+import { StyledForm } from '../../StyledComponents';
 
-export default ({ children }) => <StyledButtons>{ children }</StyledButtons>;
+const Actions = ({ children }) => <StyledForm.Actions>{ children }</StyledForm.Actions>;
+
+export default Actions;

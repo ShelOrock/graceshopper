@@ -1,7 +1,7 @@
 import Main from './Main';
-import Links from './Links';
+import Body from './Body';
 
 export {
   Main,
-  Links,
+  Body
 };

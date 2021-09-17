@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const Title = styled.h1`
   font-size: 2rem;
-  margin: 1rem 2rem;
+  margin: 1rem;
 `;
 
 export const SubTitle = styled.h2`
   font-size: 1.5rem;
-  margin: 0 2rem;
+  margin: 0 1rem;
 `;
 
 export const Heading = styled.h2`
