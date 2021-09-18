@@ -28,28 +28,30 @@ const WishlistCard = ({
           <TypeAtoms.SubHeading>{ wishlistItem.unitPrice }</TypeAtoms.SubHeading>
         </WishlistCardContainers.Information>
         <WishlistCardContainer.HeaderActions>
-          <ButtonAtoms.DispatchButton
-            onClick={ () => wishlistThunks.removeFromWishlist(
+          <ButtonAtoms.Button
+            onClick={ wishlistThunks.removeFromWishlist(
               user.id,
               { productId: wishlistItem.id }
             ) }
+            dispatch={ dispatch }
             variant='secondary'
           >
             <MediaAtoms.Icon src={ BlackHeart } />
-          </ButtonAtoms.DispatchButton>
+          </ButtonAtoms.Button>
         </WishlistCardContainer.HeaderActions>
       </WishlistCardContainers.Header>
       <WishlistCardContainers.Body>
         <WishlistCardContainers.BodyActions>
-          <ButtonAtoms.DispatchButton
-            onClick={ () => cartThunks.addProductToCart(
+          <ButtonAtoms.Button
+            onClick={ cartThunks.addProductToCart(
               user.id,
               { productId: wishlistItem.id, quantity: 1 }
             ) }
+            dispatch={ dispatch }
             variant='secondary'
           >
             Add to cart
-          </ButtonAtoms.DispatchButton>
+          </ButtonAtoms.Button>
         </WishlistCardContainers.BodyActions>
       </WishlistCardContainers.Body>
     </WishlistCardContainers.Content>

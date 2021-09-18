@@ -6,6 +6,6 @@ export const Main = styled.div`
   justify-content: flex-end;
 `;
 
-export const Body = styled.p`
+export const Body = styled.div`
   margin: 1rem;
 `;

@@ -1,11 +1,15 @@
-import * as React from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import HomeTemplate from '../Templates/Home';
 import Grid from '../Organisms/Grid';
 import ProductCard from '../Molecules/ProductCard';
 
+import { cartThunks } from '../../redux/thunks';
+
 export default () => {
+
+  const dispatch = useDispatch();
 
   const {
     featuredProducts,
@@ -25,7 +29,13 @@ export default () => {
               key={ product.id }
               product={ product }
               wishlist={ wishlist }
+              addProductToCart={ () => cartThunks.addProductToCart(
+                activeUser.id,
+                { productId: product.id, quantity: 1 }
+              )}
               user={ activeUser }
+              dispatch={ dispatch }
+              
             />
           ) }
         />
@@ -40,6 +50,7 @@ export default () => {
               product={ product }
               wishlist={ wishlist }
               user={ activeUser }
+              dispatch={ dispatch }
             />
           ) }
         />

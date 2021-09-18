@@ -8,7 +8,11 @@ import Product from '../Molecules/Product';
 import Grid from '../Organisms/Grid';
 import ProductCard from '../Molecules/ProductCard';
 
-import { activeProductThunks, similarProductsThunks } from '../../redux/thunks';
+import {
+  activeProductThunks,
+  similarProductsThunks,
+  cartThunks
+} from '../../redux/thunks';
 
 const ProductPage = () => {
 
@@ -25,8 +29,8 @@ const ProductPage = () => {
   const [ quantityToAdd, setQuantityToAdd ] = useState(1);
 
   useEffect(() => {
-    dispatch(activeProductThunks.getActiveProduct(productId));
     setQuantityToAdd(1);
+    dispatch(activeProductThunks.getActiveProduct(productId));
   }, [productId]);
   useEffect(() => {
     if(activeProduct.id) {
@@ -51,7 +55,12 @@ const ProductPage = () => {
           product={ activeProduct }
           user={ activeUser }
           quantityToAdd={ quantityToAdd }
-          setQuantityToAdd={ setQuantityToAdd }
+          removeProductFromCart={ () => cartThunks.addProductToCart(
+            activeUser.id,
+            { productId: activeProduct.id, quantity: quantityToAdd || 1 }
+          )}
+          decrementQuantityToAdd={ () => setQuantityToAdd(quantityToAdd - 1) }
+          incrementQuantityToAdd={ () => setQuantityToAdd(quantityToAdd + 1) }
           wishlist={ wishlist.products }
           dispatch={ dispatch }
         />
@@ -64,8 +73,13 @@ const ProductPage = () => {
             <ProductCard
               key={ product.id }
               product={ product }
+              addProductToCart={ () => cartThunks.addProductToCart(
+                activeUser.id,
+                { productId: product.id, quantity: 1 }
+              ) }
               wishlist={ wishlist }
               user={ activeUser }
+              dispatch={ dispatch }
             />
           ) }
         />

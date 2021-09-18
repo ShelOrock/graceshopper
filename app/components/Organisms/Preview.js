@@ -22,6 +22,10 @@ const Preview = ({
           cartItem={ cartItem }
           product={ cartItem.product }
           user={ user }
+          removeProductFromCart={ () => cartThunks.removeProductFromCart(
+            user.id,
+            { cartItemId: cartItem.id }
+          ) }
         />
       )) }
     </LayoutAtoms.List>

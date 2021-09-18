@@ -11,7 +11,7 @@ import {
 
 const OrderHistoryCard = ({
   order = {},
-  cartItems = [],
+  cartItemList,
 }) => (
   <NavigationAtoms.TextLink to={ `/order-history/${ order.id }` }>
     <OrderHistoryCardContainers.Main>
@@ -22,13 +22,7 @@ const OrderHistoryCard = ({
         </OrderHistoryCardContainers.Information>
         <TypeAtoms.Heading>$ { order.total }</TypeAtoms.Heading>
       </OrderHistoryCardContainers.Header>
-      <LayoutAtoms.Grid>
-        { !!cartItems.length && cartItems.map(cartItem => (
-          <OrderHistoryCardContainers.Media key={ cartItem.id }>
-            <MediaAtoms.Image src={ cartItem.product.productImage } />
-          </OrderHistoryCardContainers.Media>
-        )) }
-      </LayoutAtoms.Grid>
+      { cartItemList }
     </OrderHistoryCardContainers.Main>
   </NavigationAtoms.TextLink >
 );
