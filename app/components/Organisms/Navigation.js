@@ -49,21 +49,23 @@ const Navigation = ({
         { activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/order-history' }>Orders</NavigationAtoms.TextLink> }
         { !activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/login' }>Login</NavigationAtoms.TextLink> }
         { activeUser.isLoggedIn && <NavigationAtoms.ButtonLink
-            onClick={ () => authenticationThunks.attemptUserLogout(activeUser.id) }
+            onClick={ authenticationThunks.attemptUserLogout(activeUser.id) }
+            dispatch={ dispatch }
             variant='secondary'
           >Logout</NavigationAtoms.ButtonLink>
         }
         { !activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/signup' }>Signup</NavigationAtoms.TextLink> }
         { !!activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/wishlist'}>Wishlist</NavigationAtoms.TextLink>}
-        <ButtonAtoms.DispatchButton
+        <ButtonAtoms.Button
           onClick={ () => cartPreviewActions.setCartPreview(!cartPreview) }
+          dispatch={ dispatch }
           variant='secondary'
         >
           <MediaContainers.Main>
             <MediaAtoms.Icon src={ Cart }/>
             <TypeAtoms.SmallBody>{ sumCartItems() }</TypeAtoms.SmallBody>
           </MediaContainers.Main>
-        </ButtonAtoms.DispatchButton>
+        </ButtonAtoms.Button>
         { cartPreview && (
           !!cartItems.length
           ? <Preview 

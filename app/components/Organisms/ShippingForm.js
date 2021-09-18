@@ -83,7 +83,7 @@ const ShippingForm = ({
         </ButtonAtoms.Button>
       </FormContainers.Header>
       { activeForm == 'shipping' && (
-        <FromContainers.Body>
+        <FormContainers.Body>
           {
             Object.keys(shipping).map(field => (
               <InputModule
@@ -93,7 +93,7 @@ const ShippingForm = ({
                 value={ shipping[field] }
                 onChange={ handleOnChange }
                 validateField={ validateField }
-                error={ errors[field ] }
+                error={ errors[field] }
               />
             ))
           }
@@ -104,7 +104,7 @@ const ShippingForm = ({
               variant='secondary'
             >Next</ButtonAtoms.Button>
           </FromContainers.Actions>
-        </FromContainers.Body>
+        </FormContainers.Body>
       ) }
     </FormContainers.Main>
   );

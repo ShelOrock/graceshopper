@@ -19,6 +19,7 @@ export default ({
   cartItems = [],
   activeForm,
   setActiveForm,
+  dispatch,
   stripe,
   elements
 }) => {
@@ -58,7 +59,7 @@ export default ({
       <FormContainers.Header>
         <TypeAtoms.Title>Payment</TypeAtoms.Title>
         <ButtonAtoms.Button
-          onClick={ () => setActiveForm('payment') }
+          onClick={ setActiveForm('payment') }
           variant='secondary'
         >
           <MediaAtoms.Icon src={ EditIcon } />
@@ -72,8 +73,8 @@ export default ({
             <SecurityCodeModule />
           </InputModuleContainers.Group>
           <FormContainers.Actions>
-            <ButtonAtoms.DispatchButton
-              onClick={ () => stripeThunks.attemptCardPayment(
+            <ButtonAtoms.Button
+              onClick={ stripeThunks.attemptCardPayment(
                 stripe,
                 { card: elements.getElement('cardNumber') },
                 user.id,
@@ -85,6 +86,7 @@ export default ({
                   cartItems
                 },
                 ) }
+              dispatch={ dispatch }
               disabled={
                 !stripe ||
                 !checkUserInformation() ||
@@ -92,7 +94,7 @@ export default ({
                 !cartTotal
               }
               variant='secondary'
-            >Pay ${ cartTotal }</ButtonAtoms.DispatchButton>
+            >Pay ${ cartTotal }</ButtonAtoms.Button>
           </FormContainers.Actions>
         </FormContainers.Body>
       ) }

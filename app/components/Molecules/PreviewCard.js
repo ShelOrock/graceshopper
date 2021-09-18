@@ -8,7 +8,8 @@ import { cartThunks } from '../../redux/thunks';
 const PreviewCard = ({
   cartItem = {},
   product = {},
-  user = {}
+  user = {},
+  dispatch
 }) => (
   <PreviewCardContainers.Main>
     <PreviewCardContainers.Information>
@@ -16,13 +17,14 @@ const PreviewCard = ({
       <TypeAtoms.SubHeading>{ product.unitPrice }</TypeAtoms.SubHeading>
       <TypeAtoms.Body>Quantity: { cartItem.quantity }</TypeAtoms.Body>
     </PreviewCardContainers.Information>
-    <ButtonAtoms.DispatchButton
+    <ButtonAtoms.Button
       onClick={ () => cartThunks.removeProductFromCart(
         user.id,
         { cartItemId: cartItem.id }
       ) }
+      dispatch={ dispatch }
       variant='secondary'
-    >X</ButtonAtoms.DispatchButton>
+    >X</ButtonAtoms.Button>
   </PreviewCardContainers.Main>
 );
 

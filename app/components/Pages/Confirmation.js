@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import EmptyTemplate from '../Templates/Empty';
 import Confirmation from '../Molecules/Confirmation';
 
-import * as reduxActions from '../../redux/actions';
-const {
-  checkoutSuccessActions: { setCheckoutSuccess },
-  userInformationActions: { resetUserInformation },
-  shippingActions: { resetShipping },
-} = reduxActions;
+import {
+  checkoutSuccessActions,
+  userInformationActions,
+  shippingActions
+} from '../../redux/actions';
 
 export default () => {
 
@@ -21,9 +20,9 @@ export default () => {
   } = useSelector(state => state);
     
   useEffect(() => {
-    dispatch(setCheckoutSuccess(false));
-    dispatch(resetUserInformation());
-    dispatch(resetShipping());
+    dispatch(checkoutSuccessActions.setCheckoutSuccess(false));
+    dispatch(userInformationActions.resetUserInformation());
+    dispatch(shippingActions.resetShipping());
   }, []);
 
   return (

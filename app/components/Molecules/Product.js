@@ -18,7 +18,9 @@ const Product = ({
   product = {},
   user = {},
   quantityToAdd = 1,
-  setQuantityToAdd,
+  removeProductFromCart,
+  decrementQuantityToAdd,
+  incrementQuantityToAdd,
   wishlist= [],
   dispatch
 }) => (
@@ -37,25 +39,26 @@ const Product = ({
         </ProductContainers.Information>
         <ProductContainers.Actions>
           { user.isLoggedIn && (
-            <ButtonAtoms.DispatchButton
-              onClick={ () => wishlistThunks.addToWishlist(
+            <ButtonAtoms.Button
+              onClick={ wishlistThunks.addToWishlist(
                 user.id, 
                 { productId: product.id }
               ) }
+              dispatch={ dispatch }
               variant='secondary'
             >
               { !!wishlist.length && wishlist.map(item => item.id).includes(product.id) 
               ? <MediaAtoms.Icon src={ BlackHeart } />
               : <MediaAtoms.Icon src={ Heart } />
               }
-            </ButtonAtoms.DispatchButton>
+            </ButtonAtoms.Button>
           ) }
         </ProductContainers.Actions>
       </ProductContainers.Header>
       <ProductContainers.Body>
         <ProductContainers.QuantityActions>
           <ButtonAtoms.Button
-            onClick={ () => setQuantityToAdd(quantityToAdd - 1) }
+            onClick={ decrementQuantityToAdd }
             disabled={ quantityToAdd - 1 <= 0 }
             variant='secondary'
           >
@@ -63,25 +66,23 @@ const Product = ({
           </ButtonAtoms.Button>
           <TypeAtoms.SmallBody>{ quantityToAdd }</TypeAtoms.SmallBody>
           <ButtonAtoms.Button
-            onClick={ () => setQuantityToAdd(quantityToAdd + 1) }
+            onClick={ incrementQuantityToAdd }
             disabled={ quantityToAdd + 1 > product.inventory }
             variant='secondary'
           >
             <MediaAtoms.Icon src={ Plus }/>
           </ButtonAtoms.Button>
         </ProductContainers.QuantityActions>
-        <ButtonAtoms.DispatchButton 
-          onClick={ () => cartThunks.addProductToCart(
-            user.id,
-            { productId: product.id, quantity: quantityToAdd || 1 }
-          )}
+        <ButtonAtoms.Button 
+          onClick={ removeProductFromCart }
+          dispatch={ dispatch }
           variant='secondary'
         >
           <MediaContainers.Main>
             <MediaAtoms.Icon src={ Cart } />
             <TypeAtoms.ButtonType>Add to cart</TypeAtoms.ButtonType>
           </MediaContainers.Main>
-        </ButtonAtoms.DispatchButton>
+        </ButtonAtoms.Button>
       </ProductContainers.Body>
     </ProductContainers.Content>
   </ProductContainers.Main>

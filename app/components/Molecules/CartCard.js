@@ -12,13 +12,16 @@ import {
   NavigationAtoms
 } from '../Atoms';
 
-import { cartThunks, wishlistThunks } from '../../redux/thunks';
-
 const CartCard = ({
   cartItem = {},
   product = {},
   wishlist = [],
   user = {},
+  removeItemFromCart,
+  addToWishlist,
+  decrementItemQuantity,
+  incrementItemQuantity,
+  dispatch,
 }) => (
   <CartCardContainers.Main>
     <CartCardContainers.Media>
@@ -34,11 +37,9 @@ const CartCard = ({
         </CartCardContainers.Information>
         <CartCardContainers.Actions>
         { user.isLoggedIn && (
-          <ButtonAtoms.DispatchButton 
-            onClick={ () => wishlistThunks.addToWishlist(
-              user.id,
-              { productId: product.id }
-            ) }
+          <ButtonAtoms.Button 
+            onClick={ addToWishlist }
+            dispatch={ dispatch }
             variant='secondary'
           >
             { !!wishlist.length
@@ -48,45 +49,36 @@ const CartCard = ({
               ? <MediaAtoms.Icon src={ BlackHeart } />
               : <MediaAtoms.Icon src={ Heart } />
             }
-          </ButtonAtoms.DispatchButton>
+          </ButtonAtoms.Button>
         ) }
-          <ButtonAtoms.DispatchButton
-            onClick={ () => cartThunks.removeProductFromCart(
-              user.id, 
-              { cartItemId: cartItem.id }
-            ) }
+          <ButtonAtoms.Button
+            onClick={ removeItemFromCart }
+            dispatch={ dispatch }
             variant='secondary'
           >
             Remove from Cart
-          </ButtonAtoms.DispatchButton>
+          </ButtonAtoms.Button>
         </CartCardContainers.Actions>
       </CartCardContainers.Header>
       <CartCardContainers.Body>
         <CartCardContainers.QuantityActions>
-          <ButtonAtoms.DispatchButton
-            onClick={ () => cartThunks.updateProductInCart(
-              user.id,
-              {
-                productId: product.id,
-                quantity: cartItem.quantity - 1
-              }
-            ) }
+          <ButtonAtoms.Button
+            onClick={ decrementItemQuantity }
+            dispatch={ dispatch }
             disabled={ cartItem.quantity - 1 <= 0 }
             variant='secondary'
           >
             <MediaAtoms.Image src={ Minus } />
-          </ButtonAtoms.DispatchButton>
+          </ButtonAtoms.Button>
           <TypeAtoms.Body>{ cartItem.quantity }</TypeAtoms.Body>
-          <ButtonAtoms.DispatchButton
-            onClick={ () => cartThunks.updateProductInCart(
-              user.id,
-              { productId: product.id, quantity: cartItem.quantity + 1 }
-            )}
+          <ButtonAtoms.Button
+            onClick={ incrementItemQuantity }
+            dispatch={ dispatch }
             disabled={ cartItem.quantity + 1 > product.inventory }
             variant='secondary'
           >
             <MediaAtoms.Icon src={ Plus } />
-          </ButtonAtoms.DispatchButton>
+          </ButtonAtoms.Button>
         </CartCardContainers.QuantityActions>
         <TypeAtoms.Body>Subtotal: ${ (cartItem.quantity * product.unitPrice).toFixed(2) }</TypeAtoms.Body>
       </CartCardContainers.Body>

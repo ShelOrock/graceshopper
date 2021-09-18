@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadStripe } from '@stripe/stripe-js';
-import {
-  useStripe,
-  useElements,
-  Elements
-} from '@stripe/react-stripe-js';
+import { useStripe, useElements } from '@stripe/react-stripe-js';
 
 import CheckoutTemplate from '../Templates/Checkout';
+import BreadCrumbs from '../Molecules/BreadCrumbs';
 import UserInformationForm from '../Organisms/UserInformationForm';
 import ShippingForm from '../Organisms/ShippingForm';
 import PaymentForm from '../Organisms/PaymentForm';
-import BreadCrumbNavigation from '../Molecules/BreadCrumbs';
-
-const connectedStripe = loadStripe('pk_test_51JCDlcJxm4J61jnKA83le7sgVjl87qtFuaICUMNr6Far0GiH0IupD3D7AC4Qh1hg1nIXrXRZF2TQpbptwn1aEs5200o5Q1A4Ve');
 
 export default () => {
 
@@ -37,23 +30,15 @@ export default () => {
   }, [checkoutSuccess]);
 
   return (
-    <Elements stripe={ connectedStripe }>
     <CheckoutTemplate
       title={ 'Checkout' }
       breadcrumbs={
-        <BreadCrumbNavigation
-          firstCrumb={ {
-            to: '/',
-            name: 'Home'
-          } }
-          secondCrumb={ {
-            to: '/cart',
-            name: 'Cart'
-          } }
-          thirdCrumb={ {
-            to: '/checkout',
-            name: 'Checkout'
-          } }
+        <BreadCrumbs
+          crumbs={ [
+            { to: '/', name: 'Home' },
+            { to: '/cart', name: 'Cart' },
+            { to: '/checkout', name: 'Checkout' }
+          ] }
         />
       }
       userInformation={
@@ -83,6 +68,5 @@ export default () => {
         />
       }
     />
-    </Elements>
   );
 };
