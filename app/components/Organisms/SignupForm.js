@@ -15,7 +15,7 @@ const SignupForm = ({
   containsErrors = false,
   handleOnChange,
   attemptUserSignup
-}) => { console.log(containsErrors); return (
+}) => (
   <FormContainers.Main>
     <FormContainers.Header>
       <TypeAtoms.Title>Signup</TypeAtoms.Title>
@@ -53,6 +53,6 @@ const SignupForm = ({
       </FormContainers.Actions>
     </FormContainers.Body>
   </FormContainers.Main>
-)};
+);
 
 export default SignupForm;
