@@ -8,7 +8,7 @@ const Button = ({
   onClick,
   variant,
   children
-}) => { console.log(onClick); return (
+}) => (
   <StyledButton.Button
     disabled={ disabled }
     onClick={ () => dispatch ? dispatch(onClick()) : onClick() }
@@ -16,6 +16,6 @@ const Button = ({
   >
     { children }
   </StyledButton.Button>
-)};
+);
 
 export default Button;

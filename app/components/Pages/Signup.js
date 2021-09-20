@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import SignupTemplate from '../Templates/Signup';
@@ -30,6 +30,10 @@ export default () => {
       [e.target.name]: e.target.value
     });
   };
+
+//   useEffect(() => {
+//     Object.keys(initialState).forEach(key => validateField(key, initialState[key]));
+//   }, [initialState]);
 
   const validateField = (name, value) => {
     switch(name) {
@@ -108,7 +112,7 @@ export default () => {
       signup={ <SignupForm
         dispatch={ dispatch }
         form={ form }
-        validateField={ validateField }
+        // validateField={ validateField }
         errors={ errors }
         checkErrors={ checkErrors() }
         handleOnChange={ handleOnChange }
