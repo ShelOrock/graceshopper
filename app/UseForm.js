@@ -1,29 +1,43 @@
 import { useState, useEffect } from 'react';
 
-const useForm = inputFields => {
+const useForm = (inputs, validation) => {
 
-  const [ values, setValues ] = useState({ ...inputFields });
-  const [ errors, setErrors ] = useState({});
+  const [ formValues, setFormValues ] = useState(inputs);
+  const [ formErrors, setFormErrors ] = useState({});
+  const [ containsErrors, setContainsErrors ] = useState(false);
+
+  useEffect(() => {
+    setFormErrors(validation(formValues));
+  }, [formValues]);
+  useEffect(() => {
+    checkErrors();
+  }, [formErrors]);
 
   const handleOnChange = e => {
     const { name, value } = e.target;
-    setValues({
-      ...values,
+    setFormValues({
+      ...formValues,
       [name]: value
     });
   };
 
-  const handleOnSubmit = e => {
-    e.preventDefault();
-
-    setErrors(validate(values));
+  const checkErrors = () => {
+    setContainsErrors(false);
+    Object.values(formErrors).forEach(value => {
+      if(!value) {
+        setContainsErrors(false);
+      } else {
+        setContainsErrors(true);
+      };
+    });
+    return containsErrors;
   };
 
   return {
-    values,
-    errors,
+    formValues,
+    formErrors,
+    containsErrors,
     handleOnChange,
-    handleOnSubmit,
   };
 };
 
