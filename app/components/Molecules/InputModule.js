@@ -12,9 +12,9 @@ const InputModule = ({
   error = '',
 }) => {
 
-  useEffect(() => {
-    validateField && validateField(name, value)
-  }, [value]);
+  // useEffect(() => {
+  //   validateField && validateField(name, value)
+  // }, [value]);
 
   return (
     <InputModuleContainers.Module>

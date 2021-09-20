@@ -11,7 +11,7 @@ import InputModule from '../Molecules/InputModule';
 export default ({
   dispatch,
   form,
-  validateField,
+  // validateField,
   errors,
   checkErrors = false,
   handleOnChange,
@@ -27,7 +27,7 @@ export default ({
         name={ 'email' }
         value={ form.email }
         onChange={ handleOnChange }
-        validateField={ validateField }
+        // validateField={ validateField }
         error={ errors.email }
       />
       <InputModule
@@ -35,7 +35,7 @@ export default ({
         name={ 'password' }
         value={ form.password }
         onChange={ handleOnChange }
-        validateField={ validateField }
+        // validateField={ validateField }
         error={ errors.password }
       />
       <InputModule
@@ -43,7 +43,7 @@ export default ({
         name={ 'confirmPassword' }
         value={ form.confirmPassword }
         onChange={ handleOnChange }
-        validateField={ validateField }
+        // validateField={ validateField }
         error={ errors.confirmPassword }
       />
       <FormContainers.Actions>
