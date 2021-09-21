@@ -28,7 +28,7 @@ const Root = () => {
     activeUser,
     cart: { cartItems },
     wishlist: { products },
-    allOrders
+    allOrders,
   } = useSelector(state => state);
 
   useEffect(() => {
@@ -104,7 +104,6 @@ const Root = () => {
           : <Redirect to='/' />
           }
         </Route>
-        <Route exact path='/confirmation' component={ Pages.Confirmation } />
         <Route component={ Pages.NotFound } />
         {/* <Route exact path="/products/add" component={AddProductForm} /> */}
       </Switch>

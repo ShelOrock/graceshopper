@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useForm } from '../../hooks';
 
 import LoginTemplate from '../Templates/Login';
 import LoginForm from '../Organisms/LoginForm';
@@ -10,28 +11,25 @@ export default () => {
   
   const dispatch = useDispatch();
 
-  const initialState = {
+  const loginInputs = {
     email: '',
     password: ''
   };
-  
-  const [ form, setForm ] = useState(initialState);
 
-  const handleOnChange = e => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
-  };
+  const {
+    formValues,
+    handleOnChange,
+  } = useForm(loginInputs);
   
   return (
     <LoginTemplate
-      login={ <LoginForm
-        dispatch={ dispatch }
-        form={ form }
-        handleOnChange={ handleOnChange }
-        attemptUserLogin={ () => authenticationThunks.attemptUserLogin(form) }
-      /> }
+      login={
+        <LoginForm
+          dispatch={ dispatch }
+          formValues={ formValues }
+          handleOnChange={ handleOnChange }
+          attemptUserLogin={ () => authenticationThunks.attemptUserLogin(formValues) }
+        /> }
     />
   )
 };

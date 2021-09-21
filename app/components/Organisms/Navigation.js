@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import NavLogo from '/public/img/logo.png'
 import Cart from '/public/img/cart.png'
-import { MediaContainers, NavigationContainers } from '../Containers';
+import { NavigationContainers, MediaContainers } from '../Containers';
 import Preview from './Preview';
 import EmptyPreview from '../Molecules/EmptyPreview';
 import {
@@ -14,8 +14,10 @@ import {
   NavigationAtoms,
 } from '../Atoms';
 
-import { authenticationThunks } from '../../redux/thunks';
+import { authenticationThunks, cartThunks } from '../../redux/thunks';
 import { cartPreviewActions } from '../../redux/actions';
+import List from './List';
+import PreviewCard from '../Molecules/PreviewCard';
 
 const Navigation = ({
   dispatch
@@ -55,7 +57,7 @@ const Navigation = ({
           >Logout</NavigationAtoms.ButtonLink>
         }
         { !activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/signup' }>Signup</NavigationAtoms.TextLink> }
-        { !!activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/wishlist'}>Wishlist</NavigationAtoms.TextLink>}
+        { activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/wishlist'}>Wishlist</NavigationAtoms.TextLink>}
         <ButtonAtoms.Button
           onClick={ () => cartPreviewActions.setCartPreview(!cartPreview) }
           dispatch={ dispatch }
@@ -69,6 +71,23 @@ const Navigation = ({
         { cartPreview && (
           !!cartItems.length
           ? <Preview 
+              cardList={
+                <List
+                  listData={ cartItems }
+                  renderData={ cartItem => (
+                    <PreviewCard
+                      key={ cartItem.id }
+                      cartItem={ cartItem }
+                      product={ cartItem.product }
+                      dispatch={ dispatch }
+                      removeProductFromCart={ () => cartThunks.removeProductFromCart(
+                        activeUser.id,
+                        { cartItemId: cartItem.id }
+                      ) }
+                    />
+                  )}
+                />
+              }
               cartItems={ cartItems }
               user={ activeUser }
             />

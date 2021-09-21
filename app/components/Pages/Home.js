@@ -24,7 +24,7 @@ export default () => {
       featured={
         <Grid
           listData={ featuredProducts }
-          renderData={ product => (
+          renderData={product => (
             <ProductCard 
               key={ product.id }
               product={ product }
@@ -32,12 +32,11 @@ export default () => {
               addProductToCart={ () => cartThunks.addProductToCart(
                 activeUser.id,
                 { productId: product.id, quantity: 1 }
-              )}
+              ) }
               user={ activeUser }
               dispatch={ dispatch }
-              
             />
-          ) }
+          )}
         />
       }
       popularHeading={ !!popularProducts.length && 'Popular Products' }
@@ -49,6 +48,10 @@ export default () => {
               key={ product.id }
               product={ product }
               wishlist={ wishlist }
+              addProductToCart={ () => cartThunks.addProductToCart(
+                activeUser.id,
+                { productId: product.id, quantity: 1 }
+              ) }
               user={ activeUser }
               dispatch={ dispatch }
             />

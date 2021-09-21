@@ -4,11 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import EmptyTemplate from '../Templates/Empty';
 import Confirmation from '../Molecules/Confirmation';
 
-import {
-  checkoutSuccessActions,
-  userInformationActions,
-  shippingActions
-} from '../../redux/actions';
+import { checkoutSuccessActions } from '../../redux/actions';
 
 export default () => {
 
@@ -21,8 +17,6 @@ export default () => {
     
   useEffect(() => {
     dispatch(checkoutSuccessActions.setCheckoutSuccess(false));
-    dispatch(userInformationActions.resetUserInformation());
-    dispatch(shippingActions.resetShipping());
   }, []);
 
   return (
@@ -36,4 +30,4 @@ export default () => {
       }
     />
   );
-}
+};

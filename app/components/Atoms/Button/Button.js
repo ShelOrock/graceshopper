@@ -5,7 +5,7 @@ import { StyledButton } from '../../StyledComponents';
 const Button = ({
   disabled = false,
   dispatch = null,
-  onClick,
+  onClick = () => {},
   variant,
   children
 }) => (

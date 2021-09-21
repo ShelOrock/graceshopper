@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 
-const useForm = (inputs, validation) => {
+const useForm = (inputs = {}, validation = null) => {
 
   const [ formValues, setFormValues ] = useState(inputs);
   const [ formErrors, setFormErrors ] = useState({});
   const [ containsErrors, setContainsErrors ] = useState(false);
 
   useEffect(() => {
-    setFormErrors(validation(formValues));
+    validation && setFormErrors(validation(formValues));
   }, [formValues]);
   useEffect(() => {
     checkErrors();

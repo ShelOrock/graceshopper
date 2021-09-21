@@ -10,8 +10,6 @@ import * as activeOrderActions from './activeOrder/actions';
 import * as cartActions from './cart/actions';
 import * as wishlistActions from './wishlist/actions';
 import * as cartPreviewActions from './cartPreview/actions';
-import * as userInformationActions from './userInformation/actions';
-import * as shippingActions from './shipping/actions';
 import * as checkoutSuccessActions from './checkoutSuccess/actions';
 
 export {
@@ -27,7 +25,5 @@ export {
   cartActions,
   wishlistActions,
   cartPreviewActions,
-  userInformationActions,
-  shippingActions,
   checkoutSuccessActions
 };

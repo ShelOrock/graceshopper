@@ -55,10 +55,10 @@ const ProductPage = () => {
           product={ activeProduct }
           user={ activeUser }
           quantityToAdd={ quantityToAdd }
-          removeProductFromCart={ () => cartThunks.addProductToCart(
+          addProductToCart={ () => cartThunks.addProductToCart(
             activeUser.id,
             { productId: activeProduct.id, quantity: quantityToAdd || 1 }
-          )}
+          ) }
           decrementQuantityToAdd={ () => setQuantityToAdd(quantityToAdd - 1) }
           incrementQuantityToAdd={ () => setQuantityToAdd(quantityToAdd + 1) }
           wishlist={ wishlist.products }
