@@ -8,7 +8,7 @@ import {
 import InputModule from '../Molecules/InputModule';
 
 const LoginForm = ({
-  form,
+  formValues,
   handleOnChange,
   dispatch,
   attemptUserLogin
@@ -21,13 +21,13 @@ const LoginForm = ({
       <InputModule
         type={ 'text' }
         name={ 'email' }
-        value={ form.email }
+        value={ formValues.email }
         onChange={ handleOnChange }
       />
       <InputModule
         type={ 'password' }
         name={ 'password' }
-        value={ form.password }
+        value={ formValues.password }
         onChange={ handleOnChange }
       />
       <FormContainers.Actions>

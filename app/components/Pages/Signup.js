@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import useForm from '../../UseForm';
-import signupValidation from '../../SignupValidation';
+import { useForm } from '../../hooks';
+import signupValidation from '../../formValidations/signupValidation';
 
 import SignupTemplate from '../Templates/Signup';
 import SignupForm from '../Organisms/SignupForm';

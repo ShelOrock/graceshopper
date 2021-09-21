@@ -12,13 +12,13 @@ import {
   MediaAtoms
 } from '../Atoms';
 
-import { cartThunks, wishlistThunks } from '../../redux/thunks';
+import { wishlistThunks } from '../../redux/thunks';
 
 const Product = ({
   product = {},
   user = {},
   quantityToAdd = 1,
-  removeProductFromCart,
+  addProductToCart,
   decrementQuantityToAdd,
   incrementQuantityToAdd,
   wishlist= [],
@@ -74,7 +74,7 @@ const Product = ({
           </ButtonAtoms.Button>
         </ProductContainers.QuantityActions>
         <ButtonAtoms.Button 
-          onClick={ removeProductFromCart }
+          onClick={ addProductToCart }
           dispatch={ dispatch }
           variant='secondary'
         >

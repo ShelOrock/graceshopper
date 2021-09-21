@@ -9,7 +9,7 @@ export const getActiveUser = userId => {
   return dispatch => {
     return axios
       .get(`${ API_URL }/${ userId }`)
-      .then(res => { console.log(res); dispatch(setActiveUser(res.data)) })
+      .then(res => dispatch(setActiveUser(res.data)))
       .catch(e => console.error(e));
   };
 };
