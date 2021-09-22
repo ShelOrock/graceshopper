@@ -1,19 +1,19 @@
 import React from 'react';
 
 import BlackHeart from '/public/img/heart-black.png';
-import { WishlistCardContainers } from '../Containers';
 import {
   TypeAtoms,
   MediaAtoms,
   ButtonAtoms,
   NavigationAtoms,
 } from '../Atoms';
-
-import { cartThunks, wishlistThunks } from '../../redux/thunks';
+import { WishlistCardContainers } from '../Containers';
 
 const WishlistCard = ({
   wishlistItem = {},
-  user = {}
+  dispatch,
+  removeFromWishlist,
+  addProductToCart
 }) => (
   <WishlistCardContainers.Main>
     <WishlistCardContainers.Media>
@@ -22,31 +22,25 @@ const WishlistCard = ({
     <WishlistCardContainers.Content>
       <WishlistCardContainers.Header>
         <WishlistCardContainers.Information>
-          <NavigationAtoms.TextLink to={ `/product/${ wishlistItem.id }` }>
+          <NavigationAtoms.TextLink to={ `/products/${ wishlistItem.id }` }>
             <TypeAtoms.Heading>{ wishlistItem.productName }</TypeAtoms.Heading>
           </NavigationAtoms.TextLink>
           <TypeAtoms.SubHeading>{ wishlistItem.unitPrice }</TypeAtoms.SubHeading>
         </WishlistCardContainers.Information>
-        <WishlistCardContainer.HeaderActions>
+        <WishlistCardContainers.HeaderActions>
           <ButtonAtoms.Button
-            onClick={ wishlistThunks.removeFromWishlist(
-              user.id,
-              { productId: wishlistItem.id }
-            ) }
+            onClick={ removeFromWishlist }
             dispatch={ dispatch }
             variant='secondary'
           >
             <MediaAtoms.Icon src={ BlackHeart } />
           </ButtonAtoms.Button>
-        </WishlistCardContainer.HeaderActions>
+        </WishlistCardContainers.HeaderActions>
       </WishlistCardContainers.Header>
       <WishlistCardContainers.Body>
         <WishlistCardContainers.BodyActions>
           <ButtonAtoms.Button
-            onClick={ cartThunks.addProductToCart(
-              user.id,
-              { productId: wishlistItem.id, quantity: 1 }
-            ) }
+            onClick={ addProductToCart }
             dispatch={ dispatch }
             variant='secondary'
           >

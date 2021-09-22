@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { BreadCrumbsContainers } from '../Containers';
 import { TypeAtoms, NavigationAtoms } from '../Atoms';
+import { BreadCrumbsContainers } from '../Containers';
 
 const BreadCrumbs = ({ crumbs }) => (
   <BreadCrumbsContainers.Main>

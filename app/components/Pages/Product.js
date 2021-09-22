@@ -2,16 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ProductTemplate from '../Templates/Product';
-import BreadCrumbs from '../Molecules/BreadCrumbs';
-import Product from '../Molecules/Product';
-import Grid from '../Organisms/Grid';
-import ProductCard from '../Molecules/ProductCard';
+import { ProductTemplate } from '../Templates';
+import { Grid } from '../Organisms';
+
+import {
+  BreadCrumbs,
+  Product,
+  ProductCard } from '../Molecules';
 
 import {
   activeProductThunks,
   similarProductsThunks,
-  cartThunks
+  cartThunks,
+  wishlistThunks
 } from '../../redux/thunks';
 
 const ProductPage = () => {
@@ -55,15 +58,19 @@ const ProductPage = () => {
           product={ activeProduct }
           user={ activeUser }
           quantityToAdd={ quantityToAdd }
+          decrementQuantityToAdd={ () => setQuantityToAdd(quantityToAdd - 1) }
+          incrementQuantityToAdd={ () => setQuantityToAdd(quantityToAdd + 1) }
+          dispatch={ dispatch }
           addProductToCart={ () => cartThunks.addProductToCart(
             activeUser.id,
             { productId: activeProduct.id, quantity: quantityToAdd || 1 }
           ) }
-          decrementQuantityToAdd={ () => setQuantityToAdd(quantityToAdd - 1) }
-          incrementQuantityToAdd={ () => setQuantityToAdd(quantityToAdd + 1) }
-          wishlist={ wishlist.products }
-          dispatch={ dispatch }
-        />
+          addTowishlist={ () => wishlistThunks.addToWishlist(
+            activeUser.id,
+            { productOd: activeProduct.id }
+          ) }
+          productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
+          />
       }
       similarHeading={ !!similarProducts.length && 'Similar Products' }
       similar={
@@ -73,13 +80,17 @@ const ProductPage = () => {
             <ProductCard
               key={ product.id }
               product={ product }
+              user={ activeUser }
+              dispatch={ dispatch }
               addProductToCart={ () => cartThunks.addProductToCart(
                 activeUser.id,
                 { productId: product.id, quantity: 1 }
               ) }
-              wishlist={ wishlist }
-              user={ activeUser }
-              dispatch={ dispatch }
+              addTowishlist={ () => wishlistThunks.addToWishlist(
+                activeUser.id,
+                { productOd: activeProduct.id }
+              ) }
+              productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
             />
           ) }
         />

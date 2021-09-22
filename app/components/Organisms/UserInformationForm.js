@@ -1,13 +1,13 @@
 import React from 'react';
 
-import EditIcon from '/public/img/edit.png'
-import { FormContainers } from '../Containers';
+import EditIcon from '/public/img/edit.png';
+import { InputModule } from '../Molecules';
 import {
   TypeAtoms,
   MediaAtoms,
   ButtonAtoms,
 } from '../Atoms';
-import InputModule from '../Molecules/InputModule';
+import { FormContainers } from '../Containers';
 
 const UserInformationForm = ({
   activeForm,

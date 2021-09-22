@@ -1,15 +1,15 @@
 import React from 'react';
 
+import { InputAtoms } from '../Atoms';
 import { InputModuleContainers } from '../Containers';
-import { InputAtoms, StripeAtoms } from '../Atoms';
 
-const CardNumber = () => (
+const StripeInput = ({ label, input }) => (
   <InputModuleContainers.Module>
     <InputModuleContainers.Information>
-      <InputAtoms.Label>Card Number</InputAtoms.Label>
+      <InputAtoms.Label>{ label }</InputAtoms.Label>
     </InputModuleContainers.Information>
-    <StripeAtoms.CardNumber />
+    { input }
   </InputModuleContainers.Module>
 );
 
-export default CardNumber;
+export default StripeInput;

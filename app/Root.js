@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 import * as Pages from './components/Pages';
-import Navigation from './components/Organisms/Navigation';
+import { Navigation } from './components/Organisms';
 
 import {
   activeUserThunks,
@@ -57,54 +57,68 @@ const Root = () => {
       />
       {/* <ToastComponent status={status} message={text} /> */}
       <Switch>
-        <Route exact path='/' component={ Pages.Home } />
+        <Route exact path='/'>
+          <Pages.HomePage />
+        </Route>
         <Route exact path='/login'>
           { activeUser.isLoggedIn
           ? <Redirect to='/' />
-          : <Pages.Login />
+          : <Pages.LoginPage />
           } 
         </Route>
         <Route exact path='/signup'>
           { activeUser.isLoggedIn
           ? <Redirect to='/' />
-          : <Pages.Signup />
+          : <Pages.SignupPage />
           }
         </Route>
-        <Route exact path='/shop' component={ Pages.Shop } />
-        <Route exact path='/products/:productId' component={ Pages.Product } />
+        <Route exact path='/shop'>
+          <Pages.ShopPage />
+        </Route>
+        <Route exact path='/products/:productId'>
+          <Pages.ProductPage />
+        </Route>
         <Route exact path='/cart'>
           { cartItems.length
-          ? <Pages.CartPage />
-          : <Pages.EmptyCart />
+          ? <Pages.CartPagePage />
+          : <Pages.EmptyCartPage />
           }
         </Route>
         <Route exact path='/wishlist'>
           { products.length
-          ? <Pages.Wishlist />
-          : <Pages.EmptyWishlist />
+          ? <Pages.WishlistPage />
+          : <Pages.EmptyWishlistPage />
           }
         </Route>
         <Route exact path='/checkout'>
           { cartItems.length
-          ? <Pages.Checkout />
+          ? <Pages.CheckoutPage />
+          : <Redirect to='/' />
+          }
+        </Route>
+        <Route exact path='/confirmation'>
+          { cartItems.length
+          ? <Pages.CheckoutPage />
           : <Redirect to='/' />
           }
         </Route>
         <Route exact path='/order-history'>
           { activeUser.isLoggedIn
           ? allOrders.length
-            ? <Pages.OrderHistory />
-            : <Pages.EmptyOrderHistory />
+            ? <Pages.OrderHistoryPage />
+            : <Pages.EmptyOrderHistoryPage />
           : <Redirect to='/' />
           }
         </Route>
         <Route exact path='/order-history/:orderId'>
           { activeUser.isLoggedIn
-          ? <Pages.Order />
+          ? <Pages.OrderPage />
           : <Redirect to='/' />
           }
         </Route>
-        <Route component={ Pages.NotFound } />
+        <Route>
+          <Pages.NotFoundPage />
+        </Route>
         {/* <Route exact path="/products/add" component={AddProductForm} /> */}
       </Switch>
     </Router>

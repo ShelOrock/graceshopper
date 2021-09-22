@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import CartTemplate from '../Templates/Cart';
-import CartCard from '../Molecules/CartCard';
-import List from '../Organisms/List';
+import { CartTemplate } from '../Templates';
+import { List } from '../Organisms';
+import { CartCard } from '../Molecules';
 
 import { cartThunks, wishlistThunks } from '../../redux/thunks';
 
@@ -28,16 +28,7 @@ const CartPage = () => {
               key={ cartItem.id }
               cartItem={ cartItem }
               product={ cartItem.product }
-              wishlist={ wishlist }
               user={ activeUser }
-              removeItemFromCart={ () => cartThunks.removeProductFromCart(
-                activeUser.id, 
-                { cartItemId: cartItem.id }
-              ) }
-              addToWishlist={ () => wishlistThunks.addToWishlist(
-                activeUser.id,
-                { productId: cartItem.product.id }
-              ) }
               decrementItemQuantity={ () => cartThunks.updateProductInCart(
                 activeUser.id,
                 { productId: cartItem.product.id, quantity: cartItem.quantity - 1 }
@@ -47,6 +38,15 @@ const CartPage = () => {
                 { productId: cartItem.product.id, quantity: cartItem.quantity + 1 }
               ) }
               dispatch={ dispatch }
+              removeProductFromCart={ () => cartThunks.removeProductFromCart(
+                activeUser.id, 
+                { cartItemId: cartItem.id }
+              ) }
+              addToWishlist={ () => wishlistThunks.addToWishlist(
+                activeUser.id,
+                { productId: cartItem.product.id }
+              ) }
+              productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(cartItem.product.id) }
             /> 
           ) }
         />

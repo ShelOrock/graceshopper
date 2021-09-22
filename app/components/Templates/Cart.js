@@ -10,7 +10,7 @@ const CartTemplate = ({
   <PageContainers.Main>
     <PageContainers.Header>
       <TypeAtoms.Title>{ title }</TypeAtoms.Title>
-   </PageContainers.Header>
+    </PageContainers.Header>
     <PageContainers.Section>{ cart }</PageContainers.Section>
   </PageContainers.Main>
 );

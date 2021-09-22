@@ -1,28 +1,27 @@
 import React from 'react';
 
-import Plus from '/public/img/plus.png';
-import Minus from '/public/img/minus.png'
-import Cart from '/public/img/cart.png';
-import Heart from '/public/img/heart.png';
-import BlackHeart from '/public/img/heart-black.png'
-import { ProductContainers, MediaContainers } from '../Containers';
+import PlusIcon from '/public/img/plus.png';
+import MinusIcon from '/public/img/minus.png'
+import CartIcon from '/public/img/cart.png';
+import HeartIcon from '/public/img/heart.png';
+import BlackHeartIcon from '/public/img/heart-black.png';
 import {
   TypeAtoms,
   ButtonAtoms,
   MediaAtoms
 } from '../Atoms';
-
-import { wishlistThunks } from '../../redux/thunks';
+import { ProductContainers, MediaContainers } from '../Containers';
 
 const Product = ({
   product = {},
   user = {},
   quantityToAdd = 1,
-  addProductToCart,
   decrementQuantityToAdd,
   incrementQuantityToAdd,
-  wishlist= [],
-  dispatch
+  dispatch,
+  addProductToCart,
+  addToWishlist,
+  productOnWishlist
 }) => (
   <ProductContainers.Main>
     <ProductContainers.Media>
@@ -40,17 +39,11 @@ const Product = ({
         <ProductContainers.Actions>
           { user.isLoggedIn && (
             <ButtonAtoms.Button
-              onClick={ wishlistThunks.addToWishlist(
-                user.id, 
-                { productId: product.id }
-              ) }
               dispatch={ dispatch }
+              onClick={ addToWishlist }
               variant='secondary'
             >
-              { !!wishlist.length && wishlist.map(item => item.id).includes(product.id) 
-              ? <MediaAtoms.Icon src={ BlackHeart } />
-              : <MediaAtoms.Icon src={ Heart } />
-              }
+              <MediaAtoms.Icon src={ productOnWishlist ? BlackHeartIcon : HeartIcon } />
             </ButtonAtoms.Button>
           ) }
         </ProductContainers.Actions>
@@ -62,7 +55,7 @@ const Product = ({
             disabled={ quantityToAdd - 1 <= 0 }
             variant='secondary'
           >
-            <MediaAtoms.Icon src={ Minus }/>
+            <MediaAtoms.Icon src={ MinusIcon }/>
           </ButtonAtoms.Button>
           <TypeAtoms.SmallBody>{ quantityToAdd }</TypeAtoms.SmallBody>
           <ButtonAtoms.Button
@@ -70,7 +63,7 @@ const Product = ({
             disabled={ quantityToAdd + 1 > product.inventory }
             variant='secondary'
           >
-            <MediaAtoms.Icon src={ Plus }/>
+            <MediaAtoms.Icon src={ PlusIcon }/>
           </ButtonAtoms.Button>
         </ProductContainers.QuantityActions>
         <ButtonAtoms.Button 
@@ -79,7 +72,7 @@ const Product = ({
           variant='secondary'
         >
           <MediaContainers.Main>
-            <MediaAtoms.Icon src={ Cart } />
+            <MediaAtoms.Icon src={ CartIcon } />
             <TypeAtoms.ButtonType>Add to cart</TypeAtoms.ButtonType>
           </MediaContainers.Main>
         </ButtonAtoms.Button>
