@@ -1,15 +1,14 @@
 import React from 'react';
 
-import EditIcon from '/public/img/edit.png'
-import { FormContainers, InputModuleContainers } from '../Containers';
+import EditIcon from '/public/img/edit.png';
 import {
   TypeAtoms,
   MediaAtoms,
-  ButtonAtoms
+  ButtonAtoms,
+  StripeAtoms
 } from '../Atoms';
-import CardNumberModule from '../Molecules/CardNumber';
-import ExpirationModule from '../Molecules/Expiration';
-import SecurityCodeModule from '../Molecules/SecurityCode';
+import { StripeInputModule } from '../Molecules';
+import { FormContainers, InputModuleContainers } from '../Containers';
 
 const PaymentForm = ({
   activeForm,
@@ -32,10 +31,19 @@ const PaymentForm = ({
     </FormContainers.Header>
     { activeForm == 'payment' && (
       <FormContainers.Body>
-        <CardNumberModule />
+        <StripeInputModule
+          label={ 'Card Number' }
+          input={ <StripeAtoms.CardNumber /> }
+        />
         <InputModuleContainers.Group>
-          <ExpirationModule />
-          <SecurityCodeModule />
+          <StripeInputModule
+            label={ 'Expiration' }
+            input={ <StripeAtoms.Expiration /> }
+          />
+          <StripeInputModule
+            label={ 'Security Code' }
+            input={ <StripeAtoms.SecurityCode /> }
+          />
         </InputModuleContainers.Group>
         <FormContainers.Actions>
           <ButtonAtoms.Button

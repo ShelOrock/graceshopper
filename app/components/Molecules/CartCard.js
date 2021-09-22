@@ -1,27 +1,27 @@
 import React from 'react';
 
-import Minus from '/public/img/minus.png';
-import Plus from '/public/img/plus.png';
-import Heart from '/public/img/heart.png';
-import BlackHeart from '/public/img/heart-black.png';
-import { CartCardContainers } from '../Containers';
+import MinusIcon from '/public/img/minus.png';
+import PlusIcon from '/public/img/plus.png';
+import HeartIcon from '/public/img/heart.png';
+import BlackHeartIcon from '/public/img/heart-black.png';
 import {
   TypeAtoms,
   MediaAtoms,
   ButtonAtoms,
   NavigationAtoms
 } from '../Atoms';
+import { CartCardContainers } from '../Containers';
 
 const CartCard = ({
   cartItem = {},
   product = {},
-  wishlist = [],
   user = {},
-  removeItemFromCart,
-  addToWishlist,
   decrementItemQuantity,
   incrementItemQuantity,
   dispatch,
+  removeProductFromCart,
+  addToWishlist,
+  productOnWishlist
 }) => (
   <CartCardContainers.Main>
     <CartCardContainers.Media>
@@ -42,17 +42,11 @@ const CartCard = ({
             dispatch={ dispatch }
             variant='secondary'
           >
-            { !!wishlist.length
-              && wishlist
-              .map(item => item.id)
-              .includes(product.id) 
-              ? <MediaAtoms.Icon src={ BlackHeart } />
-              : <MediaAtoms.Icon src={ Heart } />
-            }
+            <MediaAtoms.Icon src={ productOnWishlist ? BlackHeartIcon : HeartIcon } />
           </ButtonAtoms.Button>
         ) }
           <ButtonAtoms.Button
-            onClick={ removeItemFromCart }
+            onClick={ removeProductFromCart }
             dispatch={ dispatch }
             variant='secondary'
           >
@@ -68,7 +62,7 @@ const CartCard = ({
             disabled={ cartItem.quantity - 1 <= 0 }
             variant='secondary'
           >
-            <MediaAtoms.Image src={ Minus } />
+            <MediaAtoms.Image src={ MinusIcon } />
           </ButtonAtoms.Button>
           <TypeAtoms.Body>{ cartItem.quantity }</TypeAtoms.Body>
           <ButtonAtoms.Button
@@ -77,7 +71,7 @@ const CartCard = ({
             disabled={ cartItem.quantity + 1 > product.inventory }
             variant='secondary'
           >
-            <MediaAtoms.Icon src={ Plus } />
+            <MediaAtoms.Icon src={ PlusIcon } />
           </ButtonAtoms.Button>
         </CartCardContainers.QuantityActions>
         <TypeAtoms.Body>Subtotal: ${ (cartItem.quantity * product.unitPrice).toFixed(2) }</TypeAtoms.Body>

@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { FormContainers } from '../Containers';
+import { InputModule } from '../Molecules';
 import {
   TypeAtoms,
   NavigationAtoms,
   ButtonAtoms } from '../Atoms';
-import InputModule from '../Molecules/InputModule';
+import { FormContainers } from '../Containers';
+
 
 const LoginForm = ({
   formValues,

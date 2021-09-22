@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { OrderCardContainers } from '../Containers';
 import {
   TypeAtoms,
   MediaAtoms,
   NavigationAtoms
 } from '../Atoms';
+import { OrderCardContainers } from '../Containers';
 
 const OrderCard = ({
   cartItem = {},

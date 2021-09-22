@@ -3,22 +3,21 @@ import React from 'react';
 import CartIcon from '/public/img/cart.png';
 import HeartIcon from '/public/img/heart.png';
 import BlackHeartIcon from '/public/img/heart-black.png';
-import { ProductCardContainers } from '../Containers';
 import {
   TypeAtoms,
   MediaAtoms,
   ButtonAtoms,
   NavigationAtoms
 } from '../Atoms';
-
-import { cartThunks, wishlistThunks } from '../../redux/thunks';
+import { ProductCardContainers } from '../Containers';
 
 const ProductCard = ({
   product = {},
-  wishlist = [],
   user = {},
+  dispatch,
   addProductToCart,
-  dispatch
+  addToWishlist,
+  productOnWishlist
 }) => (
   <ProductCardContainers.Main>
     <ProductCardContainers.Actions>
@@ -31,17 +30,11 @@ const ProductCard = ({
       </ButtonAtoms.Button>
       { user.isLoggedIn && (
       <ButtonAtoms.Button
-        onClick={ wishlistThunks.addToWishlist(
-          user.id,
-          { productId: product.id }
-        ) }
+        onClick={ addToWishlist }
         dispatch={ dispatch }
         variant='secondary'
       >
-        { !!wishlist.length && wishlist.map(item => item.id).includes(product.id)
-        ? <MediaAtoms.Icon src={ BlackHeartIcon } />
-        : <MediaAtoms.Icon src={ HeartIcon } />
-        }
+        <MediaAtoms.Icon src={ productOnWishlist ? BlackHeartIcon : HeartIcon } />
       </ButtonAtoms.Button>
       ) }
     </ProductCardContainers.Actions>

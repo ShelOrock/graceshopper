@@ -1,8 +1,8 @@
 import React from 'react';
 import { convertDate } from '../../utils';
 
-import { OrderContainers } from '../Containers';
 import { TypeAtoms } from '../Atoms';
+import { OrderContainers } from '../Containers';
 
 const Order = ({
   order = {},

@@ -2,15 +2,17 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import OrderTemplate from '../Templates/Order';
-import Order from '../Molecules/Order';
-import OrderCard from '../Molecules/OrderCard';
-import BreadCrumbs from '../Molecules/BreadCrumbs';
-import List from '../Organisms/List';
+import { OrderTemplate } from '../Templates';
+import { List } from '../Organisms';
+import {
+  Order,
+  OrderCard,
+  BreadCrumbs
+} from '../Molecules';
 
 import { activeOrderThunks } from '../../redux/thunks';
 
-export default () => {
+const OrderPage = () => {
 
   const dispatch = useDispatch();
   const { orderId } = useParams();
@@ -29,7 +31,7 @@ export default () => {
           crumbs={ [   
             { to: '/', name: 'Home' },
             { to: '/order-history', name: 'Order History ' },
-            { to: `order-history/${ activeOrder.id }`, name: `Order No. ${ activeOrder.confirmationNumber }`}
+            { to: `/order-history/${ activeOrder.id }`, name: `Order No. ${ activeOrder.confirmationNumber }`}
           ] }
         />
       }
@@ -53,3 +55,5 @@ export default () => {
     />
   );
 };
+
+export default OrderPage;

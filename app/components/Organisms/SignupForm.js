@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { FormContainers } from '../Containers';
 import {
   TypeAtoms,
   ButtonAtoms,
   NavigationAtoms
 } from '../Atoms';
-import InputModule from '../Molecules/InputModule';
+import { InputModule } from '../Molecules';
+import { FormContainers } from '../Containers';
 
 const SignupForm = ({
   dispatch,

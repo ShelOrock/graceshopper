@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { ConfirmationContainers } from '../Containers';
 import {
   TypeAtoms,
   ButtonAtoms,
   NavigationAtoms
 } from '../Atoms';
+import { ConfirmationContainers } from '../Containers';
 
 const Confirmation = ({
   order = {},

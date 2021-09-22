@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { PreviewCardContainers } from '../Containers';
 import { TypeAtoms, ButtonAtoms } from '../Atoms';
+import { PreviewCardContainers } from '../Containers';
 
 const PreviewCard = ({
   cartItem = {},

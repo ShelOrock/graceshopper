@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ShopTemplate from '../Templates/Shop';
-import Pagination from '../Molecules/Pagination';
+import { ShopTemplate } from '../Templates';
+import { Grid } from '../Organisms';
+import { Pagination, ProductCard } from '../Molecules';
 
-import { allProductsThunks } from '../../redux/thunks';
-import ProductCard from '../Molecules/ProductCard';
-import Grid from '../Organisms/Grid';
+import {
+  allProductsThunks,
+  cartThunks,
+  wishlistThunks
+} from '../../redux/thunks';
 
 const ShopPage = () => {
 
@@ -30,7 +33,8 @@ const ShopPage = () => {
       pagination={
         <Pagination
           page={ page }
-          setPage={ setPage }
+          decrementPage={ () => setPage(page - 1) }
+          incrementPage={ () => setPage(page + 1) }
           allProducts={ allProducts }
         />
       }
@@ -42,8 +46,17 @@ const ShopPage = () => {
             <ProductCard
               key={ product.id }
               product={ product }
-              wishlist={ wishlist }
               user={ activeUser }
+              dispatch={ dispatch }
+              addProductToCart={ () => cartThunks.addProductToCart(
+                activeUser.id,
+                { productId: product.id, quantity: 1 }
+              ) }
+              addToWishlist={ () => wishlistThunks.addToWishlist(
+                activeUser.id,
+                { productId: product.id }
+              ) }
+              productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
             />
           )}
         />

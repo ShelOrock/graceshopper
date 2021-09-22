@@ -1,12 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import WishlistTemplate from '../Templates/Wishlist';
-import List from '../Organisms/List';
-import WishlistCard from '../Molecules/WishlistCard';
+import { WishlistTemplate } from '../Templates';
+import { List } from '../Organisms';
+import { WishlistCard } from '../Molecules';
 
-export default () => {
+import { cartThunks, wishlistThunks } from '../../redux/thunks';
 
+const WishlistPage = () => {
+
+  const dispatch = useDispatch();
   const { wishlist, activeUser } = useSelector(state => state);
 
   return (
@@ -14,18 +17,26 @@ export default () => {
       title={ 'Wishlist' }
       wishlist={
         <List
-          listData={ wishlist }
+          listData={ wishlist.products }
           renderData={ wishlistItem => (
             <WishlistCard
               key={ wishlistItem.id }
               wishlistItem={ wishlistItem }
-              user={ activeUser }
+              dispatch={ dispatch }
+              removeFromWishlist={() => wishlistThunks.removeFromWishlist(
+                activeUser.id,
+                { productId: wishlistItem.id }
+              ) }
+              addProductToCart={ () => cartThunks.addProductToCart(
+                activeUser.id,
+                { productId: wishlistItem.id, quantity: 1 }
+              ) }
             />
           ) }
-          wishlist={ wishlist.products }
-          user={ activeUser }
         />
       }
     />
   );
 };
+
+export default WishlistPage;

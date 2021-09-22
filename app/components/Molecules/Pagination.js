@@ -1,36 +1,37 @@
 import React from 'react';
 
-import Left from '/public/img/left.png';
-import Right from '/public/img/right.png';
-import { PaginationContainers } from '../Containers';
+import LeftIcon from '/public/img/left.png';
+import RightIcon from '/public/img/right.png';
 import {
   TypeAtoms,
   MediaAtoms,
   ButtonAtoms
 } from '../Atoms';
+import { PaginationContainers } from '../Containers';
 
 const Pagination = ({
   page,
-  setPage,
+  decrementPage,
+  incrementPage,
   allProducts
 }) => (
   <PaginationContainers.Main>
     <ButtonAtoms.Button
-      onClick={ () => setPage(page - 1) }
+      onClick={ decrementPage }
       disabled={ page <= 0 }
       variant='secondary'
     >
-      <MediaAtoms.Icon src={ Left } />
+      <MediaAtoms.Icon src={ LeftIcon } />
     </ButtonAtoms.Button>
     <PaginationContainers.Body>
       <TypeAtoms.Body>{ page + 1 } of { Math.ceil(allProducts.count / 4) }</TypeAtoms.Body>
     </PaginationContainers.Body>
     <ButtonAtoms.Button
-      onClick={ () => setPage(page + 1) }
+      onClick={ incrementPage }
       disabled={ allProducts.count <= (page + 1) * 4 }
       variant='secondary'
     >
-      <MediaAtoms.Icon src={ Right } />
+      <MediaAtoms.Icon src={ RightIcon } />
     </ButtonAtoms.Button>
   </PaginationContainers.Main>
 );

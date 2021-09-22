@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useForm } from '../../hooks';
 import signupValidation from '../../formValidations/signupValidation';
 
-import SignupTemplate from '../Templates/Signup';
-import SignupForm from '../Organisms/SignupForm';
+import { SignupTemplate } from '../Templates';
+import { SignupForm } from '../Organisms';
 
 import { authenticationThunks } from '../../redux/thunks';
 
-export default () => {
+const SignupPage = () => {
 
   const dispatch = useDispatch();
 
@@ -34,9 +34,11 @@ export default () => {
           formErrors={ formErrors }
           containsErrors={ containsErrors }
           handleOnChange={ handleOnChange }
-          attemptUserSignup={ () => authenticationThunks.attemptUserSignup(form) }
+          attemptUserSignup={ () => authenticationThunks.attemptUserSignup(formValues) }
         />
       }
     />
   )
 };
+
+export default SignupPage;

@@ -1,13 +1,8 @@
 import React from 'react';
 import { convertDate } from '../../utils';
 
+import { TypeAtoms, NavigationAtoms } from '../Atoms';
 import { OrderHistoryCardContainers } from '../Containers';
-import {
-  TypeAtoms,
-  LayoutAtoms,
-  MediaAtoms,
-  NavigationAtoms
-} from '../Atoms';
 
 const OrderHistoryCard = ({
   order = {},

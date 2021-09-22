@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { PreviewContainers } from '../Containers';
 import {
   TypeAtoms,
   ButtonAtoms,
   NavigationAtoms
 } from '../Atoms';
+import { PreviewContainers } from '../Containers';
 
 const EmptyPreview = () => (
   <PreviewContainers.Main>

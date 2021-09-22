@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { PageContainers } from '../Containers';
 import {
   TypeAtoms,
   ButtonAtoms,
   NavigationAtoms
 } from '../Atoms';
+import { PageContainers } from '../Containers';
 
 const EmptyMessage = ({
   heading,

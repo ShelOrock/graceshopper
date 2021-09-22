@@ -5,15 +5,17 @@ import { useStripe, useElements } from '@stripe/react-stripe-js';
 import { useForm } from '../../hooks';
 import { userInformationValidation, shippingValidation } from '../../formValidations';
 
-import CheckoutTemplate from '../Templates/Checkout';
-import BreadCrumbs from '../Molecules/BreadCrumbs';
-import UserInformationForm from '../Organisms/UserInformationForm';
-import ShippingForm from '../Organisms/ShippingForm';
-import PaymentForm from '../Organisms/PaymentForm';
+import { CheckoutTemplate } from '../Templates';
+import {
+  UserInformationForm,
+  ShippingForm,
+  PaymentForm
+} from '../Organisms';
+import { BreadCrumbs } from '../Molecules';
 
 import { stripeThunks } from '../../redux/thunks';
 
-export default () => {
+const CheckoutPage = () => {
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -99,12 +101,11 @@ export default () => {
             {
               payment_method_types: ['card'],
               amount: cartTotal,
-              userInformationForm,
-              shippingForm,
+              userInformation: userInformationForm.formValues,
+              shipping: shippingForm.formValues,
               cartItems
             },
           ) }
-          disabled
           activateForm={ () => setActiveForm('payment') }
           stripe={ stripe }
           cartTotal={ cartTotal }
@@ -113,3 +114,5 @@ export default () => {
     />
   );
 };
+
+export default CheckoutPage;

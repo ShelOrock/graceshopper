@@ -2,12 +2,12 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from '../../hooks';
 
-import LoginTemplate from '../Templates/Login';
-import LoginForm from '../Organisms/LoginForm';
+import { LoginTemplate } from '../Templates';
+import { LoginForm } from '../Organisms';
 
 import { authenticationThunks } from '../../redux/thunks';
 
-export default () => {
+const LoginPage = () => {
   
   const dispatch = useDispatch();
 
@@ -33,3 +33,5 @@ export default () => {
     />
   )
 };
+
+export default LoginPage;

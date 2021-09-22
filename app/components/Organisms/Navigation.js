@@ -3,21 +3,19 @@ import { useLocation } from 'react-router';
 import { useSelector } from 'react-redux';
 
 import NavLogo from '/public/img/logo.png'
-import Cart from '/public/img/cart.png'
-import { NavigationContainers, MediaContainers } from '../Containers';
-import Preview from './Preview';
-import EmptyPreview from '../Molecules/EmptyPreview';
+import CartIcon from '/public/img/cart.png'
+import { Preview, List } from '.';
+import { PreviewCard, EmptyPreview } from '../Molecules';
 import {
   TypeAtoms,
   MediaAtoms,
   ButtonAtoms,
   NavigationAtoms,
 } from '../Atoms';
+import { NavigationContainers, MediaContainers } from '../Containers';
 
 import { authenticationThunks, cartThunks } from '../../redux/thunks';
 import { cartPreviewActions } from '../../redux/actions';
-import List from './List';
-import PreviewCard from '../Molecules/PreviewCard';
 
 const Navigation = ({
   dispatch
@@ -64,7 +62,7 @@ const Navigation = ({
           variant='secondary'
         >
           <MediaContainers.Main>
-            <MediaAtoms.Icon src={ Cart }/>
+            <MediaAtoms.Icon src={ CartIcon }/>
             <TypeAtoms.SmallBody>{ sumCartItems() }</TypeAtoms.SmallBody>
           </MediaContainers.Main>
         </ButtonAtoms.Button>
@@ -85,11 +83,9 @@ const Navigation = ({
                         { cartItemId: cartItem.id }
                       ) }
                     />
-                  )}
+                  ) }
                 />
               }
-              cartItems={ cartItems }
-              user={ activeUser }
             />
           : <EmptyPreview />
         ) }

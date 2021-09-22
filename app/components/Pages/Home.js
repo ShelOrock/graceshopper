@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import HomeTemplate from '../Templates/Home';
-import Grid from '../Organisms/Grid';
-import ProductCard from '../Molecules/ProductCard';
+import { HomeTemplate } from '../Templates';
+import { Grid } from '../Organisms';
+import { ProductCard } from '../Molecules';
 
-import { cartThunks } from '../../redux/thunks';
+import { cartThunks, wishlistThunks } from '../../redux/thunks';
 
-export default () => {
+const HomePage = () => {
 
   const dispatch = useDispatch();
 
@@ -24,19 +24,23 @@ export default () => {
       featured={
         <Grid
           listData={ featuredProducts }
-          renderData={product => (
+          renderData={ product => (
             <ProductCard 
               key={ product.id }
               product={ product }
-              wishlist={ wishlist }
+              user={ activeUser }
+              dispatch={ dispatch }
               addProductToCart={ () => cartThunks.addProductToCart(
                 activeUser.id,
                 { productId: product.id, quantity: 1 }
               ) }
-              user={ activeUser }
-              dispatch={ dispatch }
+              addToWishlist={ () => wishlistThunks.addToWishlist(
+                activeUser.id,
+                { productId: product.id }
+              ) }
+              productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
             />
-          )}
+          ) }
         />
       }
       popularHeading={ !!popularProducts.length && 'Popular Products' }
@@ -47,13 +51,17 @@ export default () => {
             <ProductCard
               key={ product.id }
               product={ product }
-              wishlist={ wishlist }
+              user={ activeUser }
+              dispatch={ dispatch }
               addProductToCart={ () => cartThunks.addProductToCart(
                 activeUser.id,
                 { productId: product.id, quantity: 1 }
               ) }
-              user={ activeUser }
-              dispatch={ dispatch }
+              addToWishlist={ () => wishlistThunks.addToWishlist(
+                activeUser.id,
+                { productId: product.id }
+              ) }
+              productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
             />
           ) }
         />
@@ -61,3 +69,5 @@ export default () => {
     />
   );
 };
+
+export default HomePage;
