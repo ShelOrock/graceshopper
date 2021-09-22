@@ -1,17 +1,20 @@
-import * as React from 'react';
+import React from 'react';
 
-import EmptyTemplate from '../Templates/Empty';
-import EmptyMessage from '../Molecules/EmptyMessage';
+import { EmptyTemplate } from '../Templates';
+import { EmptyMessage } from '../Molecules';
 
-export default () => (
+const NotFoundPage = () => (
   <EmptyTemplate
     title={ '404 Not Found' }
     component={
-    <EmptyMessage
-      header={ 'Oops!' }
-      message={ 'This page doesn\'t exist' }
-      to={ '/' }
-      name={ 'Take me home' }
-    /> }
+      <EmptyMessage
+        header={ 'Oops!' }
+        message={ 'This page doesn\'t exist' }
+        to={ '/' }
+        name={ 'Take me home' }
+      />
+    }
   />
 );
+
+export default NotFoundPage;

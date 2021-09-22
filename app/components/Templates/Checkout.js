@@ -1,30 +1,24 @@
-import * as React from 'react';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
+import React from 'react';
 
-import PageContainer from '../Containers/Page/Page';
-import Header from '../Containers/Page/Header';
-import Section from '../Containers/Page/Section';
-import Title from '../Atoms/Title';
+import { PageContainers } from '../Containers';
+import { TypeAtoms } from '../Atoms';
 
-const stripe = loadStripe('pk_test_51JCDlcJxm4J61jnKA83le7sgVjl87qtFuaICUMNr6Far0GiH0IupD3D7AC4Qh1hg1nIXrXRZF2TQpbptwn1aEs5200o5Q1A4Ve');
-
-export default ({
+const CheckoutTemplate = ({
   title,
   breadcrumbs,
   userInformation,
   shipping,
   payment
 }) => (
-  <Elements stripe={ stripe }>
-    <PageContainer>
-      <Header>
-        <Title>{ title }</Title>
-        { breadcrumbs }
-      </Header>
-      <Section>{ userInformation }</Section>
-      <Section>{ shipping }</Section>
-      <Section>{ payment }</Section>
-    </PageContainer>
-  </Elements>
+  <PageContainers.Main>
+    <PageContainers.Header>
+      <TypeAtoms.Title>{ title }</TypeAtoms.Title>
+      { breadcrumbs }
+    </PageContainers.Header>
+    <PageContainers.Section>{ userInformation }</PageContainers.Section>
+    <PageContainers.Section>{ shipping }</PageContainers.Section>
+    <PageContainers.Section>{ payment }</PageContainers.Section>
+  </PageContainers.Main>
 );
+
+export default CheckoutTemplate;

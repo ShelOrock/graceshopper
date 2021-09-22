@@ -1,5 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import PageContainer from '../Containers/Page/Page';
+import { PageContainers } from '../Containers';
 
-export default ({ login }) => <PageContainer>{ login }</PageContainer>;
+const LoginTemplate = ({ login }) => <PageContainers.Main>{ login }</PageContainers.Main>;
+
+export default LoginTemplate;

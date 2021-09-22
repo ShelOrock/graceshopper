@@ -1,47 +1,59 @@
-import * as React from 'react';
-const { useEffect } = React;
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
-import OrderTemplate from '../Templates/Order';
-import Order from '../Molecules/Order';
-import BreadCrumbNavigation from '../Molecules/BreadCrumbNavigation';
+import { OrderTemplate } from '../Templates';
+import { List } from '../Organisms';
+import {
+  Order,
+  OrderCard,
+  BreadCrumbs
+} from '../Molecules';
 
-import * as reduxThunks from '../../redux/thunks';
-const { activeOrderThunks: { getActiveOrder } } = reduxThunks;
+import { activeOrderThunks } from '../../redux/thunks';
 
-export default () => {
+const OrderPage = () => {
+
+  const dispatch = useDispatch();
+  const { orderId } = useParams();
 
   const { activeOrder } = useSelector(state => state);
 
   useEffect(() => {
-    dispatch(getActiveOrder(orderId));
+    dispatch(activeOrderThunks.getActiveOrder(orderId));
   }, [orderId])
 
   return (
     <OrderTemplate
       title={ `Order No.${ activeOrder.confirmationNumber } Details` }
       breadcrumbs={
-        <BreadCrumbNavigation
-          firstCrumb={ {
-            to: '/',
-            name: 'Home',
-          } }
-          secondCrumb={ {
-            to: '/order-history',
-            name: 'Order History'
-          } }
-          thirdCrumb={ {
-            to: `order-history/${ activeOrder.id }`,
-            name: `Order No. ${ activeOrder.confirmationNumber }`
-          } }
+        <BreadCrumbs
+          crumbs={ [   
+            { to: '/', name: 'Home' },
+            { to: '/order-history', name: 'Order History ' },
+            { to: `/order-history/${ activeOrder.id }`, name: `Order No. ${ activeOrder.confirmationNumber }`}
+          ] }
         />
       }
       order={ 
         <Order
           order={ activeOrder }
-          cartItems={ activeOrder.cartItems }
+          orderItemList={ 
+            <List
+              listData={ activeOrder.cartItems }
+              renderData={ cartItem => (
+                <OrderCard
+                  key={ cartItem.id }
+                  cartItem={ cartItem }
+                  product={ cartItem.product }
+                />
+              ) }
+            />
+          }
         />
       }
     />
   );
 };
+
+export default OrderPage;

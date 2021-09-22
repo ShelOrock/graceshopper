@@ -1,23 +1,25 @@
-import * as React from 'react';
-const { useState, useEffect } = React;
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ProductTemplate from '../Templates/Product';
-import BreadCrumbNavigation from '../Molecules/BreadCrumbNavigation';
-import Product from '../Molecules/Product';
-import ProductList from '../Organisms/ProductList';
+import { ProductTemplate } from '../Templates';
+import { Grid } from '../Organisms';
 
-import * as reduxThunks from '../../redux/thunks';
-const {
-  activeProductThunks: { getActiveProduct },
-  similarProductsThunks: { getSimilarProducts }
-} = reduxThunks;
+import {
+  BreadCrumbs,
+  Product,
+  ProductCard } from '../Molecules';
 
-export default () => {
+import {
+  activeProductThunks,
+  similarProductsThunks,
+  cartThunks,
+  wishlistThunks
+} from '../../redux/thunks';
+
+const ProductPage = () => {
 
   const dispatch = useDispatch();
-
   const { productId } = useParams();
 
   const {
@@ -30,12 +32,12 @@ export default () => {
   const [ quantityToAdd, setQuantityToAdd ] = useState(1);
 
   useEffect(() => {
-    dispatch(getActiveProduct(productId));
     setQuantityToAdd(1);
+    dispatch(activeProductThunks.getActiveProduct(productId));
   }, [productId]);
   useEffect(() => {
     if(activeProduct.id) {
-      dispatch(getSimilarProducts(activeProduct.tags, activeProduct.id))
+      dispatch(similarProductsThunks.getSimilarProducts(activeProduct.tags, activeProduct.id))
     }
   }, [activeProduct]);
 
@@ -43,19 +45,12 @@ export default () => {
     <ProductTemplate
       title={ activeProduct.productName }
       breadcrumbs={
-        <BreadCrumbNavigation
-          firstCrumb={ {
-            to: '/',
-            name: 'Home'
-          } }
-          secondCrumb={ {
-            to: '/shop',
-            name: 'Shop'
-          } }
-          thirdCrumb={ {
-            to: `/products/${ activeProduct.id }`,
-            name: activeProduct.productName
-          } }
+        <BreadCrumbs
+          crumbs={ [
+            { to: '/', name: 'Home' },
+            { to: '/shop', name: 'Shop' },
+            { to: `/products/${ activeProduct.id }`, name: activeProduct.productName }
+          ] }
         />
       }
       product={
@@ -63,20 +58,45 @@ export default () => {
           product={ activeProduct }
           user={ activeUser }
           quantityToAdd={ quantityToAdd }
-          setQuantityToAdd={ setQuantityToAdd }
-          wishlist={ wishlist.products }
-        />
+          decrementQuantityToAdd={ () => setQuantityToAdd(quantityToAdd - 1) }
+          incrementQuantityToAdd={ () => setQuantityToAdd(quantityToAdd + 1) }
+          dispatch={ dispatch }
+          addProductToCart={ () => cartThunks.addProductToCart(
+            activeUser.id,
+            { productId: activeProduct.id, quantity: quantityToAdd || 1 }
+          ) }
+          addTowishlist={ () => wishlistThunks.addToWishlist(
+            activeUser.id,
+            { productOd: activeProduct.id }
+          ) }
+          productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
+          />
       }
       similarHeading={ !!similarProducts.length && 'Similar Products' }
       similar={
-        !!similarProducts.length && (
-          <ProductList
-            products={ similarProducts }
-            wishlist={ wishlist.products }
-            user={ activeUser }
-          />
-        )
+        <Grid
+          listData={ similarProducts }
+          renderData={ product => (
+            <ProductCard
+              key={ product.id }
+              product={ product }
+              user={ activeUser }
+              dispatch={ dispatch }
+              addProductToCart={ () => cartThunks.addProductToCart(
+                activeUser.id,
+                { productId: product.id, quantity: 1 }
+              ) }
+              addTowishlist={ () => wishlistThunks.addToWishlist(
+                activeUser.id,
+                { productOd: activeProduct.id }
+              ) }
+              productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
+            />
+          ) }
+        />
       }
     />
   );
 };
+
+export default ProductPage;

@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import * as StyledComponents from '../../StyledComponents';
-const { StyledOrderPage: { StyledTotal } } = StyledComponents;
+import { StyledOrder } from '../../StyledComponents';
 
-export default ({ children }) => <StyledTotal>{ children }</StyledTotal>;
+const Total = ({ children }) => <StyledOrder.Total>{ children }</StyledOrder.Total>;
+
+export default Total;

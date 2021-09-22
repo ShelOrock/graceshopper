@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import * as StyledComponents from '../../StyledComponents';
-const { StyledOrderPage: { StyledHeader } } = StyledComponents;
+import { StyledOrder } from '../../StyledComponents';
 
-export default ({ children }) => <StyledHeader>{ children }</StyledHeader>;
+const Header = ({ children }) => <StyledOrder.Header>{ children }</StyledOrder.Header>;
+
+export default Header;

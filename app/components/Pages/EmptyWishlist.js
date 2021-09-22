@@ -1,9 +1,9 @@
 import React from 'react';
 
-import EmptyTemplate from '../Templates/Empty';
-import EmptyMessage from '../Molecules/EmptyMessage';
+import { EmptyTemplate } from '../Templates';
+import { EmptyMessage } from '../Molecules';
 
-export default () => (
+const EmptyWishlistPage = () => (
   <EmptyTemplate 
     title={ 'Wishlist' }
     component={
@@ -16,3 +16,5 @@ export default () => (
     }
   />
 );
+
+export default EmptyWishlistPage;

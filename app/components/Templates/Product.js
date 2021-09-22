@@ -1,27 +1,28 @@
-import * as React from 'react';
+import React from 'react';
 
-import PageContainer from '../Containers/Page/Page';
-import Section from '../Containers/Page/Section';
-import SectionHeader from '../Containers/Page/SectionHeader';
-import Heading from '../Atoms/Heading';
-import Title from '../Atoms/Title';
+import { PageContainers } from '../Containers';
+import { TypeAtoms } from '../Atoms';
 
-export default ({
+const ProductTemplate = ({
   title,
   breadcrumbs,
   product,
   similarHeading,
   similar
 }) => (
-  <PageContainer>
-    <Title>{ title }</Title>
-    { breadcrumbs }
-    <Section>{ product }</Section>
-    <Section>
-      <SectionHeader>
-        <Heading>{ similarHeading }</Heading>
-      </SectionHeader>
+  <PageContainers.Main>
+    <PageContainers.Header>
+      <TypeAtoms.Title>{ title }</TypeAtoms.Title>
+      { breadcrumbs }
+    </PageContainers.Header>
+    <PageContainers.Section>{ product }</PageContainers.Section>
+    <PageContainers.Section>
+      <PageContainers.Title>
+        <TypeAtoms.Heading>{ similarHeading }</TypeAtoms.Heading>
+      </PageContainers.Title>
       { similar }
-    </Section>
-  </PageContainer>
+    </PageContainers.Section>
+  </PageContainers.Main>
 );
+
+export default ProductTemplate;

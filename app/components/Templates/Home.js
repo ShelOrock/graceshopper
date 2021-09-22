@@ -1,30 +1,28 @@
-import * as React from 'react';
+import React from 'react';
 
-import PageContainer from '../Containers/Page/Page';
-import Section from '../Containers/Page/Section';
-import Heading from '../Atoms/Heading';
-import SectionHeader from '../Containers/Page/SectionHeader';
-import Header from '../Containers/Page/Header';
+import { PageContainers } from '../Containers';
+import { TypeAtoms } from '../Atoms';
 
-export default ({
+const HomeTemplate = ({
   featuredHeading,
   featured,
   popularHeading,
   popular
 }) => (
-  <PageContainer>
-    <Header></Header>
-    <Section>
-      <SectionHeader>
-        <Heading>{ featuredHeading }</Heading>
-      </SectionHeader>
+  <PageContainers.Main>
+    <PageContainers.Section>
+      <PageContainers.Title>
+        <TypeAtoms.Heading>{ featuredHeading }</TypeAtoms.Heading>
+      </PageContainers.Title>
       { featured }
-    </Section>
-    <Section>
-      <SectionHeader>
-        <Heading>{ popularHeading }</Heading>
-      </SectionHeader>
+    </PageContainers.Section>
+    <PageContainers.Section>
+      <PageContainers.Title>
+        <TypeAtoms.Heading>{ popularHeading }</TypeAtoms.Heading>
+      </PageContainers.Title>
       { popular }
-    </Section>
-  </PageContainer>
+    </PageContainers.Section>
+  </PageContainers.Main>
 );
+
+export default HomeTemplate;

@@ -1,30 +1,27 @@
-import * as React from 'react';
-const { useEffect } = React;
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+
 import NavLogo from '/public/img/logo.png'
-import Cart from '/public/img/cart.png'
+import CartIcon from '/public/img/cart.png'
+import { Preview, List } from '.';
+import { PreviewCard, EmptyPreview } from '../Molecules';
+import {
+  TypeAtoms,
+  MediaAtoms,
+  ButtonAtoms,
+  NavigationAtoms,
+} from '../Atoms';
+import { NavigationContainers, MediaContainers } from '../Containers';
 
-import NavigationContainer from '../Containers/Navigation/Navigation';
-import LinksContainer from '../Containers/Navigation/Links';
-import IconTextContainer from '../Containers/IconText';
-import Preview from './Preview';
-import EmptyPreview from '../Molecules/EmptyPreview';
-import Link from '../Atoms/Link';
-import NavigationButton from '../Atoms/NavigationButton';
-import Logo from '../Atoms/Logo';
-import DispatchButton from '../Atoms/DispatchButton';
-import Icon from '../Atoms/Icon';
-import SmallBody from '../Atoms/SmallBody';
+import { authenticationThunks, cartThunks } from '../../redux/thunks';
+import { cartPreviewActions } from '../../redux/actions';
 
-import * as reduxActions from '../../redux/actions';
-import { attemptUserLogout } from '../../redux/authentication/thunks';
-const { cartPreviewActions: { setCartPreview, resetCartPreview } } = reduxActions; 
-
-export default () => {
+const Navigation = ({
+  dispatch
+}) => {
 
   const location = useLocation();
-  const dispatch = useDispatch();
 
   const {
     activeUser,
@@ -33,7 +30,7 @@ export default () => {
   } = useSelector(state => state);
 
   useEffect(() => {
-    dispatch(resetCartPreview());
+    dispatch(cartPreviewActions.resetCartPreview());
   }, [location]);
 
   const sumCartItems = () => {
@@ -43,41 +40,58 @@ export default () => {
   };
 
   return (
-    <NavigationContainer>
-      <Link to={ '/' }>
-        <Logo src={ NavLogo }/>
-      </Link>
-      <LinksContainer>
-        <Link to={ '/shop' }>Shop</Link>
-        { activeUser.isLoggedIn && <Link to={ '/order-history' }>Orders</Link> }
-        { !activeUser.isLoggedIn
-        ? <Link to={ '/login' }>Login</Link>
-        : (
-          <NavigationButton
-            onClick={ () => attemptUserLogout(activeUser.id) }
+    <NavigationContainers.Main>
+      <NavigationAtoms.TextLink to={ '/' }>
+        <MediaAtoms.Logo src={ NavLogo }/>
+      </NavigationAtoms.TextLink>
+      <NavigationContainers.Links>
+        <NavigationAtoms.TextLink to={ '/shop' }>Shop</NavigationAtoms.TextLink>
+        { activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/order-history' }>Orders</NavigationAtoms.TextLink> }
+        { !activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/login' }>Login</NavigationAtoms.TextLink> }
+        { activeUser.isLoggedIn && <NavigationAtoms.ButtonLink
+            onClick={ authenticationThunks.attemptUserLogout(activeUser.id) }
+            dispatch={ dispatch }
             variant='secondary'
-          >Logout</NavigationButton>
-        ) }
-        { !activeUser.isLoggedIn && <Link to={ '/signup' }>Signup</Link> }
-        { !!activeUser.isLoggedIn && <Link to={ '/wishlist'}>Wishlist</Link>}
-        <DispatchButton
-          onClick={ () => setCartPreview(!cartPreview) }
+          >Logout</NavigationAtoms.ButtonLink>
+        }
+        { !activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/signup' }>Signup</NavigationAtoms.TextLink> }
+        { activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/wishlist'}>Wishlist</NavigationAtoms.TextLink>}
+        <ButtonAtoms.Button
+          onClick={ () => cartPreviewActions.setCartPreview(!cartPreview) }
+          dispatch={ dispatch }
           variant='secondary'
         >
-          <IconTextContainer>
-            <Icon src={ Cart }/>
-            <SmallBody>{ sumCartItems() }</SmallBody>
-          </IconTextContainer>
-        </DispatchButton>
+          <MediaContainers.Main>
+            <MediaAtoms.Icon src={ CartIcon }/>
+            <TypeAtoms.SmallBody>{ sumCartItems() }</TypeAtoms.SmallBody>
+          </MediaContainers.Main>
+        </ButtonAtoms.Button>
         { cartPreview && (
           !!cartItems.length
           ? <Preview 
-              cartItems={ cartItems }
-              user={ activeUser }
+              cardList={
+                <List
+                  listData={ cartItems }
+                  renderData={ cartItem => (
+                    <PreviewCard
+                      key={ cartItem.id }
+                      cartItem={ cartItem }
+                      product={ cartItem.product }
+                      dispatch={ dispatch }
+                      removeProductFromCart={ () => cartThunks.removeProductFromCart(
+                        activeUser.id,
+                        { cartItemId: cartItem.id }
+                      ) }
+                    />
+                  ) }
+                />
+              }
             />
           : <EmptyPreview />
         ) }
-      </LinksContainer>
-    </NavigationContainer>
+      </NavigationContainers.Links>
+    </NavigationContainers.Main>
   );
 };
+
+export default Navigation;

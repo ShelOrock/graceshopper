@@ -37,7 +37,6 @@ export const getOrder = async (req, res, next) => {
 };
 
 export const createOrder = async (req, res, next) => {
-  console.log(req.body);
   try {
     const order = await orderServices.createOrder({
       userId: req.body.userId,

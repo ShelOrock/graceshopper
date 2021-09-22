@@ -1,34 +1,36 @@
-import Home from './Home';
-import Login from './Login';
-import Signup from './Signup';
-import Shop from './Shop';
-import Product from './Product';
-import Cart from './Cart';
-import Wishlist from './Wishlist';
-import Checkout from './Checkout';
-import OrderHistory from './OrderHistory';
-import Order from './Order';
-import Confirmation from './Confirmation';
+import HomePage from './Home';
 
-import EmptyCart from './EmptyCart';
-import EmptyWishlist from './EmptyWishlist';
-import EmptyOrderHistory from './EmptyOrderHistory';
-import NotFound from './NotFound';
+import LoginPage from './Login';
+import SignupPage from './Signup';
+
+import ShopPage from './Shop';
+import ProductPage from './Product';
+import CartPagePage from './Cart';
+import WishlistPage from './Wishlist';
+import CheckoutPage from './Checkout';
+import OrderHistoryPage from './OrderHistory';
+import OrderPage from './Order';
+
+import ConfirmationPage from './Confirmation';
+import EmptyCartPage from './EmptyCart';
+import EmptyWishlistPage from './EmptyWishlist';
+import EmptyOrderHistoryPage from './EmptyOrderHistory';
+import NotFoundPage from './NotFound';
 
 export {
-  Home,
-  Login,
-  Signup,
-  Shop,
-  Product,
-  Cart,
-  Wishlist,
-  Checkout,
-  OrderHistory,
-  Order,
-  Confirmation,
-  EmptyCart,
-  EmptyWishlist,
-  EmptyOrderHistory,
-  NotFound
+  HomePage,
+  LoginPage,
+  SignupPage,
+  ShopPage,
+  ProductPage,
+  CartPagePage,
+  WishlistPage,
+  CheckoutPage,
+  OrderHistoryPage,
+  OrderPage,
+  ConfirmationPage,
+  EmptyCartPage,
+  EmptyWishlistPage,
+  EmptyOrderHistoryPage,
+  NotFoundPage
 };

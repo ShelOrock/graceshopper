@@ -1,5 +1,4 @@
-import React from 'react';
-const { useEffect } = React;
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -9,20 +8,19 @@ import {
 } from 'react-router-dom';
 
 import * as Pages from './components/Pages';
-import Navigation from './components/Organisms/Navigation';
+import { Navigation } from './components/Organisms';
 
-import * as reduxThunks from './redux/thunks';
-const {
-  activeUserThunks: { getActiveUser },  
-  allProductsThunks: { getAllProducts },
-  featuredProductsThunks: { getFeaturedProducts },
-  popularProductsThunks: { getPopularProducts },
-  cartThunks: { getCart },
-  wishlistThunks: { getWishlist },
-  allOrdersThunks: { getAllOrders }
-} = reduxThunks; 
+import {
+  activeUserThunks,
+  allProductsThunks,
+  featuredProductsThunks,
+  popularProductsThunks,
+  cartThunks,
+  wishlistThunks,
+  allOrdersThunks
+} from './redux/thunks';
 
-export default () => {
+const Root = () => {
 
   const dispatch = useDispatch();
 
@@ -30,7 +28,7 @@ export default () => {
     activeUser,
     cart: { cartItems },
     wishlist: { products },
-    allOrders
+    allOrders,
   } = useSelector(state => state);
 
   useEffect(() => {
@@ -39,76 +37,92 @@ export default () => {
       .find(str => /sessionId=/.test(str))
       .replace(/sessionId=/, (''))
       .replace(' ', '');
-    dispatch(getActiveUser(sessionId));
-    dispatch(getAllProducts());
-    dispatch(getFeaturedProducts());
-    dispatch(getPopularProducts());
+    dispatch(activeUserThunks.getActiveUser(sessionId));
+    dispatch(allProductsThunks.getAllProducts());
+    dispatch(featuredProductsThunks.getFeaturedProducts());
+    dispatch(popularProductsThunks.getPopularProducts());
   }, []);
   useEffect(() => {
     if(activeUser.id) {
-      dispatch(getCart(activeUser.id));
-      dispatch(getWishlist(activeUser.id));
-      dispatch(getAllOrders(activeUser.id));
+      dispatch(cartThunks.getCart(activeUser.id));
+      dispatch(wishlistThunks.getWishlist(activeUser.id));
+      dispatch(allOrdersThunks.getAllOrders(activeUser.id));
     };
   }, [activeUser]);
 
   return (
     <Router>
-      <Navigation />
+      <Navigation
+        dispatch={ dispatch }
+      />
       {/* <ToastComponent status={status} message={text} /> */}
       <Switch>
-        <Route exact path='/' component={ Pages.Home } />
+        <Route exact path='/'>
+          <Pages.HomePage />
+        </Route>
         <Route exact path='/login'>
           { activeUser.isLoggedIn
           ? <Redirect to='/' />
-          : <Pages.Login />
+          : <Pages.LoginPage />
           } 
         </Route>
         <Route exact path='/signup'>
           { activeUser.isLoggedIn
           ? <Redirect to='/' />
-          : <Pages.Signup />
+          : <Pages.SignupPage />
           }
         </Route>
-        <Route exact path='/shop' component={ Pages.Shop } />
-        <Route exact path='/products/:productId' component={ Pages.Product } />
+        <Route exact path='/shop'>
+          <Pages.ShopPage />
+        </Route>
+        <Route exact path='/products/:productId'>
+          <Pages.ProductPage />
+        </Route>
         <Route exact path='/cart'>
           { cartItems.length
-          ? <Pages.Cart />
-          : <Pages.EmptyCart />
+          ? <Pages.CartPagePage />
+          : <Pages.EmptyCartPage />
           }
         </Route>
         <Route exact path='/wishlist'>
           { products.length
-          ? <Pages.Wishlist />
-          : <Pages.EmptyWishlist />
+          ? <Pages.WishlistPage />
+          : <Pages.EmptyWishlistPage />
           }
         </Route>
         <Route exact path='/checkout'>
           { cartItems.length
-          ? <Pages.Checkout />
+          ? <Pages.CheckoutPage />
+          : <Redirect to='/' />
+          }
+        </Route>
+        <Route exact path='/confirmation'>
+          { cartItems.length
+          ? <Pages.CheckoutPage />
           : <Redirect to='/' />
           }
         </Route>
         <Route exact path='/order-history'>
           { activeUser.isLoggedIn
           ? allOrders.length
-            ? <Pages.OrderHistory />
-            : <Pages.EmptyOrderHistory />
+            ? <Pages.OrderHistoryPage />
+            : <Pages.EmptyOrderHistoryPage />
           : <Redirect to='/' />
           }
         </Route>
         <Route exact path='/order-history/:orderId'>
           { activeUser.isLoggedIn
-          ? <Pages.Order />
+          ? <Pages.OrderPage />
           : <Redirect to='/' />
           }
         </Route>
-        <Route exact path='/confirmation' component={ Pages.Confirmation } />
-        <Route component={ Pages.NotFound } />
+        <Route>
+          <Pages.NotFoundPage />
+        </Route>
         {/* <Route exact path="/products/add" component={AddProductForm} /> */}
-        {/* <Route exact path="/wishlist" component={Wishlist} /> */}
       </Switch>
     </Router>
   );
 };
+
+export default Root;

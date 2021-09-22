@@ -1,17 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import EmptyTemplate from '../Templates/Empty';
-import Confirmation from '../Molecules/Confirmation';
+import { EmptyTemplate } from '../Templates';
+import { Confirmation } from '../Molecules';
 
-import * as reduxActions from '../../redux/actions';
-const {
-  checkoutSuccessActions: { setCheckoutSuccess },
-  userInformationActions: { resetUserInformation },
-  shippingActions: { resetShipping },
-} = reduxActions;
+import { checkoutSuccessActions } from '../../redux/actions';
 
-export default () => {
+const ConfirmationPage = () => {
 
   const dispatch = useDispatch();
 
@@ -21,9 +16,7 @@ export default () => {
   } = useSelector(state => state);
     
   useEffect(() => {
-    dispatch(setCheckoutSuccess(false));
-    dispatch(resetUserInformation());
-    dispatch(resetShipping());
+    dispatch(checkoutSuccessActions.setCheckoutSuccess(false));
   }, []);
 
   return (
@@ -37,4 +30,6 @@ export default () => {
       }
     />
   );
-}
+};
+
+export default ConfirmationPage;

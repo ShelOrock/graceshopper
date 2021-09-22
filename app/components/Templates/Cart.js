@@ -1,18 +1,18 @@
-import * as React from 'react';
-import Title from '../Atoms/Title';
+import React from 'react';
 
-import PageContainer from '../Containers/Page/Page';
-import Header from '../Containers/Page/Header';
-import Section from '../Containers/Page/Section';
+import { PageContainers } from '../Containers';
+import { TypeAtoms } from '../Atoms';
 
-export default ({
+const CartTemplate = ({
   title,
   cart
 }) => (
-  <PageContainer>
-    <Header>
-      <Title>{ title }</Title>
-   </Header>
-    <Section>{ cart }</Section>
-  </PageContainer>
+  <PageContainers.Main>
+    <PageContainers.Header>
+      <TypeAtoms.Title>{ title }</TypeAtoms.Title>
+    </PageContainers.Header>
+    <PageContainers.Section>{ cart }</PageContainers.Section>
+  </PageContainers.Main>
 );
+
+export default CartTemplate;

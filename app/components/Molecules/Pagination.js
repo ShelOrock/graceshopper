@@ -1,32 +1,39 @@
-import * as React from 'react';
-import Left from '/public/img/left.png';
-import Right from '/public/img/right.png';
+import React from 'react';
 
-import PageSelectContainer from '../Containers/PageSelect';
-import Button from '../Atoms/Button';
-import Icon from '../Atoms/Icon';
-import SmallBody from '../Atoms/SmallBody';
+import LeftIcon from '/public/img/left.png';
+import RightIcon from '/public/img/right.png';
+import {
+  TypeAtoms,
+  MediaAtoms,
+  ButtonAtoms
+} from '../Atoms';
+import { PaginationContainers } from '../Containers';
 
-export default ({
+const Pagination = ({
   page,
-  setPage,
+  decrementPage,
+  incrementPage,
   allProducts
 }) => (
-  <PageSelectContainer>
-    <Button
-      onClick={ () => setPage(page - 1) }
+  <PaginationContainers.Main>
+    <ButtonAtoms.Button
+      onClick={ decrementPage }
       disabled={ page <= 0 }
       variant='secondary'
     >
-      <Icon src={ Left } />
-    </Button>
-    <SmallBody>{ page + 1 } of { Math.ceil(allProducts.count / 4) }</SmallBody>
-    <Button
-      onClick={ () => setPage(page + 1) }
+      <MediaAtoms.Icon src={ LeftIcon } />
+    </ButtonAtoms.Button>
+    <PaginationContainers.Body>
+      <TypeAtoms.Body>{ page + 1 } of { Math.ceil(allProducts.count / 4) }</TypeAtoms.Body>
+    </PaginationContainers.Body>
+    <ButtonAtoms.Button
+      onClick={ incrementPage }
       disabled={ allProducts.count <= (page + 1) * 4 }
       variant='secondary'
     >
-      <Icon src={ Right } />
-    </Button>
-  </PageSelectContainer>
+      <MediaAtoms.Icon src={ RightIcon } />
+    </ButtonAtoms.Button>
+  </PaginationContainers.Main>
 );
+
+export default Pagination;

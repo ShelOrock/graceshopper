@@ -1,15 +1,17 @@
-import * as React from 'react';
-const { useState, useEffect } = React;
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ShopTemplate from '../Templates/Shop';
-import Pagination from '../Molecules/Pagination';
-import ProductList from '../Organisms/ProductList';
+import { ShopTemplate } from '../Templates';
+import { Grid } from '../Organisms';
+import { Pagination, ProductCard } from '../Molecules';
 
-import * as reduxThunks from '../../redux/thunks';
-const { allProductsThunks: { getAllProducts } } = reduxThunks;
+import {
+  allProductsThunks,
+  cartThunks,
+  wishlistThunks
+} from '../../redux/thunks';
 
-export default () => {
+const ShopPage = () => {
 
   const dispatch = useDispatch();
 
@@ -22,7 +24,7 @@ export default () => {
   const [ page, setPage ] = useState(0);
 
   useEffect(() => {
-    dispatch(getAllProducts(4, page));
+    dispatch(allProductsThunks.getAllProducts(4, page));
   }, [page]);
 
   return (
@@ -31,18 +33,36 @@ export default () => {
       pagination={
         <Pagination
           page={ page }
-          setPage={ setPage }
+          decrementPage={ () => setPage(page - 1) }
+          incrementPage={ () => setPage(page + 1) }
           allProducts={ allProducts }
         />
       }
       productsHeading={ 'Products' }
       products={
-        <ProductList
-          products={ allProducts.rows }
-          wishlist={ wishlist.products }
-          user={ activeUser }
+        <Grid
+          listData={ allProducts.rows }
+          renderData={ product => (
+            <ProductCard
+              key={ product.id }
+              product={ product }
+              user={ activeUser }
+              dispatch={ dispatch }
+              addProductToCart={ () => cartThunks.addProductToCart(
+                activeUser.id,
+                { productId: product.id, quantity: 1 }
+              ) }
+              addToWishlist={ () => wishlistThunks.addToWishlist(
+                activeUser.id,
+                { productId: product.id }
+              ) }
+              productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
+            />
+          )}
         />
       }
     />
   );
 };
+
+export default ShopPage;

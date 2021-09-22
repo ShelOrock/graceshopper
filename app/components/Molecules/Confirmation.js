@@ -1,28 +1,30 @@
 import React from 'react';
 
-import ConfirmationContainer from '../Containers/Confirmation/Confirmation';
-import ButtonsContainer from '../Containers/Confirmation/Buttons';
-import Body from '../Atoms/Body';
-import Link from '../Atoms/Link';
-import DummyButton from '../Atoms/DummyButton';
-import Heading from '../Atoms/Heading';
+import {
+  TypeAtoms,
+  ButtonAtoms,
+  NavigationAtoms
+} from '../Atoms';
+import { ConfirmationContainers } from '../Containers';
 
-export default ({
+const Confirmation = ({
   order = {},
   user = {}
 }) => (
-  <ConfirmationContainer>
-    <Heading>Order confirmed!</Heading>
-    <Body>Your Order No. is { order.confirmationNumber }</Body>
-    <ButtonsContainer>
-      <Link to={ '/' }>
-        <DummyButton variant='secondary'>Take me home</DummyButton>
-      </Link>
+  <ConfirmationContainers.Main>
+    <TypeAtoms.Heading>Order confirmed!</TypeAtoms.Heading>
+    <TypeAtoms.Body>Your Order No. is { order.confirmationNumber }</TypeAtoms.Body>
+    <ConfirmationContainers.Actions>
+      <NavigationAtoms.TextLink to={ '/' }>
+        <ButtonAtoms.Button variant='secondary'>Take me home</ButtonAtoms.Button>
+      </NavigationAtoms.TextLink>
       { user.isLoggedIn && (
-        <Link to={ `/order-history/${ order.id }` }>
-          <DummyButton variant='secondary'>Review my order</DummyButton>
-        </Link>
+        <NavigationAtoms.TextLink to={ `/order-history/${ order.id }` }>
+          <ButtonAtoms.Button variant='secondary'>Review my order</ButtonAtoms.Button>
+        </NavigationAtoms.TextLink>
       ) }
-    </ButtonsContainer>
-  </ConfirmationContainer>
+    </ConfirmationContainers.Actions>
+  </ConfirmationContainers.Main>
 );
+
+export default Confirmation;

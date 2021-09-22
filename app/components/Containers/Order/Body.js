@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import * as StyledComponents from '../../StyledComponents';
-const { StyledOrderPage: { StyledBody } } = StyledComponents;
+import { StyledOrder } from '../../StyledComponents';
 
-export default ({ children }) => <StyledBody>{ children }</StyledBody>;
+const Body = ({ children }) => <StyledOrder.Body>{ children }</StyledOrder.Body>;
+
+export default Body;

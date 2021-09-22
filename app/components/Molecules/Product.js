@@ -1,101 +1,84 @@
-import * as React from 'react';
-import Plus from '/public/img/plus.png';
-import Minus from '/public/img/minus.png'
-import Cart from '/public/img/cart.png';
-import Heart from '/public/img/heart.png';
-import BlackHeart from '/public/img/heart-black.png'
+import React from 'react';
 
-import ProductContainer from '../Containers/Product/Product';
-import ContentContainer from '../Containers/Product/Content';
-import HeaderContainer from '../Containers/Product/Header';
-import BodyContainer from '../Containers/Product/Body';
-import InformationContainer from '../Containers/Product/Information';
-import DescriptionContainer from '../Containers/Product/Description';
-import ButtonsContainer from '../Containers/Product/Buttons';
-import QuantityContainer from '../Containers/Product/Quantity';
-import IconTextContainer from '../Containers/IconText';
-import Image from '../Atoms/Image';
-import Icon from '../Atoms/Icon';
-import Title from '../Atoms/Title';
-import SubTitle from '../Atoms/SubTitle';
-import Body from '../Atoms/Body';
-import SmallBody from '../Atoms/SmallBody';
-import ButtonType from '../Atoms/ButtonType';
-import Button from '../Atoms/Button';
-import DispatchButton from '../Atoms/DispatchButton';
+import PlusIcon from '/public/img/plus.png';
+import MinusIcon from '/public/img/minus.png'
+import CartIcon from '/public/img/cart.png';
+import HeartIcon from '/public/img/heart.png';
+import BlackHeartIcon from '/public/img/heart-black.png';
+import {
+  TypeAtoms,
+  ButtonAtoms,
+  MediaAtoms
+} from '../Atoms';
+import { ProductContainers, MediaContainers } from '../Containers';
 
-import * as reduxThunks from '../../redux/thunks';
-const {
-  cartThunks: { addProductToCart },
-  wishlistThunks: { addToWishlist }
-} = reduxThunks;
-
-export default ({
+const Product = ({
   product = {},
   user = {},
   quantityToAdd = 1,
-  setQuantityToAdd,
-  wishlist= [],
+  decrementQuantityToAdd,
+  incrementQuantityToAdd,
+  dispatch,
+  addProductToCart,
+  addToWishlist,
+  productOnWishlist
 }) => (
-   <ProductContainer>
-    <Image src={ product.productImage } />
-    <ContentContainer>
-      <HeaderContainer>
-        <InformationContainer>
-          <Title>{ product.productName }</Title>
-          <SubTitle>{ product.unitPrice }</SubTitle>
-          <DescriptionContainer>
-            <Body>{ product.productDescription }</Body>
-          </DescriptionContainer>
-        </InformationContainer>
-        <ButtonsContainer>
+  <ProductContainers.Main>
+    <ProductContainers.Media>
+      <MediaAtoms.Image src={ product.productImage } />
+    </ProductContainers.Media>
+    <ProductContainers.Content>
+      <ProductContainers.Header>
+        <ProductContainers.Information>
+          <TypeAtoms.Title>{ product.productName }</TypeAtoms.Title>
+          <TypeAtoms.SubTitle>{ product.unitPrice }</TypeAtoms.SubTitle>
+          <ProductContainers.Description>
+            <TypeAtoms.Body>{ product.productDescription }</TypeAtoms.Body>
+          </ProductContainers.Description>
+        </ProductContainers.Information>
+        <ProductContainers.Actions>
           { user.isLoggedIn && (
-            <DispatchButton
-              onClick={ () => addToWishlist(
-                user.id, 
-                { productId: product.id }
-              ) }
+            <ButtonAtoms.Button
+              dispatch={ dispatch }
+              onClick={ addToWishlist }
               variant='secondary'
             >
-              { !!wishlist.length && wishlist.map(item => item.id).includes(product.id) 
-              ? <Icon src={ BlackHeart } />
-              : <Icon src={ Heart } />
-              }
-            </DispatchButton>
+              <MediaAtoms.Icon src={ productOnWishlist ? BlackHeartIcon : HeartIcon } />
+            </ButtonAtoms.Button>
           ) }
-        </ButtonsContainer>
-      </HeaderContainer>
-      <BodyContainer>
-        <QuantityContainer>
-          <Button
-            onClick={ () => setQuantityToAdd(quantityToAdd - 1) }
+        </ProductContainers.Actions>
+      </ProductContainers.Header>
+      <ProductContainers.Body>
+        <ProductContainers.QuantityActions>
+          <ButtonAtoms.Button
+            onClick={ decrementQuantityToAdd }
             disabled={ quantityToAdd - 1 <= 0 }
             variant='secondary'
           >
-            <Icon src={ Minus }/>
-          </Button>
-          <SmallBody>{ quantityToAdd }</SmallBody>
-          <Button
-            onClick={ () => setQuantityToAdd(quantityToAdd + 1) }
+            <MediaAtoms.Icon src={ MinusIcon }/>
+          </ButtonAtoms.Button>
+          <TypeAtoms.SmallBody>{ quantityToAdd }</TypeAtoms.SmallBody>
+          <ButtonAtoms.Button
+            onClick={ incrementQuantityToAdd }
             disabled={ quantityToAdd + 1 > product.inventory }
             variant='secondary'
           >
-            <Icon src={ Plus }/>
-          </Button>
-        </QuantityContainer>
-        <DispatchButton 
-          onClick={ () => addProductToCart(
-            user.id,
-            { productId: product.id, quantity: quantityToAdd || 1 }
-          )}
+            <MediaAtoms.Icon src={ PlusIcon }/>
+          </ButtonAtoms.Button>
+        </ProductContainers.QuantityActions>
+        <ButtonAtoms.Button 
+          onClick={ addProductToCart }
+          dispatch={ dispatch }
           variant='secondary'
         >
-          <IconTextContainer>
-            <Icon src={ Cart } />
-            <ButtonType>Add to cart</ButtonType>
-          </IconTextContainer>
-        </DispatchButton>
-      </BodyContainer>
-    </ContentContainer>
-  </ProductContainer>
-)
+          <MediaContainers.Main>
+            <MediaAtoms.Icon src={ CartIcon } />
+            <TypeAtoms.ButtonType>Add to cart</TypeAtoms.ButtonType>
+          </MediaContainers.Main>
+        </ButtonAtoms.Button>
+      </ProductContainers.Body>
+    </ProductContainers.Content>
+  </ProductContainers.Main>
+);
+
+export default Product;

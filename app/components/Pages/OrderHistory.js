@@ -1,22 +1,42 @@
-import * as React from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
-import OrderHistoryTemplate from '../Templates/OrderHistory';
-import OrderList from '../Organisms/OrderHistory';
+import { OrderHistoryTemplate } from '../Templates';
+import { List, Grid } from '../Organisms';
+import { OrderHistoryCard } from '../Molecules';
+import { MediaAtoms } from '../Atoms';
 
-export default () => {
+const OrderHistoryPage = () => {
   
-  const { allOrders, activeUser } = useSelector(state => state);
+  const { allOrders } = useSelector(state => state);
 
   return (
     <OrderHistoryTemplate
       title={ 'Order History' }
       orderHistory={ 
-        <OrderList
-          orders={ allOrders }
-          user={ activeUser }
+        <List
+          listData={ allOrders }
+          renderData={ orderItem => (
+            <OrderHistoryCard
+              key={ orderItem.id }
+              order={ orderItem }
+              cartItemList={
+                <Grid
+                  listData={ orderItem.cartItems }
+                  renderData={ cartItem => (
+                    <MediaAtoms.Image
+                      key={ cartItem.id }
+                      src={ cartItem.product.productImage }
+                    />
+                  ) }
+                />
+              }
+            />
+          ) }
         />
       }
     />
   );
 };
+
+export default OrderHistoryPage;

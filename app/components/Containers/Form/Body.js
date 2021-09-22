@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import * as StyledComponents from '../../StyledComponents';
-const { StyledForm: { StyledBody } } = StyledComponents;
+import { StyledForm } from '../../StyledComponents';
 
-export default ({ children }) => <StyledBody>{ children }</StyledBody>;
+const Body = ({ children }) => <StyledForm.Body>{ children }</StyledForm.Body>;
+
+export default Body;

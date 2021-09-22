@@ -1,20 +1,20 @@
-import * as React from 'react';
+import React from 'react';
 
-import PageContainer from '../Containers/Page/Page';
-import Title from '../Atoms/Title';
-import Header from '../Containers/Page/Header';
-import Section from '../Containers/Page/Section';
+import { PageContainers } from '../Containers';
+import { TypeAtoms } from '../Atoms';
 
-export default ({
+const OrderTemplate = ({
   title,
   breadcrumbs,
   order
 }) => (
-  <PageContainer>
-    <Header>
-      <Title>{ title }</Title>
+  <PageContainers.Main>
+    <PageContainers.Header>
+      <TypeAtoms.Title>{ title }</TypeAtoms.Title>
       { breadcrumbs }
-    </Header>
-    <Section>{ order }</Section>
-  </PageContainer>
+    </PageContainers.Header>
+    <PageContainers.Section>{ order }</PageContainers.Section>
+  </PageContainers.Main>
 );
+
+export default OrderTemplate;

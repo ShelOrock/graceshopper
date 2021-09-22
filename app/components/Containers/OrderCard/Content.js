@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import * as StyledComponents from '../../StyledComponents';
-const { StyledOrderCard: { StyledContent } } = StyledComponents;
+import { StyledOrderCard } from '../../StyledComponents';
 
-export default ({ children }) => <StyledContent>{ children }</StyledContent>;
+const Content = ({ children }) => <StyledOrderCard.Content>{ children }</StyledOrderCard.Content>;
+
+export default Content;

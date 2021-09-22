@@ -22,10 +22,11 @@ export const attemptCardPayment = (
       .post(`${ API_URL }/create-payment-intent`, payload)
       .then(res => stripe.confirmCardPayment(res.data.client_secret, { payment_method }))
       .then(() => {
-        dispatch(createOrder({
+        dispatch(createOrder(userId, {
           userId,
+          userInformation: payload.userInformation,
           shipping: payload.shipping,
-          amoung: payload.amount,
+          total: payload.amount,
           cartItems: payload.cartItems
         }));
       })

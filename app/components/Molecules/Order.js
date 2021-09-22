@@ -1,51 +1,35 @@
-import * as React from 'react';
+import React from 'react';
 import { convertDate } from '../../utils';
 
-import OrderContainer from '../Containers/Order/Order';
-import HeaderContainer from '../Containers/Order/Header';
-import InformationContainer from '../Containers/Order/Information';
-import TotalContainer from '../Containers/Order/Total';
-import BodyContainer from '../Containers/Order/Body';
-import ShippingContainer from '../Containers/Order/Shipping';
-import LineList from '../Atoms/LineList';
-import OrderItem from './OrderItem';
-import Heading from '../Atoms/Heading';
-import Body from '../Atoms/Body';
+import { TypeAtoms } from '../Atoms';
+import { OrderContainers } from '../Containers';
 
-export default ({
+const Order = ({
   order = {},
-  cartItems = [],
+  orderItemList = null,
 }) => (
-  <OrderContainer>
-    <HeaderContainer>
-      <InformationContainer>
-        <Heading>Order No.{ order.confirmationNumber }</Heading>
-        <Body>{ order.createdAt && convertDate(order.createdAt) }</Body>
-      </InformationContainer>
-      <TotalContainer>
-        <Heading>Total: ${ order.total }</Heading>
-      </TotalContainer>
-    </HeaderContainer>
-    <BodyContainer>
-      <ShippingContainer>
-        <Heading>Shipping Details</Heading>
-        <Body>
+  <OrderContainers.Main>
+    <OrderContainers.Header>
+      <OrderContainers.Content>
+        <TypeAtoms.Heading>Order No.{ order.confirmationNumber }</TypeAtoms.Heading>
+        <TypeAtoms.Body>{ order.createdAt && convertDate(order.createdAt) }</TypeAtoms.Body>
+      </OrderContainers.Content>
+      <OrderContainers.Total>
+        <TypeAtoms.Heading>Total: ${ order.total }</TypeAtoms.Heading>
+      </OrderContainers.Total>
+    </OrderContainers.Header>
+    <OrderContainers.Body>
+      <OrderContainers.Shipping>
+        <TypeAtoms.Heading>Shipping Details</TypeAtoms.Heading>
+        <TypeAtoms.Body>
           { order.name }<br />
           { order.address }<br />
           { order.city }, { order.state } { order.zip }
-        </Body>
-      </ShippingContainer>
-    </BodyContainer>
-    <LineList>
-      {
-        !!cartItems.length && cartItems.map(cartItem => (
-          <OrderItem
-            key={ cartItem.id }
-            cartItem={ cartItem }
-            product={ cartItem.product }
-          />
-        ))
-      }
-    </LineList>
-  </OrderContainer>
+        </TypeAtoms.Body>
+      </OrderContainers.Shipping>
+    </OrderContainers.Body>
+    { orderItemList }
+  </OrderContainers.Main>
 );
+
+export default Order;

@@ -11,8 +11,6 @@ import { similarProducts } from './similarProducts/reducers';
 import { allOrders } from './allOrders/reducers';
 import { activeOrder } from './activeOrder/reducers';
 import { cartPreview } from './cartPreview/reducers';
-import { userInformation } from './userInformation/reducers';
-import { shipping } from './shipping/reducers';
 import { checkoutSuccess } from './checkoutSuccess/reducers';
 
 export default combineReducers({
@@ -27,7 +25,5 @@ export default combineReducers({
   allOrders,
   activeOrder,
   cartPreview,
-  userInformation,
-  shipping,
   checkoutSuccess
 });

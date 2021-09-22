@@ -1,10 +1,15 @@
-import * as React from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import HomeTemplate from '../Templates/Home';
-import ProductList from '../Organisms/ProductList';
+import { HomeTemplate } from '../Templates';
+import { Grid } from '../Organisms';
+import { ProductCard } from '../Molecules';
 
-export default () => {
+import { cartThunks, wishlistThunks } from '../../redux/thunks';
+
+const HomePage = () => {
+
+  const dispatch = useDispatch();
 
   const {
     featuredProducts,
@@ -17,24 +22,52 @@ export default () => {
     <HomeTemplate 
       featuredHeading={ !!featuredProducts.length && 'Featured Products' }
       featured={
-        !!featuredProducts.length && (
-          <ProductList
-            products={ featuredProducts }
-            wishlist={ wishlist.products }
-            user={ activeUser }
-          />
-        )
+        <Grid
+          listData={ featuredProducts }
+          renderData={ product => (
+            <ProductCard 
+              key={ product.id }
+              product={ product }
+              user={ activeUser }
+              dispatch={ dispatch }
+              addProductToCart={ () => cartThunks.addProductToCart(
+                activeUser.id,
+                { productId: product.id, quantity: 1 }
+              ) }
+              addToWishlist={ () => wishlistThunks.addToWishlist(
+                activeUser.id,
+                { productId: product.id }
+              ) }
+              productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
+            />
+          ) }
+        />
       }
       popularHeading={ !!popularProducts.length && 'Popular Products' }
       popular={
-        !!popularProducts.length && (
-          <ProductList
-            products={ popularProducts }
-            wishlist={ wishlist.products }
-            user={ activeUser }
-          />
-        )
+        <Grid
+          listData={ popularProducts }
+          renderData={ product => (
+            <ProductCard
+              key={ product.id }
+              product={ product }
+              user={ activeUser }
+              dispatch={ dispatch }
+              addProductToCart={ () => cartThunks.addProductToCart(
+                activeUser.id,
+                { productId: product.id, quantity: 1 }
+              ) }
+              addToWishlist={ () => wishlistThunks.addToWishlist(
+                activeUser.id,
+                { productId: product.id }
+              ) }
+              productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
+            />
+          ) }
+        />
       }
     />
   );
 };
+
+export default HomePage;

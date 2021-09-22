@@ -1,55 +1,46 @@
-import * as React from 'react';
-const { useState } = React;
+import React from 'react';
 
-import FormContainer from '../Containers/Form/Form';
-import InputModule from '../Molecules/InputModule';
-import ButtonsContainer from '../Containers/Form/Buttons';
-import Title from '../Atoms/Title';
-import DispatchButton from '../Atoms/DispatchButton';
-import LinkContainer from '../Containers/Link';
-import TextLink from '../Atoms/TextLink';
+import { InputModule } from '../Molecules';
+import {
+  TypeAtoms,
+  NavigationAtoms,
+  ButtonAtoms } from '../Atoms';
+import { FormContainers } from '../Containers';
 
-import * as reduxThunks from '../../redux/thunks';
-const { authenticationThunks: { attemptUserLogin } } = reduxThunks;
 
-export default () => {
-
-  const initialState = {
-    email: '',
-    password: ''
-  };
-
-  const [ form, setForm ] = useState(initialState);
-
-  const handleOnChange = e => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  return (
-    <FormContainer>
-      <Title>Login</Title>
+const LoginForm = ({
+  formValues,
+  handleOnChange,
+  dispatch,
+  attemptUserLogin
+}) => (
+  <FormContainers.Main>
+    <FormContainers.Header>
+      <TypeAtoms.Title>Login</TypeAtoms.Title>
+    </FormContainers.Header>
+    <FormContainers.Body>
       <InputModule
         type={ 'text' }
         name={ 'email' }
-        value={ form.email }
+        value={ formValues.email }
         onChange={ handleOnChange }
       />
       <InputModule
         type={ 'password' }
         name={ 'password' }
-        value={ form.password }
+        value={ formValues.password }
         onChange={ handleOnChange }
       />
-      <ButtonsContainer>
-        <DispatchButton
-          onClick={ () => attemptUserLogin(form) }
+      <FormContainers.Actions>
+        <ButtonAtoms.Button
+          onClick={ attemptUserLogin }
+          dispatch={ dispatch }
           variant='secondary'
-        >Login</DispatchButton>
-        <LinkContainer>Don't have an account? <TextLink linkLocation={ '/signup' }>Signup</TextLink></LinkContainer>
-      </ButtonsContainer>
-    </FormContainer>
-  );
-};
+        >Login</ButtonAtoms.Button>
+        <TypeAtoms.Body>Don't have an account? <NavigationAtoms.TextLink to={ '/signup' }>Signup</NavigationAtoms.TextLink></TypeAtoms.Body>
+      </FormContainers.Actions>
+    </FormContainers.Body>
+  </FormContainers.Main>
+);
+
+export default LoginForm;

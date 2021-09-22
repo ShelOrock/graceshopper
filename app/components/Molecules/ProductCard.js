@@ -1,62 +1,53 @@
-import * as React from 'react';
+import React from 'react';
+
 import CartIcon from '/public/img/cart.png';
 import HeartIcon from '/public/img/heart.png';
 import BlackHeartIcon from '/public/img/heart-black.png';
+import {
+  TypeAtoms,
+  MediaAtoms,
+  ButtonAtoms,
+  NavigationAtoms
+} from '../Atoms';
+import { ProductCardContainers } from '../Containers';
 
-import ProductCardContainer from '../Containers/ProductCard/ProductCard';
-import ButtonsContainer from '../Containers/ProductCard/Buttons';
-import InformationContainer from '../Containers/ProductCard/Information';
-
-import DispatchButton from '../Atoms/DispatchButton';
-import CardImage from '../Atoms/CardImage';
-import Heading from '../Atoms/Heading';
-import SubHeading from '../Atoms/SubHeading';
-import Link from '../Atoms/Link';
-import Icon from '../Atoms/Icon';
-
-import * as reduxThunks from '../../redux/thunks';
-const {
-  cartThunks: { addProductToCart },
-  wishlistThunks: { addToWishlist }
-} = reduxThunks;
-
-export default ({
+const ProductCard = ({
   product = {},
-  wishlist = [],
-  user = {}
+  user = {},
+  dispatch,
+  addProductToCart,
+  addToWishlist,
+  productOnWishlist
 }) => (
-  <ProductCardContainer>
-    <ButtonsContainer>
-      <DispatchButton
-        onClick={ () => addProductToCart(
-          user.id,
-          { productId: product.id, quantity: 1 }
-        ) }
+  <ProductCardContainers.Main>
+    <ProductCardContainers.Actions>
+      <ButtonAtoms.Button
+        onClick={ addProductToCart }
+        dispatch={ dispatch }
         variant='secondary'
       >
-        <Icon src={ CartIcon } />
-      </DispatchButton>
+        <MediaAtoms.Icon src={ CartIcon } />
+      </ButtonAtoms.Button>
       { user.isLoggedIn && (
-      <DispatchButton
-        onClick={ () => addToWishlist(
-          user.id,
-          { productId: product.id }
-        ) }
+      <ButtonAtoms.Button
+        onClick={ addToWishlist }
+        dispatch={ dispatch }
         variant='secondary'
       >
-        { !!wishlist.length && wishlist.map(item => item.id).includes(product.id)
-        ? <Icon src={ BlackHeartIcon } />
-        : <Icon src={ HeartIcon } />
-        }
-      </DispatchButton>
+        <MediaAtoms.Icon src={ productOnWishlist ? BlackHeartIcon : HeartIcon } />
+      </ButtonAtoms.Button>
       ) }
-    </ButtonsContainer>
-    <Link to={ `/products/${ product.id }` }>
-      <CardImage src={ product.productImage } />
-      <InformationContainer>
-        <Heading>{ product.productName }</Heading>
-        <SubHeading>{ product.unitPrice }</SubHeading>
-      </InformationContainer>
-    </Link>
-  </ProductCardContainer>
+    </ProductCardContainers.Actions>
+    <NavigationAtoms.TextLink to={ `/products/${ product.id }` }>
+      <ProductCardContainers.Media>
+        <MediaAtoms.Image src={ product.productImage } />
+      </ProductCardContainers.Media>
+      <ProductCardContainers.Information>
+        <TypeAtoms.Heading>{ product.productName }</TypeAtoms.Heading>
+        <TypeAtoms.SubHeading>{ product.unitPrice }</TypeAtoms.SubHeading>
+      </ProductCardContainers.Information>
+    </NavigationAtoms.TextLink>
+  </ProductCardContainers.Main>
 );
+
+export default ProductCard;
