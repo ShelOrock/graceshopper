@@ -4,14 +4,13 @@ import { StyledButton } from '../../StyledComponents';
 
 const Button = ({
   disabled = false,
-  dispatch = null,
   onClick = () => {},
   variant,
   children
 }) => (
   <StyledButton.Button
     disabled={ disabled }
-    onClick={ () => dispatch ? dispatch(onClick()) : onClick() }
+    onClick={ () => onClick() }
     variant={ variant }
   >
     { children }

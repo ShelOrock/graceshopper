@@ -7,9 +7,7 @@ import {
 } from '../Atoms';
 import { PreviewContainers } from '../Containers';
 
-const Preview = ({
-  cardList
-}) => (
+const Preview = ({ cardList }) => (
   <PreviewContainers.Main>
     <TypeAtoms.Heading>Cart Preview</TypeAtoms.Heading>
     { cardList }

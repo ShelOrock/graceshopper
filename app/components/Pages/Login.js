@@ -25,10 +25,9 @@ const LoginPage = () => {
     <LoginTemplate
       login={
         <LoginForm
-          dispatch={ dispatch }
           formValues={ formValues }
           handleOnChange={ handleOnChange }
-          attemptUserLogin={ () => authenticationThunks.attemptUserLogin(formValues) }
+          attemptUserLogin={ () => dispatch(authenticationThunks.attemptUserLogin(formValues)) }
         /> }
     />
   )

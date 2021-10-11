@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ProductTemplate } from '../Templates';
-import { Grid } from '../Organisms';
+import { Grid, BreadCrumbs } from '../Organisms';
 
 import {
-  BreadCrumbs,
+  Crumb,
   Product,
-  ProductCard } from '../Molecules';
+  ProductCard
+} from '../Molecules';
 
 import {
   activeProductThunks,
@@ -46,11 +47,23 @@ const ProductPage = () => {
       title={ activeProduct.productName }
       breadcrumbs={
         <BreadCrumbs
-          crumbs={ [
+          listData={ [
             { to: '/', name: 'Home' },
             { to: '/shop', name: 'Shop' },
             { to: `/products/${ activeProduct.id }`, name: activeProduct.productName }
           ] }
+          renderData={ (
+            crumb,
+            index,
+            breadcrumbs
+          ) => (
+            <Crumb
+              key={ index }
+              to={ crumb.to }
+              name={ crumb.name }
+              lastElement={ index === breadcrumbs.length - 1 }
+            />
+          ) }
         />
       }
       product={
@@ -60,16 +73,15 @@ const ProductPage = () => {
           quantityToAdd={ quantityToAdd }
           decrementQuantityToAdd={ () => setQuantityToAdd(quantityToAdd - 1) }
           incrementQuantityToAdd={ () => setQuantityToAdd(quantityToAdd + 1) }
-          dispatch={ dispatch }
-          addProductToCart={ () => cartThunks.addProductToCart(
+          addProductToCart={ () => dispatch(cartThunks.addProductToCart(
             activeUser.id,
             { productId: activeProduct.id, quantity: quantityToAdd || 1 }
-          ) }
-          addTowishlist={ () => wishlistThunks.addToWishlist(
+          )) }
+          addToWishlist={ () => dispatch(wishlistThunks.addToWishlist(
             activeUser.id,
-            { productOd: activeProduct.id }
-          ) }
-          productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
+            { productId: activeProduct.id }
+          )) }
+          productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(activeProduct.id) }
           />
       }
       similarHeading={ !!similarProducts.length && 'Similar Products' }
@@ -81,15 +93,14 @@ const ProductPage = () => {
               key={ product.id }
               product={ product }
               user={ activeUser }
-              dispatch={ dispatch }
-              addProductToCart={ () => cartThunks.addProductToCart(
+              addProductToCart={ () => dispatch(cartThunks.addProductToCart(
                 activeUser.id,
                 { productId: product.id, quantity: 1 }
-              ) }
-              addTowishlist={ () => wishlistThunks.addToWishlist(
+              )) }
+              addTowishlist={ () => dispatch(wishlistThunks.addToWishlist(
                 activeUser.id,
                 { productOd: activeProduct.id }
-              ) }
+              )) }
               productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
             />
           ) }

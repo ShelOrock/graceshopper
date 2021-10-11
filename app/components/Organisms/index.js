@@ -2,6 +2,7 @@ import List from './List';
 import Grid from './Grid';
 
 import Navigation from './Navigation';
+import BreadCrumbs from './BreadCrumbs';
 import Preview from './Preview';
 
 import LoginForm from './LoginForm';
@@ -14,6 +15,7 @@ export {
   List,
   Grid,
   Navigation,
+  BreadCrumbs,
   Preview,
   LoginForm,
   SignupForm,

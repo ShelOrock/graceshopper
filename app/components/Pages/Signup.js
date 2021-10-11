@@ -29,12 +29,11 @@ const SignupPage = () => {
     <SignupTemplate
       signup={
         <SignupForm
-          dispatch={ dispatch }
           formValues={ formValues }
           formErrors={ formErrors }
           containsErrors={ containsErrors }
           handleOnChange={ handleOnChange }
-          attemptUserSignup={ () => authenticationThunks.attemptUserSignup(formValues) }
+          attemptUserSignup={ () => dispatch(authenticationThunks.attemptUserSignup(formValues)) }
         />
       }
     />

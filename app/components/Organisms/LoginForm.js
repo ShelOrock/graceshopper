@@ -7,11 +7,9 @@ import {
   ButtonAtoms } from '../Atoms';
 import { FormContainers } from '../Containers';
 
-
 const LoginForm = ({
   formValues,
   handleOnChange,
-  dispatch,
   attemptUserLogin
 }) => (
   <FormContainers.Main>
@@ -34,7 +32,6 @@ const LoginForm = ({
       <FormContainers.Actions>
         <ButtonAtoms.Button
           onClick={ attemptUserLogin }
-          dispatch={ dispatch }
           variant='secondary'
         >Login</ButtonAtoms.Button>
         <TypeAtoms.Body>Don't have an account? <NavigationAtoms.TextLink to={ '/signup' }>Signup</NavigationAtoms.TextLink></TypeAtoms.Body>

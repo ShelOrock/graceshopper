@@ -9,7 +9,6 @@ import { InputModule } from '../Molecules';
 import { FormContainers } from '../Containers';
 
 const SignupForm = ({
-  dispatch,
   formValues,
   formErrors,
   containsErrors = false,
@@ -45,7 +44,6 @@ const SignupForm = ({
       <FormContainers.Actions>
         <ButtonAtoms.Button
           onClick={ attemptUserSignup }
-          dispatch={ dispatch }
           disabled={ containsErrors }
           variant='secondary'
         >Signup</ButtonAtoms.Button>

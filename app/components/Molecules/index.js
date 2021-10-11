@@ -15,7 +15,7 @@ import EmptyPreview from './EmptyPreview';
 import InputModule from './InputModule';
 import StripeInputModule from './StripeInputModule';
 
-import BreadCrumbs from './BreadCrumbs';
+import Crumb from './Crumb';
 
 import Pagination from './Pagination';
 
@@ -33,6 +33,6 @@ export {
   EmptyPreview,
   InputModule,
   StripeInputModule,
-  BreadCrumbs,
+  Crumb,
   Pagination
 };

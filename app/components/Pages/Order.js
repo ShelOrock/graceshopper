@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { OrderTemplate } from '../Templates';
-import { List } from '../Organisms';
+import { List, BreadCrumbs } from '../Organisms';
 import {
   Order,
   OrderCard,
-  BreadCrumbs
+  Crumb
 } from '../Molecules';
 
 import { activeOrderThunks } from '../../redux/thunks';
@@ -28,11 +28,23 @@ const OrderPage = () => {
       title={ `Order No.${ activeOrder.confirmationNumber } Details` }
       breadcrumbs={
         <BreadCrumbs
-          crumbs={ [   
+          listData={ [   
             { to: '/', name: 'Home' },
             { to: '/order-history', name: 'Order History ' },
             { to: `/order-history/${ activeOrder.id }`, name: `Order No. ${ activeOrder.confirmationNumber }`}
           ] }
+          renderData={ (
+            crumb,
+            index,
+            breadcrumbs
+          ) => (
+            <Crumb
+              key={ crumb.name }
+              to={ crumb.to }
+              name={ crumb.name }
+              lastElement={ index === breadcrumbs.length - 1 }
+            />
+          ) }
         />
       }
       order={ 
