@@ -14,7 +14,6 @@ import { ProductCardContainers } from '../Containers';
 const ProductCard = ({
   product = {},
   user = {},
-  dispatch,
   addProductToCart,
   addToWishlist,
   productOnWishlist
@@ -23,7 +22,6 @@ const ProductCard = ({
     <ProductCardContainers.Actions>
       <ButtonAtoms.Button
         onClick={ addProductToCart }
-        dispatch={ dispatch }
         variant='secondary'
       >
         <MediaAtoms.Icon src={ CartIcon } />
@@ -31,7 +29,6 @@ const ProductCard = ({
       { user.isLoggedIn && (
       <ButtonAtoms.Button
         onClick={ addToWishlist }
-        dispatch={ dispatch }
         variant='secondary'
       >
         <MediaAtoms.Icon src={ productOnWishlist ? BlackHeartIcon : HeartIcon } />

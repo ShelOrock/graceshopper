@@ -29,23 +29,22 @@ const CartPage = () => {
               cartItem={ cartItem }
               product={ cartItem.product }
               user={ activeUser }
-              decrementItemQuantity={ () => cartThunks.updateProductInCart(
+              decrementItemQuantity={ () => dispatch(cartThunks.updateProductInCart(
                 activeUser.id,
                 { productId: cartItem.product.id, quantity: cartItem.quantity - 1 }
-              ) }
-              incrementItemQuantity={ () => cartThunks.updateProductInCart(
+              )) }
+              incrementItemQuantity={ () => dispatch(cartThunks.updateProductInCart(
                 activeUser.id,
                 { productId: cartItem.product.id, quantity: cartItem.quantity + 1 }
-              ) }
-              dispatch={ dispatch }
-              removeProductFromCart={ () => cartThunks.removeProductFromCart(
+              )) }
+              removeProductFromCart={ () => dispatch(cartThunks.removeProductFromCart(
                 activeUser.id, 
                 { cartItemId: cartItem.id }
-              ) }
-              addToWishlist={ () => wishlistThunks.addToWishlist(
+              )) }
+              addToWishlist={ () => dispatch(wishlistThunks.addToWishlist(
                 activeUser.id,
                 { productId: cartItem.product.id }
-              ) }
+              )) }
               productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(cartItem.product.id) }
             /> 
           ) }

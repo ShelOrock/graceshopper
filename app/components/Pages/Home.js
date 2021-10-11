@@ -29,15 +29,14 @@ const HomePage = () => {
               key={ product.id }
               product={ product }
               user={ activeUser }
-              dispatch={ dispatch }
-              addProductToCart={ () => cartThunks.addProductToCart(
+              addProductToCart={ () => dispatch(cartThunks.addProductToCart(
                 activeUser.id,
                 { productId: product.id, quantity: 1 }
-              ) }
-              addToWishlist={ () => wishlistThunks.addToWishlist(
+              )) }
+              addToWishlist={ () => dispatch(wishlistThunks.addToWishlist(
                 activeUser.id,
                 { productId: product.id }
-              ) }
+              )) }
               productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
             />
           ) }
@@ -52,15 +51,14 @@ const HomePage = () => {
               key={ product.id }
               product={ product }
               user={ activeUser }
-              dispatch={ dispatch }
-              addProductToCart={ () => cartThunks.addProductToCart(
+              addProductToCart={ () => dispatch(cartThunks.addProductToCart(
                 activeUser.id,
                 { productId: product.id, quantity: 1 }
-              ) }
-              addToWishlist={ () => wishlistThunks.addToWishlist(
+              )) }
+              addToWishlist={ () => dispatch(wishlistThunks.addToWishlist(
                 activeUser.id,
                 { productId: product.id }
-              ) }
+              )) }
               productOnWishlist={ !!wishlist.products.length && wishlist.products.map(item => item.id).includes(product.id) }
             />
           ) }
