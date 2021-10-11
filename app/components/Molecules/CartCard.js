@@ -18,7 +18,6 @@ const CartCard = ({
   user = {},
   decrementItemQuantity,
   incrementItemQuantity,
-  dispatch,
   removeProductFromCart,
   addToWishlist,
   productOnWishlist
@@ -39,7 +38,6 @@ const CartCard = ({
         { user.isLoggedIn && (
           <ButtonAtoms.Button 
             onClick={ addToWishlist }
-            dispatch={ dispatch }
             variant='secondary'
           >
             <MediaAtoms.Icon src={ productOnWishlist ? BlackHeartIcon : HeartIcon } />
@@ -47,7 +45,6 @@ const CartCard = ({
         ) }
           <ButtonAtoms.Button
             onClick={ removeProductFromCart }
-            dispatch={ dispatch }
             variant='secondary'
           >
             Remove from Cart
@@ -58,7 +55,6 @@ const CartCard = ({
         <CartCardContainers.QuantityActions>
           <ButtonAtoms.Button
             onClick={ decrementItemQuantity }
-            dispatch={ dispatch }
             disabled={ cartItem.quantity - 1 <= 0 }
             variant='secondary'
           >
@@ -67,7 +63,6 @@ const CartCard = ({
           <TypeAtoms.Body>{ cartItem.quantity }</TypeAtoms.Body>
           <ButtonAtoms.Button
             onClick={ incrementItemQuantity }
-            dispatch={ dispatch }
             disabled={ cartItem.quantity + 1 > product.inventory }
             variant='secondary'
           >

@@ -52,9 +52,7 @@ const Root = () => {
 
   return (
     <Router>
-      <Navigation
-        dispatch={ dispatch }
-      />
+      <Navigation />
       {/* <ToastComponent status={status} message={text} /> */}
       <Switch>
         <Route exact path='/'>

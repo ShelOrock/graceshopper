@@ -11,7 +11,6 @@ import { WishlistCardContainers } from '../Containers';
 
 const WishlistCard = ({
   wishlistItem = {},
-  dispatch,
   removeFromWishlist,
   addProductToCart
 }) => (
@@ -30,7 +29,6 @@ const WishlistCard = ({
         <WishlistCardContainers.HeaderActions>
           <ButtonAtoms.Button
             onClick={ removeFromWishlist }
-            dispatch={ dispatch }
             variant='secondary'
           >
             <MediaAtoms.Icon src={ BlackHeart } />
@@ -41,7 +39,6 @@ const WishlistCard = ({
         <WishlistCardContainers.BodyActions>
           <ButtonAtoms.Button
             onClick={ addProductToCart }
-            dispatch={ dispatch }
             variant='secondary'
           >
             Add to cart

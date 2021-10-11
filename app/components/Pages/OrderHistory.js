@@ -24,7 +24,7 @@ const OrderHistoryPage = () => {
                 <Grid
                   listData={ orderItem.cartItems }
                   renderData={ cartItem => (
-                    <MediaAtoms.Image
+                    <MediaAtoms.Thumbnail
                       key={ cartItem.id }
                       src={ cartItem.product.productImage }
                     />

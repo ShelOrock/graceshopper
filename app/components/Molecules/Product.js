@@ -18,7 +18,6 @@ const Product = ({
   quantityToAdd = 1,
   decrementQuantityToAdd,
   incrementQuantityToAdd,
-  dispatch,
   addProductToCart,
   addToWishlist,
   productOnWishlist
@@ -39,7 +38,6 @@ const Product = ({
         <ProductContainers.Actions>
           { user.isLoggedIn && (
             <ButtonAtoms.Button
-              dispatch={ dispatch }
               onClick={ addToWishlist }
               variant='secondary'
             >
@@ -68,7 +66,6 @@ const Product = ({
         </ProductContainers.QuantityActions>
         <ButtonAtoms.Button 
           onClick={ addProductToCart }
-          dispatch={ dispatch }
           variant='secondary'
         >
           <MediaContainers.Main>

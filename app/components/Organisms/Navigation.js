@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import NavLogo from '/public/img/logo.png'
 import CartIcon from '/public/img/cart.png'
@@ -17,9 +17,9 @@ import { NavigationContainers, MediaContainers } from '../Containers';
 import { authenticationThunks, cartThunks } from '../../redux/thunks';
 import { cartPreviewActions } from '../../redux/actions';
 
-const Navigation = ({
-  dispatch
-}) => {
+const Navigation = () => {
+
+  const dispatch = useDispatch();
 
   const location = useLocation();
 
@@ -49,16 +49,14 @@ const Navigation = ({
         { activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/order-history' }>Orders</NavigationAtoms.TextLink> }
         { !activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/login' }>Login</NavigationAtoms.TextLink> }
         { activeUser.isLoggedIn && <NavigationAtoms.ButtonLink
-            onClick={ authenticationThunks.attemptUserLogout(activeUser.id) }
-            dispatch={ dispatch }
+            onClick={ () => dispatch(authenticationThunks.attemptUserLogout(activeUser.id)) }
             variant='secondary'
           >Logout</NavigationAtoms.ButtonLink>
         }
         { !activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/signup' }>Signup</NavigationAtoms.TextLink> }
         { activeUser.isLoggedIn && <NavigationAtoms.TextLink to={ '/wishlist'}>Wishlist</NavigationAtoms.TextLink>}
         <ButtonAtoms.Button
-          onClick={ () => cartPreviewActions.setCartPreview(!cartPreview) }
-          dispatch={ dispatch }
+          onClick={ () => dispatch(cartPreviewActions.setCartPreview(!cartPreview)) }
           variant='secondary'
         >
           <MediaContainers.Main>
@@ -77,11 +75,10 @@ const Navigation = ({
                       key={ cartItem.id }
                       cartItem={ cartItem }
                       product={ cartItem.product }
-                      dispatch={ dispatch }
-                      removeProductFromCart={ () => cartThunks.removeProductFromCart(
+                      removeProductFromCart={ () => dispatch(cartThunks.removeProductFromCart(
                         activeUser.id,
                         { cartItemId: cartItem.id }
-                      ) }
+                      )) }
                     />
                   ) }
                 />

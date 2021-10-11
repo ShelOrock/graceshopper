@@ -3,7 +3,6 @@ import React from 'react';
 import { StyledNavigation } from '../../StyledComponents';
 
 const ButtonLink = ({
-  dispatch = null,
   onClick,
   variant,
   disabled = false,
@@ -11,7 +10,7 @@ const ButtonLink = ({
 }) => (
   <StyledNavigation.ButtonLink
     disabled={ disabled }
-    onClick={ () => dispatch ? dispatch(onClick) : onClick }
+    onClick={ () => onClick() }
     variant={ variant }
   >
     { children }

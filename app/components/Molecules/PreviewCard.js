@@ -6,7 +6,6 @@ import { PreviewCardContainers } from '../Containers';
 const PreviewCard = ({
   cartItem = {},
   product = {},
-  dispatch,
   removeProductFromCart
 }) => (
   <PreviewCardContainers.Main>
@@ -16,7 +15,6 @@ const PreviewCard = ({
       <TypeAtoms.Body>Quantity: { cartItem.quantity }</TypeAtoms.Body>
     </PreviewCardContainers.Information>
     <ButtonAtoms.Button
-      dispatch={ dispatch }
       onClick={ removeProductFromCart }
       variant='secondary'
     >X</ButtonAtoms.Button>

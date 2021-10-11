@@ -13,7 +13,6 @@ import { FormContainers, InputModuleContainers } from '../Containers';
 const PaymentForm = ({
   activeForm,
   containsErrors,
-  dispatch,
   attemptCardPayment,
   activateForm,
   stripe,
@@ -47,7 +46,6 @@ const PaymentForm = ({
         </InputModuleContainers.Group>
         <FormContainers.Actions>
           <ButtonAtoms.Button
-            dispatch={ dispatch }
             onClick={ attemptCardPayment }
             disabled={ !stripe || !cartTotal || containsErrors }
             variant='secondary'

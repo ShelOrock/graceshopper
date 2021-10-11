@@ -9,9 +9,10 @@ import { CheckoutTemplate } from '../Templates';
 import {
   UserInformationForm,
   ShippingForm,
-  PaymentForm
+  PaymentForm,
+  BreadCrumbs
 } from '../Organisms';
-import { BreadCrumbs } from '../Molecules';
+import { Crumb } from '../Molecules';
 
 import { stripeThunks } from '../../redux/thunks';
 
@@ -60,11 +61,23 @@ const CheckoutPage = () => {
       title={ 'Checkout' }
       breadcrumbs={
         <BreadCrumbs
-          crumbs={ [
+          listData={ [
             { to: '/', name: 'Home' },
             { to: '/cart', name: 'Cart' },
             { to: '/checkout', name: 'Checkout' }
           ] }
+          renderData={ (
+            crumb,
+            index,
+            breadcrumbs
+          ) => (
+            <Crumb
+              key={ crumb.name }
+              to={ crumb.to }
+              name={ crumb.name }
+              lastElement={ index === breadcrumbs.length - 1 }
+            />
+          ) }
         />
       }
       userInformation={
@@ -93,8 +106,7 @@ const CheckoutPage = () => {
         <PaymentForm
           activeForm={ activeForm }
           containsErrors={ userInformationForm.containsErrors || shippingForm.containsErrors }
-          dispatch={ dispatch }
-          attemptCardPayment={ () => stripeThunks.attemptCardPayment(
+          attemptCardPayment={ () => dispatch(stripeThunks.attemptCardPayment(
             stripe,
             { card: elements.getElement('cardNumber') },
             activeUser.id,
@@ -105,7 +117,7 @@ const CheckoutPage = () => {
               shipping: shippingForm.formValues,
               cartItems
             },
-          ) }
+          )) }
           activateForm={ () => setActiveForm('payment') }
           stripe={ stripe }
           cartTotal={ cartTotal }

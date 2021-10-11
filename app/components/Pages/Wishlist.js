@@ -22,15 +22,14 @@ const WishlistPage = () => {
             <WishlistCard
               key={ wishlistItem.id }
               wishlistItem={ wishlistItem }
-              dispatch={ dispatch }
-              removeFromWishlist={() => wishlistThunks.removeFromWishlist(
+              removeFromWishlist={ () => dispatch(wishlistThunks.removeFromWishlist(
                 activeUser.id,
                 { productId: wishlistItem.id }
-              ) }
-              addProductToCart={ () => cartThunks.addProductToCart(
+              )) }
+              addProductToCart={ () => dispatch(cartThunks.addProductToCart(
                 activeUser.id,
                 { productId: wishlistItem.id, quantity: 1 }
-              ) }
+              )) }
             />
           ) }
         />
